@@ -60,34 +60,10 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     # ... include the providers you want to enable:
-    'allauth.socialaccount.providers.amazon',
-    'allauth.socialaccount.providers.angellist',
-    'allauth.socialaccount.providers.bitbucket',
-    'allauth.socialaccount.providers.bitly',
-    'allauth.socialaccount.providers.coinbase',
-    'allauth.socialaccount.providers.dropbox',
     'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.flickr',
-    'allauth.socialaccount.providers.feedly',
-    'allauth.socialaccount.providers.fxa',
-    'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.hubic',
     'allauth.socialaccount.providers.instagram',
-    'allauth.socialaccount.providers.linkedin',
-    'allauth.socialaccount.providers.linkedin_oauth2',
-    'allauth.socialaccount.providers.odnoklassniki',
-    'allauth.socialaccount.providers.openid',
-    'allauth.socialaccount.providers.persona',
-    'allauth.socialaccount.providers.soundcloud',
-    'allauth.socialaccount.providers.stackexchange',
-    'allauth.socialaccount.providers.tumblr',
-    'allauth.socialaccount.providers.twitch',
     'allauth.socialaccount.providers.twitter',
-    'allauth.socialaccount.providers.vimeo',
-    'allauth.socialaccount.providers.vk',
-    'allauth.socialaccount.providers.weibo',
-    'allauth.socialaccount.providers.xing',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -135,12 +111,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 SITE_ID = 1
+# http://www.sarahhagstrom.com/2013/09/the-missing-django-allauth-tutorial/#Add_django-allauth
+
+LOGIN_REDIRECT_URL = '/trainingPortal/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/trainingPortal/'
+SOCIALACCOUNT_QUERY_EMAIL = True
 
 SOCIALACCOUNT_PROVIDERS = \
     {'facebook':
-       {'SCOPE': ['email', 'publish_stream'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+       { 'SCOPE': ['email'],
         'METHOD': 'oauth2',
-        'LOCALE_FUNC': 'path.to.callable',
-        'VERIFIED_EMAIL': False,
-        'VERSION': 'v2.2'}}
+        'VERIFIED_EMAIL': False}}
