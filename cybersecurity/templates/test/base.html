@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+{% load static %} 
+
+<html>
+    <head>
+        <title>Cybersecurity Training Portal : {% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+	
+         <img src="{% static "images/logo_scholar_banner.png" %}" alt="Banner" /> </br>
+       <a href='/trainingPortal/about'>About</a>&nbsp;<a href='/accounts/login'>Log in</a>
+	   
+        <div>
+            {% block body_block %}{% endblock %}
+
+        </div>
+
+
+
+        <div>
+    
+        </div>
+    </body>
+</html>
