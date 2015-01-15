@@ -1,19 +1,13 @@
-<!DOCTYPE html>
 
+{% extends 'base.html' %}
 {% load static %} 
 
-<html>
-    <head>
-        <title>Cybersecurity Training Portal : Index</title>
-    </head>
+{% block title %}About{% endblock %}
 
-    <body>
-	
-         <img src="{% static "images/logo_scholar_banner.png" %}" alt="Banner" /> </br>
-       <a href='/trainingPortal/about'>About</a>&nbsp;<a href='/accounts/login'>Log in</a>
-</br>
-	    This is the about page</br>
-   <a href='/trainingPortal'>Back</a>"
- </body>	  
- 
-</html>
+	{% block body %}
+	<h2>About Page</h2>
+	</br>
+	<div class="well">	
+	This is the about page</br></br>
+   </div>
+       {% endblock %}
