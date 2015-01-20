@@ -9,3 +9,6 @@ def index(request):
 def about(request):
 	context_dict = {}
 	return render(request, 'trainingPortal/about.html', context_dict)
+def chapter(request,chapter_title):
+	context_dict = {}
+	return render(request, 'trainingPortal/chapter.html', context_dict)
