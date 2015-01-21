@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+{% load static %} 
+	{% load thumbnail %}
+{% block title %}Index{% endblock %}
+
+	{% block body %}
+	<h2>{{username}}'s Profille</h2>
+	</br>
+	{{user.first_name}}
+	{{user.last_name}}
+	{{user.email}}
+
+<img class="img-circle" style="width:15%" src="{{ profile.profile_pic.url }} ">
+<div class="well">	
+	Welcome to the Cybersecurity Training Portal</br></br>
+   </div>
+   
+       {% endblock %}

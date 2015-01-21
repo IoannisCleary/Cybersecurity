@@ -91,6 +91,8 @@ INSTALLED_APPS = (
 	'menus',  # helper for model independent hierarchical website navigation
 	'sekizai',  # for javascript and css management
 	'django.contrib.messages',  # to enable messages framework (see :ref:`Enable messages <enable-messages>`)
+	'filer',
+	'easy_thumbnails',
 	'trainingPortal',
 )
 
@@ -189,4 +191,20 @@ MIGRATION_MODULES = {
     'djangocms_teaser': 'djangocms_teaser.migrations_django',
     'djangocms_video': 'djangocms_video.migrations_django',
     'djangocms_text_ckeditor': 'djangocms_text_ckeditor.migrations_django',
+}
+
+THUMBNAIL_HIGH_RESOLUTION = True
+
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    #'easy_thumbnails.processors.scale_and_crop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+)
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'avatar': {'size': (65, 65), 'crop': 'smart'},
+    },
 }
