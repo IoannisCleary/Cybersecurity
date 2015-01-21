@@ -4,34 +4,36 @@
 {% load account %}
 {% load url from future %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
-
+{% block head_title %}{% trans "Log In" %}{% endblock %}
+{% block page_title %}{% trans "Log In" %}{% endblock %}
 {% block content %}
 
-<h1>{% trans "Sign In" %}</h1>
-
-{% if socialaccount.providers  %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{site_name}} account and sign in below:{% endblocktrans %}</p>
-
-<div class="socialaccount_ballot">
-
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
-
-  <div class="login-or">{% trans 'or' %}</div>
-
 </div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=1587008694862538&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
+<div class="well">
+{% if socialaccount.providers  %}
+{% blocktrans with site.name as site_name %}Log in with your <b>Facebook</b> account: 
+<div class="socialaccount_ballot">
+<br/>
+<div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
+<br/><br/>
+Or with your <b>Training Portal</b> account: {% endblocktrans %}
+<br/>
 {% include "socialaccount/snippets/login_extra.html" %}
 
 {% else %}
 <p>{% blocktrans %}If you have not created an account yet, then please
 <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
 {% endif %}
-
+<br/>
 <form class="login" method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}
   {{ form.as_p }}
@@ -39,7 +41,11 @@ for a {{site_name}} account and sign in below:{% endblocktrans %}</p>
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
   <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+  <button class="btn btn-primary primaryAction" type="submit"><b>{% trans "Log In" %}</b></button>
 </form>
-
+</div>
+</div>
+&nbsp;&nbsp;If you do not have an account, please <a href="{{ signup_url }}">sign up</a>
+</br>
+</br>
 {% endblock %}

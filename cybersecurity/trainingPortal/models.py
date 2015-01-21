@@ -12,6 +12,7 @@ class Profile(models.Model):
 		related_name="profile_picture",
 		on_delete=models.SET_NULL,  # Important
 	)
+	age = models.IntegerField()
 	def __unicode__(self):
 		return self.user.username
 		

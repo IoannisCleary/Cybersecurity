@@ -3,17 +3,17 @@
 {% load static %} 
 	{% load thumbnail %}
 {% block title %}Index{% endblock %}
-
-	{% block body %}
-	<h2>{{username}}'s Profille</h2>
+{% block page_title %}{{username}}'s Profile{% endblock %}
+	{% block content %}
+	<div class="well">	
+	<img class="img-rounded" style="height:150px; width:150px;" src="{{ profile.profile_pic.url }} "/>
 	</br>
-	{{user.first_name}}
-	{{user.last_name}}
-	{{user.email}}
+	<div class="container-fluid">	
+    <span class="label label-info">Username:</span> <span class="badge">{{username}}</span><br/>
+    <span class="label label-info">Full name:</span> <span class="badge">{{user.first_name}}d&nbsp;{{user.last_name}}</span><br/>
+    <span class="label label-info">Email address:</span> <span class="badge">{{user.email}}</span><br/>	
+  </div>
 
-<img class="img-circle" style="width:15%" src="{{ profile.profile_pic.url }} ">
-<div class="well">	
-	Welcome to the Cybersecurity Training Portal</br></br>
-   </div>
+    </div>
    
        {% endblock %}
