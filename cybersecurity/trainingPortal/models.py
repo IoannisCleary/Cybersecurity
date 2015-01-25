@@ -2,6 +2,9 @@ from django.db import models
 from filer.fields.image import FilerImageField
 from filer.fields.file import FilerFileField
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
+
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Profile(models.Model):
@@ -13,21 +16,25 @@ class Profile(models.Model):
 		on_delete=models.SET_NULL,  # Important
 	)
 	age = models.IntegerField()
+	admin = models.BooleanField(default=False)
 	def __unicode__(self):
-		return self.user.username
-		
+		return self.user.username	
 		
 class Chapter(models.Model):
 	title = models.CharField(max_length=128, unique=True)
-
-
+	
 	def __unicode__(self):
 		return self.title
+	class Meta:
+		verbose_name_plural = "Chapters"		
 		
 class Page(models.Model):
 	chapter = models.ForeignKey(Chapter)
-	title = models.CharField(max_length=256, unique=True)
-	content = models.CharField(max_length=1024)
+	title = models.CharField(max_length=256)
+	entry = RichTextField(config_name='awesome_ckeditor')
 	
 	def __unicode__(self):
 		return self.title		
+	class Meta:
+		verbose_name_plural = "Pages"
+		unique_together = (("chapter", "title"),)

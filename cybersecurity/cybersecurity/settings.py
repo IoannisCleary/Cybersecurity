@@ -90,6 +90,9 @@ INSTALLED_APPS = (
 	'django.contrib.messages',  # to enable messages framework (see :ref:`Enable messages <enable-messages>`)
 	'filer',
 	'easy_thumbnails',
+	'ckeditor',
+	'tinymce',
+	'django_wysiwyg',
 	'trainingPortal',
 )
 
@@ -163,7 +166,32 @@ SOCIALACCOUNT_PROVIDERS = \
 		
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
+
+DJANGO_WYSIWYG_FLAVOR = "ckeditor"
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_RESTRICT_BY_USER=True
+CKEDITOR_CONFIGS = {
+           'awesome_ckeditor': {
+               'toolbar': 'basic',
+               'height': 300,
+               'width': 300,
+           },
+       }
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+TINYMCE_JS_URL = os.path.join(MEDIA_ROOT, "path/to/tiny_mce/tiny_mce.js")
+TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "path/to/tiny_mce")
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+}
+TINYMCE_SPELLCHECKER = True
+TINYMCE_COMPRESSOR = True
+
 LANGUAGES = [
     ('en', 'English'),
 ]

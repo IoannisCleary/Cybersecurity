@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% load static %} 
+{% load socialaccount %}
+{% block title %}Index{% endblock %}
+{% block page_title %}<span class="label label-warning">Chapters </span>{% endblock %}
+	{% block content %}
+<div class="well">	
+     {% if user.is_authenticated %}
+			{% if chapters %}
+			<div class="btn-group btn-block">
+					{% for chapter in chapters %}
+					<a href="/trainingPortal/chapter/{{ chapter.url }}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-list-alt"></span> {{ chapter.title }}</a>
+					{% endfor %}
+			</div>
+			{% else %}
+            <strong>There are no chapters!</strong>
+			{% endif %}
+		
+		{% else %}
+              Please log in to access this page.      
+		{% endif %}
+   </div>
+   
+       {% endblock %}

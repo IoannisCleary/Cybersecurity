@@ -3,12 +3,31 @@
 {% load static %} 
 
 {% block title %}Page{% endblock %}
-{% block page_title %}Page{% endblock %}
-	{% block body %}
-	<h2>Home</h2>
-	</br>
-<div class="well">	
-	Welcome to the Cybersecurity Training Portal</br></br>
+{% block page_title %}<span class="label label-success">Chapter : </span><span class="label label-default">{{chapter}}</span>{% endblock %}
+
+	{% block content %}
+
+     {% if user.is_authenticated %}
+	 	<div class="well" style="width:50%;">
+		<a class="pull-left">
+	 {% if pages %}
+			<div class="btn-group btn-group-vertical btn-block">
+					{% for page in pages %}
+					<a href="/trainingPortal/chapter/{{ chapter }}/{{ page.url }}" class="btn btn-group-vertical btn-group-xs btn-info" role="group"><span class="glyphicon glyphicon-file"></span>{{ page.title }}</a>
+					{% endfor %}
+			</div>
+			{% else %}
+            <strong>There are no pages!</strong>
+			{% endif %}
+			</div>
+		   </a>
+	<div class="well">	
+	<h4><span class="label label-info">Section :</span><span class="label label-default"><b>{{title}}</b></span></h4>
+	<div class="well" style="background-color:white;">	
+	{% autoescape off %}<p>{{entry}}</p>{% endautoescape %}
+	</div>
    </div>
-   
+		{% else %}
+              Please log in to access this page.      
+		{% endif %}
        {% endblock %}
