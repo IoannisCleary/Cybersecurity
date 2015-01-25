@@ -20,11 +20,14 @@
 
 <div class="well">
 {% if socialaccount.providers  %}
-{% blocktrans with site.name as site_name %}Log in with your <b>Facebook</b> account: 
+{% blocktrans with site.name as site_name %}
 <div class="socialaccount_ballot">
 <br/>
-<div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
-<br/><br/>
+  <a class="btn btn-social btn-facebook" href="/accounts/facebook/login/"><div class="fb"></div>
+        <i class="fa fa-facebook"></i> &nbsp;|&nbsp; Log in with Facebook
+      </a>
+<br/>
+<br/>
 Or with your <b>Training Portal</b> account: {% endblocktrans %}
 <br/>
 {% include "socialaccount/snippets/login_extra.html" %}

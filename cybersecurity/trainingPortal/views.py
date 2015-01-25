@@ -29,6 +29,10 @@ def chapter(request,chapter_title):
 	for page in pages:
 		page.url = page.title.replace(' ', '_')
 		print page.url
+	chapters = Chapter.objects.order_by('title')
+	for chapter in chapters:
+		chapter.url = chapter.title.replace(' ', '_')
+	context_dict ['chapters'] = chapters
 	return render(request, 'trainingPortal/chapter.html', context_dict)
 def page(request,chapter_title,page_title):
 	context_dict = {}
@@ -38,9 +42,17 @@ def page(request,chapter_title,page_title):
 	page = Page.objects.get(chapter = chapt, title = title)
 	pages = Page.objects.filter(chapter = chapt)
 	context_dict ['entry'] = page.entry
+	context_dict ['chapter_url'] = chapter_title
 	context_dict ['chapter'] = chapter_tl
 	context_dict ['pages'] = pages
 	context_dict ['title'] = title
+	for page in pages:
+		page.url = page.title.replace(' ', '_')
+		print page.url
+	chapters = Chapter.objects.order_by('title')
+	for chapter in chapters:
+		chapter.url = chapter.title.replace(' ', '_')
+	context_dict ['chapters'] = chapters
 	return render(request, 'trainingPortal/page.html', context_dict)
 def profile(request,username):
 	context_dict = {"username" : username}
