@@ -56,9 +56,16 @@ def page(request,chapter_title,page_title):
 	return render(request, 'trainingPortal/page.html', context_dict)
 def profile(request,username):
 	context_dict = {"username" : username}
-	usr = User.objects.get(username = username)
-	profile =Profile.objects.get(user = usr)
-	print usr.first_name
-	context_dict['user'] = usr
-	context_dict['profile'] = profile
+	exists = True
+	try:
+		usr = User.objects.get(username = username)
+		context_dict['user'] = usr
+		try:
+			profile = Profile.objects.get(user = usr)
+			context_dict['profile'] = profile
+		except Profile.DoesNotExist:
+			exists = False
+	except User.DoesNotExist:
+		exists = False
+	context_dict['exists'] = exists
 	return render(request, 'trainingPortal/profile.html', context_dict)

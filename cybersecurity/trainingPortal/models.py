@@ -17,6 +17,7 @@ class Profile(models.Model):
 	)
 	age = models.IntegerField()
 	admin = models.BooleanField(default=False)
+	type = models.CharField(max_length=128,default="not selected")
 	def __unicode__(self):
 		return self.user.username	
 		

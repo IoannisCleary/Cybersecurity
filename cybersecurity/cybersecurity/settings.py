@@ -39,6 +39,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "allauth.account.context_processors.account",
     "allauth.socialaccount.context_processors.socialaccount",
 )
+ACCOUNT_EMAIL_REQUIRED = False
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -181,6 +182,8 @@ CKEDITOR_CONFIGS = {
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+ACCOUNT_SIGNUP_FORM_CLASS =('trainingPortal.forms.RegisterForm')
+SOCIALACCOUNT_FORMS = {'signup': 'trainingPortal.forms.RegisterForm'}
 TINYMCE_JS_URL = os.path.join(MEDIA_ROOT, "path/to/tiny_mce/tiny_mce.js")
 TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "path/to/tiny_mce")
 TINYMCE_DEFAULT_CONFIG = {
