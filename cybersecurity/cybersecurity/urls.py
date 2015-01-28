@@ -14,4 +14,11 @@ urlpatterns = patterns('',
 	url(r'^', include('cms.urls')),
 	url(r'^ckeditor/', include('ckeditor.urls')),
 	url(r'^tinymce/', include('tinymce.urls')),
+	# questionnaire urls
+    url(r'q/', include('questionnaire.urls')),
+    url(r'^take/(?P<questionnaire_id>[0-9]+)/$', 'questionnaire.views.generate_run'),
+    url(r'^$', 'questionnaire.page.views.page', {'page_to_render' : 'index'}),
+    url(r'^(?P<lang>..)/(?P<page_to_trans>.*)\.html$', 'questionnaire.page.views.langpage'),
+    url(r'^(?P<page_to_render>.*)\.html$', 'questionnaire.page.views.page'),
+    url(r'^setlang/$', 'questionnaire.views.set_language'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

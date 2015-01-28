@@ -46,6 +46,8 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 	TEMPLATE_PATH,
+	os.path.join(BASE_DIR,'/cybersecurity/seantis/seantis-questionnaire/questionnaire/templates/'),
+	
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -94,6 +96,9 @@ INSTALLED_APPS = (
 	'ckeditor',
 	'tinymce',
 	'django_wysiwyg',
+	'transmeta',
+	'questionnaire',
+	'questionnaire.page',
 	'trainingPortal',
 )
 
@@ -110,6 +115,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.language.LanguageCookieMiddleware',
+	'questionnaire.request_cache.RequestCacheMiddleware',
 )
 
 ROOT_URLCONF = 'cybersecurity.urls'
@@ -149,7 +155,7 @@ STATIC_PATH = os.path.join(BASE_DIR,'static')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-
+os.path.join(BASE_DIR,'/cybersecurity/seantis/seantis-questionnaire/questionnaire/static/'),
 )
 
 SITE_ID = 1
