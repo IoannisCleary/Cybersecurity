@@ -8,4 +8,5 @@ urlpatterns = patterns('',
 		url(r'^user/profile/(?P<username>[\w\-]+)/', views.profile, name='profile'),
 		url(r'^chapter/(?P<chapter_title>[\w\-]+)/$', views.chapter, name='chapter'),
 		url(r'^chapter/(?P<chapter_title>[\w\-]+)/(?P<page_title>[\w\-]+)/$', views.page, name='page'),
+		
 		)

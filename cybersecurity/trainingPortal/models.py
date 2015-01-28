@@ -17,7 +17,9 @@ class Profile(models.Model):
 	)
 	age = models.IntegerField()
 	admin = models.BooleanField(default=False)
-	type = models.CharField(max_length=128,default="not selected")
+	learningType = models.CharField(max_length=60,default="not determined")
+	learningStyleDetermined = models.BooleanField(default=False)
+	type = models.CharField(max_length=2,default="not selected")
 	def __unicode__(self):
 		return self.user.username	
 		

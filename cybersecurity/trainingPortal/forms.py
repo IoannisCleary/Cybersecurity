@@ -11,7 +11,7 @@ class RegisterForm(forms.Form):
 		profile = Profile()
 		random = randint(1,50)
 		print random
-		if rand>25:
+		if random>25:
 			type="A"
 		else:
 			type="B"
@@ -22,4 +22,5 @@ class RegisterForm(forms.Form):
 		profile.save();
 		user.profile = profile
 		user.save()
+		
 	
