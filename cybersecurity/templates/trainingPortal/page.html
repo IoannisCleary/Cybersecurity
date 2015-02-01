@@ -39,10 +39,14 @@
 
 </br>
 <div class="well">
+	 {% if set_learningType %}
 	<div class="container-fluid" style="background-color:white;">	
 	{% autoescape off %}<p>{{entry}}</p>{% endautoescape %}
 	</div>
    </div>
+  {% else%}
+	 You need to enter your learning type ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go</a>
+	{% endif %}
 		{% else %}
               Please log in to access this page.      
 		{% endif %}

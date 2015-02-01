@@ -2,9 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from trainingPortal.models import Profile,Chapter,Page
+from trainingPortal.forms import LearningTypeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-# Create your views here.
+
+
+LEARNING_TYPES = {'1':'Activist', '2':'Reflector', '3':'Theorist', '4':'Pragmatist' }
 
 def index(request):
 	context_dict = {}
@@ -14,10 +17,29 @@ def chapters(request):
 	context_dict = {'chapters': chapters}
 	for chapter in chapters:
 		chapter.url = chapter.title.replace(' ', '_')
+	context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/chapters.html', context_dict)
 def about(request):
 	context_dict = {}
 	return render(request, 'trainingPortal/about.html', context_dict)
+def learningType(request):
+	context_dict = {}
+	context_dict['set_learningType'] = completedLearningStyle(request.user)
+	if request.method == 'POST':
+		form = 	LearningTypeForm(request.POST)
+		user = request.user
+		profile = user.profile
+		print profile
+		if form.is_valid():
+			form = 	LearningTypeForm(request.POST, instance=profile)
+			form.save()
+			return index(request)
+		else:
+			print form.errors
+	else:
+		form = 	LearningTypeForm()
+	context_dict['form'] = form
+	return render(request, 'trainingPortal/learningtype.html', context_dict)
 def chapter(request,chapter_title):
 	context_dict = {}
 	chapter_tl = chapter_title.replace('_', ' ')
@@ -33,6 +55,7 @@ def chapter(request,chapter_title):
 	for chapter in chapters:
 		chapter.url = chapter.title.replace(' ', '_')
 	context_dict ['chapters'] = chapters
+	context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/chapter.html', context_dict)
 def page(request,chapter_title,page_title):
 	context_dict = {}
@@ -53,7 +76,9 @@ def page(request,chapter_title,page_title):
 	for chapter in chapters:
 		chapter.url = chapter.title.replace(' ', '_')
 	context_dict ['chapters'] = chapters
+	context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/page.html', context_dict)
+	
 def profile(request,username):
 	context_dict = {"username" : username}
 	exists = True
@@ -62,10 +87,20 @@ def profile(request,username):
 		context_dict['user'] = usr
 		try:
 			profile = Profile.objects.get(user = usr)
-			context_dict['profile'] = profile
+			context_dict['age'] = profile.age
+			context_dict['learningType'] = LEARNING_TYPES.get(profile.learningType)
+			#learning style
+			
 		except Profile.DoesNotExist:
 			exists = False
 	except User.DoesNotExist:
 		exists = False
 	context_dict['exists'] = exists
+	context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/profile.html', context_dict)
+
+def completedLearningStyle(user):
+	if (user.profile.learningType == '0'):
+		return False 	
+	else :
+		return True

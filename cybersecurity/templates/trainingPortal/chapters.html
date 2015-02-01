@@ -7,6 +7,7 @@
 	{% block content %}
 <div class="well">	
      {% if user.is_authenticated %}
+	 {% if set_learningType %}
 			{% if chapters %}
 			<div class="btn-group btn-group-vertical btn-block">
 					{% for chapter in chapters %}
@@ -16,7 +17,9 @@
 			{% else %}
             <strong>There are no chapters!</strong>
 			{% endif %}
-		
+			{% else%}
+	 You need to enter your learning type ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go</a>
+	{% endif %}
 		{% else %}
               Please log in to access this page.      
 		{% endif %}

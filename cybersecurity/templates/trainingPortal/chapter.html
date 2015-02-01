@@ -5,6 +5,7 @@
 {% block title %}Chapter{% endblock %}
 {% block page_title %}<span class="label label-success">{{title}} : </span><span class="label label-default"><b>Sections<b></span>{% endblock %}
 	{% block content %}
+	{% if user.is_authenticated %}	
 	 <button class="btn btn-group-lg btn-success disabled" type="button"><b>Chapter : </b></button>
 <div class="btn-group dropdown">
 <button class="btn btn-group-lg btn-default disabled" type="button"><b>{{ chapter }}</b></button>
@@ -22,7 +23,8 @@
   </br>
     </br>
 <div class="well">
-{% if user.is_authenticated %}	
+
+	 {% if set_learningType %}
 	{% if pages %}
 			<div class="btn-group btn-group-vertical btn-block">
 					{% for page in pages %}
@@ -32,10 +34,11 @@
 			{% else %}
             <strong>There are no pages!</strong>
 			{% endif %}
-	
+	 	 {% else%}
+	 You need to enter your learning type ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go</a>
+	{% endif %}
 		{% else %}
               Please log in to access this page.      
 		{% endif %}
    </div>
-   
        {% endblock %}

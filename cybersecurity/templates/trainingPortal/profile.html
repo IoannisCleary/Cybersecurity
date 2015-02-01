@@ -13,11 +13,17 @@ Unknown Profile
 	{% block content %}
 	{% if exists %}
 	<div class="well">	
+
 	<img class="img-rounded" style="height:150px; width:150px;" src="/media/images/logo_small.png"/>
 	</br>
 	<div class="container-fluid">	
     <span class="label label-info">Username:</span> <span class="badge">{{username}}</span><br/>
-    <span class="label label-info">Age:</span> <span class="badge">{{profile.age}}</span><br/>
+    <span class="label label-info">Age:</span> <span class="badge">{{age}}</span><br/>
+	{% if set_learningType %}
+	 <span class="label label-info">Learning Type:</span> <span class="badge">{{learningType}}</span><br/>
+	 {% else%}
+	 You need to enter your learning type ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go</a>
+	{% endif %}
   </div>
 		{% else%}
 		Profile does not exist or User does not exist. Please <b>contact</b> the <b>admin</b> of the portal <b>or check for</b> a <b>typo</b> in the Username part of the web address / URL ( .../user/profile/<b>[this part]</b>).
