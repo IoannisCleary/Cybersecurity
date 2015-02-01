@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+{% load static %} 
+{% load socialaccount %}
+{% block title %}Learning Type{% endblock %}
+{% block page_title %}Learning Type{% endblock %}
+	{% block content %}
+<div class="well">	
+	<form id="learningTypeForm" method="post" action="/trainingPortal/learningType/">
+	Select the learning type you have the highest score in:</br></br>
+	    {% csrf_token %}
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+		<input type="submit" name="submit" value="Submit" />
+	</form>
+   </div>
+ 
+	    {% endblock %}
