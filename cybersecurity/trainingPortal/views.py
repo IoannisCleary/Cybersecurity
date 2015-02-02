@@ -11,6 +11,8 @@ LEARNING_TYPES = {'1':'Activist', '2':'Reflector', '3':'Theorist', '4':'Pragmati
 
 def index(request):
 	context_dict = {}
+	if request.user.is_authenticated():
+		context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/index.html', context_dict)
 def chapters(request):
 	chapters = Chapter.objects.order_by('title')

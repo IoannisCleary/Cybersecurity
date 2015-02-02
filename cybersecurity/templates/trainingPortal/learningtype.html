@@ -5,7 +5,9 @@
 {% block title %}Learning Style{% endblock %}
 {% block page_title %}<span class="label label-danger">Learning Style</span>{% endblock %}
 	{% block content %}
-<div class="well">	
+	     {% if user.is_authenticated %}
+		 		{% if set_learningType == False %}
+	<div class="well">	
 	</br>
 	<b>Complete one</b> of the following questionnaires based on Honey & Mumford's learning style:
 	<ul>
@@ -25,6 +27,12 @@
 			
 		<input class="btn btn-info" type="submit" name="submit" value="Submit" />
 	</form>
+			{% else %}
+             You have already completed your learning style.      
+			{% endif %}
+		{% else %}
+              Please log in to access this page.      
+		{% endif %}
    </div>
  
 	    {% endblock %}
