@@ -5,6 +5,12 @@
 {% block title %}Index{% endblock %}
 {% block page_title %}Home{% endblock %}
 	{% block content %}
+	{% if user.is_authenticated %}
+		{% if set_learningType == false %}
+	<a href="/trainingPortal/learningType/" ><img class="img-rounded img-responsive"src="/media/images/learningStyle_Profile.png"/></a>
+	</br>
+	  	{% endif %}
+	{% endif %}
 <div class="well">	
 	Welcome to the Cybersecurity Training Portal</br></br>
    </div>

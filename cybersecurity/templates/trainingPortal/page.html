@@ -38,14 +38,14 @@
 	
 
 </br>
-<div class="well">
+<div class="well" style="background-color:#FCFCFC">
 	 {% if set_learningType %}
-	<div class="container-fluid" style="background-color:white;">	
+	<div class="container-fluid" style="background-color:#FCFCFC">	
 	{% autoescape off %}<p>{{entry}}</p>{% endautoescape %}
 	</div>
    </div>
   {% else%}
-	 You need to enter your learning type ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go</a>
+	 You need to enter your learning style ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	{% endif %}
 		{% else %}
               Please log in to access this page.      

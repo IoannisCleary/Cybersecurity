@@ -2,19 +2,28 @@
 {% extends 'base.html' %}
 {% load static %} 
 {% load socialaccount %}
-{% block title %}Learning Type{% endblock %}
-{% block page_title %}Learning Type{% endblock %}
+{% block title %}Learning Style{% endblock %}
+{% block page_title %}<span class="label label-danger">Learning Style</span>{% endblock %}
 	{% block content %}
 <div class="well">	
+	</br>
+	<b>Complete one</b> of the following questionnaires based on Honey & Mumford's learning style:
+	<ul>
+		<li type="square"><a href="http://www.northerndeanery.nhs.uk/NorthernDeanery/primary-care/gp-specialist-training/intending-trainer/course-materials/course-materials/HONEY%20AND%20MUMFORD.pdf"> <b>A</b> </a></li>
+		<li type="square"><a href="http://www.clinteach.com.au/assets/LEARNING-STYLES-Kolb-QUESTIONNAIRE.pdf"> <b>B</b> </a></li>
+		<li type="square"><a href="http://www.brianmac.co.uk/documents/hmlsq.pdf"> <b>C</b> </a></li>
+	</ul>
+	</br>
 	<form id="learningTypeForm" method="post" action="/trainingPortal/learningType/">
-	Select the learning type you have the highest score in:</br></br>
+	And then select the <b>learning style</b> you have the <b>highest score</b> in:</br></br>
 	    {% csrf_token %}
             {% for field in form.visible_fields %}
                 {{ field.errors }}
                 {{ field.help_text }}
                 {{ field }}
             {% endfor %}
-		<input type="submit" name="submit" value="Submit" />
+			
+		<input class="btn btn-info" type="submit" name="submit" value="Submit" />
 	</form>
    </div>
  
