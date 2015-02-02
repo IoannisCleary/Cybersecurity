@@ -63,8 +63,15 @@ def page(request,chapter_title,page_title):
 	chapter_tl = chapter_title.replace('_', ' ')
 	chapt = Chapter.objects.get(title = chapter_tl)
 	page = Page.objects.get(chapter = chapt, title = title)
+	mode = page.learningStyleMode
 	pages = Page.objects.filter(chapter = chapt)
-	context_dict ['entry'] = page.entry
+	user = request.user
+	profile = user.profile
+	if mode:
+		ENTRY_TYPES = {'1':page.entry_Activist_Type, '2':page.entry_Reflector_Type, '3':page.entry_Theorist_Type, '4':page.entry_Pragmatist_Type }
+		context_dict['entry'] = ENTRY_TYPES.get(profile.learningType)
+	else:
+		context_dict ['entry'] = page.entry_default
 	context_dict ['chapter_url'] = chapter_title
 	context_dict ['chapter'] = chapter_tl
 	context_dict ['pages'] = pages

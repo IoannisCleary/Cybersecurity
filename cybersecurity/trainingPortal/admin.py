@@ -6,6 +6,6 @@ admin.site.register(Chapter)
 admin.site.register(Profile)
 
 class PageAdmin(admin.ModelAdmin):
-    change_form_template = 'trainingPortal/admin/change_form.html'
+	change_form_template = 'trainingPortal/admin/change_form.html'
 
 admin.site.register(Page,PageAdmin)

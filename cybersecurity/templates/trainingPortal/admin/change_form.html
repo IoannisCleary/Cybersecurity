@@ -9,5 +9,9 @@
 
 {% block content %}
     {{ block.super }}
-    {% wysiwyg_editor "entry" %}
+    {% wysiwyg_editor "entry_default" %}
+	{% wysiwyg_editor "entry_Activist_Type" %}
+	{% wysiwyg_editor "entry_Reflector_Type" %}
+	{% wysiwyg_editor "entry_Theorist_Type" %}
+	{% wysiwyg_editor "entry_Pragmatist_Type" %}
 {% endblock %}
