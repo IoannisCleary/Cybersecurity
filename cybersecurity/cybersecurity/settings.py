@@ -36,8 +36,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'sekizai.context_processors.sekizai',
     'cms.context_processors.cms_settings',
     # allauth specific context processors
-    "allauth.account.context_processors.account",
-    "allauth.socialaccount.context_processors.socialaccount",
+    'allauth.account.context_processors.account',
+    'allauth.socialaccount.context_processors.socialaccount',
+	'postman.context_processors.inbox',
 )
 ACCOUNT_EMAIL_REQUIRED = False
 
@@ -49,6 +50,11 @@ TEMPLATE_DIRS = (
 	os.path.join(BASE_DIR,'/cybersecurity/seantis/seantis-questionnaire/questionnaire/templates/'),
 	
 )
+
+POSTMAN_DISALLOW_ANONYMOUS = True
+POSTMAN_DISABLE_USER_EMAILING = True
+POSTMAN_QUICKREPLY_QUOTE_BODY = True
+POSTMAN_AUTO_MODERATE_AS = True
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -96,6 +102,7 @@ INSTALLED_APPS = (
 	'ckeditor',
 	'tinymce',
 	'django_wysiwyg',
+	'postman',
 	'transmeta',
 	'questionnaire',
 	'questionnaire.page',
@@ -155,7 +162,7 @@ STATIC_PATH = os.path.join(BASE_DIR,'static')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-os.path.join(BASE_DIR,'/cybersecurity/seantis/seantis-questionnaire/questionnaire/static/'),
+os.path.join(BASE_DIR,'cybersecurity/seantis/seantis-questionnaire/questionnaire/static/'),
 )
 
 SITE_ID = 1

@@ -11,9 +11,10 @@ urlpatterns = patterns('',
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^accounts/', include('allauth.urls')),
 	url(r'^trainingPortal/', include('trainingPortal.urls')), #application
+	url(r'^messages/', include('postman.urls')),
 	url(r'^', include('cms.urls')),
 	url(r'^ckeditor/', include('ckeditor.urls')),
-	url(r'^tinymce/', include('tinymce.urls')),
+	url(r'^tinymce/', include('tinymce.urls')),		
 	# questionnaire urls
     url(r'q/', include('questionnaire.urls')),
     url(r'^take/(?P<questionnaire_id>[0-9]+)/$', 'questionnaire.views.generate_run'),

@@ -40,6 +40,7 @@
 				  <li><a href="{% url 'about' %}">  <span class="glyphicon glyphicon-info-sign"></span>  &nbsp;About</a></li>
                     {% if user.is_authenticated %}
 						<li><a href="/trainingPortal/user/profile/{{ user.username }}"> <span class="glyphicon glyphicon-user"></span> &nbsp;Profile</a></li>
+						<li><a href="/messages/inbox/"> <span class="glyphicon glyphicon-envelope"></span> &nbsp;Messages</a></li>
 						<li><a href="/trainingPortal/chapters/"><span class="glyphicon glyphicon-th-large"></span> &nbsp;Chapters</a></li>
                         <li><a href="/accounts/logout"> <span class="glyphicon glyphicon-circle-arrow-left"></span> &nbsp;Logout</a></li>
                     {% else %}
