@@ -33,12 +33,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.core.context_processors.media',
     'django.core.context_processors.static',
+	'django.core.context_processors.debug',
     'sekizai.context_processors.sekizai',
     'cms.context_processors.cms_settings',
     # allauth specific context processors
     'allauth.account.context_processors.account',
-    'allauth.socialaccount.context_processors.socialaccount',
-	'postman.context_processors.inbox',
+    'allauth.socialaccount.context_processors.socialaccount'
 )
 ACCOUNT_EMAIL_REQUIRED = False
 
@@ -46,16 +46,18 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-	TEMPLATE_PATH,
-	os.path.join(BASE_DIR,'/cybersecurity/seantis/seantis-questionnaire/questionnaire/templates/'),
-	
+	TEMPLATE_PATH,	
 )
-
-POSTMAN_DISALLOW_ANONYMOUS = True
-POSTMAN_DISABLE_USER_EMAILING = True
-POSTMAN_QUICKREPLY_QUOTE_BODY = True
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'nicolemaniac@gmail.com'
+EMAIL_HOST_PASSWORD = 'kibpfkdhmcqyckxv'
+DEFAULT_FROM_EMAIL = 'nicolemaniac@gmail.com'
+DEFAULT_TO_EMAIL = 'ioanniscleary@gmail.com'
 POSTMAN_AUTO_MODERATE_AS = True
-
+POSTMAN_DISABLE_USER_EMAILING = True
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     "django.contrib.auth.backends.ModelBackend",
@@ -71,18 +73,22 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
 	'djangocms_admin_style',  # for the admin skin. You **must** add 'djangocms_admin_style' in the list **before** 'django.contrib.admin'.
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.staticfiles',
+	'django.contrib.admin',
+	'pagination',
+	'ajax_select',
+	'notification',
+	'mailer',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.staticfiles',
 	'django.contrib.sites',
 	#django-allauth
 	'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    # ... include the providers you want to enable:
-    'allauth.socialaccount.providers.facebook',
+	'allauth.account',
+	'allauth.socialaccount',
+	# ... include the providers you want to enable:
+	'allauth.socialaccount.providers.facebook',
 	'djangocms_file',
 	'djangocms_flash',
 	'djangocms_googlemap',
@@ -104,25 +110,23 @@ INSTALLED_APPS = (
 	'django_wysiwyg',
 	'postman',
 	'transmeta',
-	'questionnaire',
-	'questionnaire.page',
 	'trainingPortal',
 )
 
 MIDDLEWARE_CLASSES = (
 	'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-	 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.doc.XViewMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'cms.middleware.user.CurrentUserMiddleware',
-    'cms.middleware.page.CurrentPageMiddleware',
-    'cms.middleware.toolbar.ToolbarMiddleware',
-    'cms.middleware.language.LanguageCookieMiddleware',
-	'questionnaire.request_cache.RequestCacheMiddleware',
+	'django.middleware.csrf.CsrfViewMiddleware',
+	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+	'django.contrib.messages.middleware.MessageMiddleware',
+	'django.middleware.locale.LocaleMiddleware',
+	'django.middleware.doc.XViewMiddleware',
+	'django.middleware.common.CommonMiddleware',
+	'cms.middleware.user.CurrentUserMiddleware',
+	'cms.middleware.page.CurrentPageMiddleware',
+	'cms.middleware.toolbar.ToolbarMiddleware',
+	'cms.middleware.language.LanguageCookieMiddleware',
+	'pagination.middleware.PaginationMiddleware',
 )
 
 ROOT_URLCONF = 'cybersecurity.urls'
@@ -161,9 +165,7 @@ STATIC_PATH = os.path.join(BASE_DIR,'static')
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-os.path.join(BASE_DIR,'cybersecurity/seantis/seantis-questionnaire/questionnaire/static/'),
-)
+STATICFILES_DIRS = ()
 
 SITE_ID = 1
 # http://www.sarahhagstrom.com/2013/09/the-missing-django-allauth-tutorial/#Add_django-allauth
