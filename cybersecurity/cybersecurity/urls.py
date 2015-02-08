@@ -15,6 +15,7 @@ urlpatterns = patterns('',
 	url(r'^admin/lookups/', include(ajax_select_urls)),
 	url(r'^accounts/', include('allauth.urls')),
 	url(r'^trainingPortal/', include('trainingPortal.urls')), #application
+	url(r'^test/', include('quiz.urls')),
 	url(r'^messages/', include('postman.urls')),
 	url(r'^', include('cms.urls')),
 	url(r'^ckeditor/', include('ckeditor.urls')),

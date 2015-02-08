@@ -110,6 +110,12 @@ INSTALLED_APPS = (
 	'django_wysiwyg',
 	'postman',
 	'transmeta',
+	#django-quiz
+	'quiz',
+	'multichoice',
+	'true_false',
+	'essay',
+	#training portal
 	'trainingPortal',
 )
 
