@@ -8,11 +8,15 @@ for the template tag library.
 If the real implementation is to be used, just make sure that 'pagination' is declared before 'postman'
 in the INSTALLED_APPS setting.
 {% endcomment %}
-
+{% block page_title %}
+<a type="button"class="btn btn-info" href="/messages/inbox/"><b> Inbox   <span class="glyphicon glyphicon-inbox"></span></b></a> 
+<a href="/messages/write/" type="button "class="btn btn-warning"><b> Write   <span class="glyphicon glyphicon-pencil"></span></b></a>
+<a type="button"class="btn btn-primary" style="background-color:#9b30f4!important; border-color:#9b30f4!important" href="/messages/sent/"><b> Sent   <span class="glyphicon glyphicon-send"></span></b></a> 
+<a href="/messages/trash/" type="button "class="btn btn-danger"><b> Trash   <span class="glyphicon glyphicon-trash"></span></b></a>
+<a href="/messages/archives/" type="button "class="btn btn-success"><b> Archives   <span class="glyphicon glyphicon-folder-open"></span></b></a>{% endblock %}
 {% block content %}
 <div class="well">
 <div id="postman">
-<h1>{% block pm_folder_title %}{% endblock %}</h1>
 {% autopaginate pm_messages %}
 {% if invalid_page %}
 <p>{% trans "Sorry, this page number is invalid." %}</p>
@@ -26,10 +30,16 @@ in the INSTALLED_APPS setting.
 {% block pm_form_buttons %}<span id="pm_buttons">
 {% block pm_delete_button %}<button type="submit" class="btn btn-danger" onclick="this.form.action='{% url 'postman_delete' %}'">{% trans "Delete" %}</button>{% endblock %}
 {% block pm_archive_button %}<button type="submit" class="btn btn-success" onclick="this.form.action='{% url 'postman_archive' %}'">{% trans "Archive" %}</button>{% endblock %}
-{% block pm_undelete_button %}<button type="submit" onclick="this.form.action='{% url 'postman_undelete' %}'">{% trans "Undelete" %}</button>{% endblock %}
+{% block pm_undelete_button %}<button type="submit" class="btn btn-primary" style="border-color:black!important;background-color:black!important" onclick="this.form.action='{% url 'postman_undelete' %}'">{% trans "Undelete" %}</button>{% endblock %}
 </span>{% endblock %}
 </br>
 </br>
+{% block panel_custom %}<div class="panel panel-primary">
+  <div class="panel-heading">{% endblock %}
+    <h3 class="panel-title"><b>{% block pm_folder_title %}{% endblock %}</b></h3>
+  </div>
+  <div class="panel-body">
+<div class="table-responsive">
 <table id="pm_messages" class="table-striped" style="width:100%">
  <thead>
   <tr>
@@ -56,6 +66,7 @@ in the INSTALLED_APPS setting.
   </tr>{% endfor %}
  </tbody>
 </table>
+</div>
 </form>
 {% paginate %}
 {% else %}
@@ -65,4 +76,7 @@ in the INSTALLED_APPS setting.
 {% block pm_footer_info %}{% endblock %}
 </div>
 </div>
+</div>
+  </div>
+ 
 {% endblock content %}

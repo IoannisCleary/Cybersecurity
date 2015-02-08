@@ -44,10 +44,15 @@
                 <li><a href="{% url 'index' %}"> <span class="glyphicon glyphicon-home"></span>  &nbsp;Home</a></li>
 				  <li><a href="{% url 'about' %}">  <span class="glyphicon glyphicon-info-sign"></span>  &nbsp;About</a></li>
                     {% if user.is_authenticated %}
-						<li><a href="/trainingPortal/user/profile/{{ user.username }}"> <span class="glyphicon glyphicon-user"></span> &nbsp;Profile</a></li>
-						<li><a href="/messages/inbox/"> <span class="glyphicon glyphicon-envelope"></span> &nbsp;Messages</a></li>
 						<li><a href="/trainingPortal/chapters/"><span class="glyphicon glyphicon-th-large"></span> &nbsp;Chapters</a></li>
-                        <li><a href="/accounts/logout"> <span class="glyphicon glyphicon-circle-arrow-left"></span> &nbsp;Logout</a></li>
+						<li class="dropdown">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Signed in as <b>{{user.username}} </b><b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/trainingPortal/user/profile/{{ user.username }}"> <span class="glyphicon glyphicon-user"></span> &nbsp;Profile</a></li>
+								<li><a href="/messages/inbox/"> <span class="glyphicon glyphicon-envelope"></span> &nbsp;Messages</a></li>
+								<li><a href="/accounts/logout"> <span class="glyphicon glyphicon-circle-arrow-left"></span> &nbsp;Logout</a></li>
+							</ul>
+						</li>
                     {% else %}
                         <li><a href="/accounts/signup">  <span class="glyphicon glyphicon-circle-arrow-up"></span> &nbsp;Sign up</a></li>
                         <li><a href="/accounts/login"> <span class="glyphicon glyphicon-circle-arrow-right"></span> &nbsp;Login</a></li>

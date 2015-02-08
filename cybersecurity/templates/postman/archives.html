@@ -1,5 +1,7 @@
 {% extends "postman/base_folder.html" %}
 {% load i18n %}
+{% block panel_custom %}<div class="panel panel-primary" style="border-color:#49c248!important">
+  <div class="panel-heading" style="background-color:#49c248!important; border-color:#49c248!important">{% endblock %}
 {% block pm_folder_title %}{% trans "Archived Messages" %}{% endblock %}
 {% block pm_archive_button %}{% endblock %}
 {% block pm_undelete_button %}{% endblock %}

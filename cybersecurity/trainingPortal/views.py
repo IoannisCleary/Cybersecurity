@@ -91,6 +91,10 @@ def page(request,chapter_title,page_title):
 def profile(request,username):
 	context_dict = {"username" : username}
 	exists = True
+	personal = False
+	if request.user.is_authenticated():
+		if request.user.username == username:
+			personal = True
 	try:
 		usr = User.objects.get(username = username)
 		context_dict['user'] = usr
@@ -105,6 +109,7 @@ def profile(request,username):
 	except User.DoesNotExist:
 		exists = False
 	context_dict['exists'] = exists
+	context_dict['personal'] = personal
 	context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/profile.html', context_dict)
 

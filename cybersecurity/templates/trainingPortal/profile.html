@@ -5,12 +5,18 @@
 {% block title %}Index{% endblock %}
 {% block page_title %}
 	{% if exists %}
+	{% if personal %}
+	Your Profile
+	 {% else%}
 {{username}}'s Profile
+ {% endif %}
 	{% else%}
 Unknown Profile
    	{% endif %}
 {% endblock %}
 	{% block content %}
+	{% if personal %}
+	 {% endif %}
 	{% if exists %}
 	<div class="well">	
 
@@ -19,12 +25,14 @@ Unknown Profile
 	<div class="container-fluid">	
     <span class="label label-info">Username:</span> <span class="badge">{{username}}</span><br/>
     <span class="label label-info">Age:</span> <span class="badge">{{age}}</span><br/>
+	{% if personal %}
 	{% if set_learningType %}
 	 <span class="label label-info">Learning Style:</span> <span class="badge">{{learningType}}</span><br/>
 	 {% else%}
 	 You need to enter your learning style ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	{% endif %}
   </div>
+  {% endif %}
 		{% else%}
 		Profile does not exist or User does not exist. Please <b>contact</b> the <b>admin</b> of the portal <b>or check for</b> a <b>typo</b> in the Username part of the web address / URL ( .../user/profile/<b>[this part]</b>).
    	{% endif %}

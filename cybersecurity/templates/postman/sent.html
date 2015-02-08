@@ -1,10 +1,7 @@
 {% extends "postman/base_folder.html" %}
 {% load i18n %}
-{% block page_title %}
-<a type="button"class="btn btn-info" href="/messages/inbox/"><b> Inbox   <span class="glyphicon glyphicon-inbox"></span></b></a> 
-<a href="/messages/write/" type="button "class="btn btn-warning"><b> Write   <span class="glyphicon glyphicon-pencil"></span></b></a>
-<a type="button"class="btn btn-default" href="/messages/sent/"><b> Sent   <span class="glyphicon glyphicon-send"></span></b></a> 
-<a href="/messages/trash/" type="button "class="btn btn-default"><b> Trash   <span class="glyphicon glyphicon-trash"></span></b></a>{% endblock %}
+{% block panel_custom %}<div class="panel panel-primary" style="border-color:#9728f2!important">
+  <div class="panel-heading" style="background-color:#9728f2!important; border-color:#9728f2!important">{% endblock %}
 {% block pm_folder_title %}{% trans "Sent Messages" %}{% endblock %}
 {% block pm_undelete_button %}{% endblock %}
 {% block pm_sender_header %}{% endblock %}
