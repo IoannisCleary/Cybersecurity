@@ -5,7 +5,7 @@ from trainingPortal.models import Profile,Chapter,Page
 from trainingPortal.forms import LearningTypeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from quiz.models import Progress
 
 LEARNING_TYPES = {'1':'Activist', '2':'Reflector', '3':'Theorist', '4':'Pragmatist' }
 
@@ -94,7 +94,28 @@ def profile(request,username):
 	personal = False
 	if request.user.is_authenticated():
 		if request.user.username == username:
+			progress = Progress.objects.get(user=request.user)
+			str = progress.score
+			val = str.split(',')
+			size = len(val)-1
+			times = size / 3
+			t=0
+			a=0
+			scores =[[{}] for t in range(0,times) ]
+			t=0
+			sum = 0.0
+			while t<size-1:
+				percentage =  (float(val[t+1])/float(val[t+2]))*100.0
+				sum = sum + percentage
+				score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percentage}]
+				scores[a]=score
+				t=t+3
+				a=a+1
+				if a == times:
+					break
 			personal = True
+			context_dict['scores'] = scores
+			context_dict['average'] = sum / times
 	try:
 		usr = User.objects.get(username = username)
 		context_dict['user'] = usr

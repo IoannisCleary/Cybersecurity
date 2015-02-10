@@ -6,12 +6,12 @@
 {% block page_title %}
 	{% if exists %}
 	{% if personal %}
-	Your Profile
+	  <div class="container-fluid"> <h2><span class="label label-info">Your Profile</span></h2></div>
 	 {% else%}
-{{username}}'s Profile
+	 	  <div class="container-fluid"> <h2><span class="label label-info">{{username}}'s Profile</span></h2></div>
  {% endif %}
 	{% else%}
-Unknown Profile
+	  <div class="container-fluid"> <h2><span class="label label-info">Unknown Profile</span></h2></div>
    	{% endif %}
 {% endblock %}
 	{% block content %}
@@ -19,15 +19,50 @@ Unknown Profile
 	 {% endif %}
 	{% if exists %}
 	<div class="well">	
-
+	  <div class="container-fluid">
 	<img class="img-rounded" style="height:150px; width:150px;" src="/media/images/logo_small.png"/>
 	</br>
 	<div class="container-fluid">	
     <span class="label label-info">Username:</span> <span class="badge">{{username}}</span><br/>
-    <span class="label label-info">Age:</span> <span class="badge">{{age}}</span><br/>
+    <span class="label label-primary" >Age:</span> <span class="badge">{{age}}</span><br/>
 	{% if personal %}
 	{% if set_learningType %}
-	 <span class="label label-info">Learning Style:</span> <span class="badge">{{learningType}}</span><br/>
+	 <span class="label label-info"style="background-color:#5F9EA0!important;border-color:#5F9EA0!important">Learning Style:</span> <span class="badge">{{learningType}}</span><br/>
+</div>	
+	</br>
+	 <div class="panel panel-primary"style="border-color:#000202!important">
+  <div class="panel-heading"style="background-color:#003333!important; border-color:#000B0B!important">
+  <h2 class="panel-title"><b>Progress Summary</b></h2>
+  </div>
+  
+  </br>
+  <div class="panel-heading" style="background-color:#E68A00!important; border-color:#FFB84D!important;color:white;">
+    <h5 class="panel-title"><b>Chapters</b> (out of 100)</h5>
+	 </div>
+  <div class="panel-body"> 
+
+		{% for x in scores %}
+		{% for a in x %}
+			<div class="progress" style="background:red;">
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{a.correct}}" aria-valuemin="0" aria-valuemax="{{a.all}}" style="width: {{a.percentage}}%;">
+<b>{{a.chapter}}</b> :  {{a.percentage}} %
+		</div>
+		</div>
+		{% endfor %}
+		{% endfor %}
+		<div class="panel-heading" style="background-color:#006666!important; border-004040:#4D9494!important;color:white;">
+    <h5 class="panel-title"><b>Average</b> (out of 100)</h5>
+	 </div>
+	 </br>
+		<div class="progress" style="background:grey;">
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{average}}" aria-valuemin="0" aria-valuemax="100" style="width: {{average}}%;background-color:#A3CC52!important;">
+ <b>{{average}} % </b>
+		</div>
+		</div>
+		  <div class="container-fluid">
+			<a href="/test/progress/" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-list-alt"></span> Grade Breakdown</a></div>
+	  </div>
+</div>
 	 {% else%}
 	 You need to enter your learning style ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	{% endif %}
