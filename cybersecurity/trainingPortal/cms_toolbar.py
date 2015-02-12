@@ -29,7 +29,6 @@ class PageToolbar(CMSToolbar):
         url2 = reverse('admin:trainingPortal_page_changelist')
         menu.add_sideframe_item(_('View Pages'), url=url2)
         menu.add_sideframe_item(_('Create Page'), url=url)
-        admin_menu.add_break('pages-break', position=menu)
 @toolbar_pool.register
 class QuizToolbar(CMSToolbar):
 
@@ -59,4 +58,12 @@ class QuestionsToolbar(CMSToolbar):
         menu.add_sideframe_item(_('View True/FalseType'), url="/admin/true_false/tf_question/")
         menu.add_sideframe_item(_('Create EssayType'), url="/admin/essay/essay_question/add/")
         menu.add_sideframe_item(_('View EssayType'), url="/admin/essay/essay_question/")
-        admin_menu.add_break('question-break', position=menu)
+@toolbar_pool.register
+class TestingMoeToolbar(CMSToolbar):
+
+    def populate(self):
+        admin_menu = self.toolbar.get_or_create_menu(ADMIN_MENU_IDENTIFIER, _('Training Portal'))
+        position = admin_menu.find_first(Break, identifier=ADMINISTRATION_BREAK)
+        menu = admin_menu.get_or_create_menu('testing_mode', _('Testing Mode'), position=position)
+        menu.add_sideframe_item(_('Enable/Disable'), url="/admin/trainingPortal/mode/1/")
+        admin_menu.add_break('testing-break', position=menu)

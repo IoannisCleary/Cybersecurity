@@ -5,6 +5,9 @@
 {% block title %}Index{% endblock %}
 {% block page_title %}Home{% endblock %}
 	{% block content %}
+	{% if testing %}
+	<span class="label label-danger">Testing Mode</span>
+	{% endif %}
 	{% if user.is_authenticated %}
 		{% if set_learningType == False %}
 	<a href="/trainingPortal/learningType/" ><img class="img-rounded img-responsive"src="/media/images/learningStyle_Profile.png"/></a>

@@ -25,7 +25,7 @@ class RegisterForm(forms.Form):
 			type="B"
 		print type
 		profile.user = user
-		profile.type=type
+		profile.testingType=type
 		profile.age = self.cleaned_data['age']
 		profile.save();
 		user.profile = profile

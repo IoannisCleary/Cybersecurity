@@ -20,7 +20,15 @@
 	{% if exists %}
 	<div class="well">	
 	  <div class="container-fluid">
-	<img class="img-rounded" style="height:150px; width:150px;" src="/media/images/logo_small.png"/>
+	  {% if testing %}
+		 {% if type %}
+			&nbsp;&nbsp;<img class="img-rounded" style="height:150px; width:150px;" src="/media/images/A.png"/>
+		{% else%}
+			&nbsp;&nbsp;<img class="img-rounded" style="height:150px; width:150px;" src="/media/images/B.png"/>
+		{% endif %}
+	{% else%}
+		&nbsp;&nbsp;<img class="img-rounded" style="height:150px; width:150px;" src="/media/images/profile.png"/>
+	{% endif %}
 	</br>
 	<div class="container-fluid">	
     <span class="label label-info">Username:</span> <span class="badge">{{username}}</span><br/>

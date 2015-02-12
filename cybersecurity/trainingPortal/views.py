@@ -1,21 +1,24 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from trainingPortal.models import Profile,Chapter,Page
+from trainingPortal.models import Profile,Chapter,Page,Mode
 from trainingPortal.forms import LearningTypeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from quiz.models import Progress
 
 LEARNING_TYPES = {'1':'Activist', '2':'Reflector', '3':'Theorist', '4':'Pragmatist' }
-
+def getMode():
+	testing = Mode.objects.get(name = 'testing')
+	return testing.enable
 def index(request):
 	context_dict = {}
 	if request.user.is_authenticated():
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
+		context_dict['testing'] = getMode()
 	return render(request, 'trainingPortal/index.html', context_dict)
 def chapters(request):
-	chapters = Chapter.objects.order_by('title')
+	chapters = Chapter.objects.order_by('number')
 	context_dict = {'chapters': chapters}
 	for chapter in chapters:
 		chapter.url = chapter.title.replace(' ', '_')
@@ -47,6 +50,7 @@ def chapter(request,chapter_title):
 	chapter_tl = chapter_title.replace('_', ' ')
 	chapt = Chapter.objects.get(title = chapter_tl)
 	pages = Page.objects.filter(chapter = chapt)
+	pages = pages.order_by('number')
 	context_dict['chapter'] = chapter_title
 	context_dict['title'] = chapter_tl
 	context_dict['pages'] = pages
@@ -69,11 +73,23 @@ def page(request,chapter_title,page_title):
 	pages = Page.objects.filter(chapter = chapt)
 	user = request.user
 	profile = user.profile
-	if mode:
-		ENTRY_TYPES = {'1':page.entry_Activist_Type, '2':page.entry_Reflector_Type, '3':page.entry_Theorist_Type, '4':page.entry_Pragmatist_Type }
-		context_dict['entry'] = ENTRY_TYPES.get(profile.learningType)
+	testing = getMode()
+	context_dict['testing'] = testing
+	if testing:
+		if profile.testingType == '0':
+			context_dict ['entry'] = page.entry_default
+		else:
+			if mode:
+				ENTRY_TYPES = {'1':page.entry_Activist_Type, '2':page.entry_Reflector_Type, '3':page.entry_Theorist_Type, '4':page.entry_Pragmatist_Type }
+				context_dict['entry'] = ENTRY_TYPES.get(profile.learningType)
+			else:
+				context_dict ['entry'] = page.entry_default
 	else:
-		context_dict ['entry'] = page.entry_default
+		if mode:
+			ENTRY_TYPES = {'1':page.entry_Activist_Type, '2':page.entry_Reflector_Type, '3':page.entry_Theorist_Type, '4':page.entry_Pragmatist_Type }
+			context_dict['entry'] = ENTRY_TYPES.get(profile.learningType)
+		else:
+			context_dict ['entry'] = page.entry_default
 	context_dict ['chapter_url'] = chapter_title
 	context_dict ['chapter'] = chapter_tl
 	context_dict ['pages'] = pages
@@ -92,7 +108,9 @@ def profile(request,username):
 	context_dict = {"username" : username}
 	exists = True
 	personal = False
-	if request.user.is_authenticated():
+	testing = getMode()
+	context_dict['testing'] = testing
+	if request.user.is_authenticated():	
 		if request.user.username == username:
 			progress = Progress.objects.get(user=request.user)
 			str = progress.score
@@ -119,6 +137,11 @@ def profile(request,username):
 	try:
 		usr = User.objects.get(username = username)
 		context_dict['user'] = usr
+		if testing:
+			if usr.profile.testingType =='0':
+				context_dict['type'] = True
+			else:
+				context_dict['type'] = False
 		try:
 			profile = Profile.objects.get(user = usr)
 			context_dict['age'] = profile.age
@@ -133,7 +156,6 @@ def profile(request,username):
 	context_dict['personal'] = personal
 	context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/profile.html', context_dict)
-
 def completedLearningStyle(user):
 	if (user.profile.learningType == '0'):
 		return False 	
