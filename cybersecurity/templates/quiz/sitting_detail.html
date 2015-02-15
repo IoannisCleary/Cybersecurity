@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+{% if user.profile.learningType != '0' %}
 <h2>{% trans "Quiz title" %}: {{ sitting.quiz.title }}</h2>
 <h3>{% trans "Category" %}: {{ sitting.quiz.category }}</h3>
 <p>{{ sitting.quiz.description }}</p>
@@ -56,4 +57,8 @@
   </tbody>
 
 </table>
+	{% else %}
+<div class="alert alert-danger" role="alert"> <p class="label label-danger">Reminder</p></br> You need to enter your learning style ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+	{% endif %}
 {% endblock %}

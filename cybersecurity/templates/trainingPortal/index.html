@@ -5,12 +5,17 @@
 {% block title %}Index{% endblock %}
 {% block page_title %}Home{% endblock %}
 	{% block content %}
+	{% if user.profile.learningType != '0' %}
+	Hi
+		{% endif %}
 	{% if testing %}
 	<span class="label label-danger">Testing Mode</span>
 	{% endif %}
 	{% if user.is_authenticated %}
 		{% if set_learningType == False %}
-	<a href="/trainingPortal/learningType/" ><img class="img-rounded img-responsive"src="/media/images/learningStyle_Profile.png"/></a>
+			<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+
 	</br>
 	  	{% endif %}
 	{% endif %}

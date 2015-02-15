@@ -5,7 +5,16 @@
 {% block title %}About{% endblock %}
 {% block page_title %}About{% endblock %}
 	{% block content %}
+
 	<div class="well">	
-	This is the about page</br></br>
+{% if user.is_authenticated %}
+		{% if set_learningType == False %}
+				<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+
+	</br>
+{% endif %}
+	{% endif %}
+	This is the about paged</br></br>
    </div>
        {% endblock %}

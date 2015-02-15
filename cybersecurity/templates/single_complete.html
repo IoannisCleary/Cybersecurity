@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% load quiz_tags %}
+
+{% block title %} {{ quiz.title }} {% endblock %}
+
+{% block description %} {{ quiz.title }} - {{ quiz.description }} {% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+{% if user.profile.learningType != '0' %}
+ <p class="label label-success">Already Completed</p></br>
+  <p>{% trans "You have already sat this exam and only one sitting is permitted" %}.</p>
+	{% else %}
+	
+	<div class="alert alert-danger" role="alert"> <p class="label label-danger">Reminder</p></br> You need to enter your learning style ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+	{% endif %}
+{% else %}
+  <p>{% trans "This exam is only accessible to signed in users" %}.</p>
+  {% endif %}
+
+{% endblock %}

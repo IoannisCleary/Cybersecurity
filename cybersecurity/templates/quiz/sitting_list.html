@@ -3,6 +3,7 @@
 {% block title %}{% trans "All Quizzes" %}{% endblock %}
 
 {% block content %}
+{% if user.profile.learningType != '0' %}
 <h2>{% trans "List of complete exams" %}</h2>
     {% if sitting_list %}
 
@@ -51,4 +52,8 @@
     {% else %}
         <p>{% trans "There are no matching quizzes" %}.</p>
     {% endif %}
+	{% else %}
+<div class="alert alert-danger" role="alert"> <p class="label label-danger">Reminder</p></br> You need to enter your learning style ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>	 
+	 {% endif %}
 {% endblock %}

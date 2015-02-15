@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="panel panel-primary"style="border-color:#f3a433!important">
   <div class="panel-heading" style="background-color:#f3a433!important; border-color:#fdab41!important">
     <h1 class="panel-title"><b>{{ quiz.title }}</b></h1>
@@ -12,6 +13,7 @@
   <div class="panel-heading" style="background-color:#deaf56!important; border-color:#c7a461!important">
     <h5 class="panel-title"><b>{% trans "Category" %}: {{ quiz.category }}</b></h5>
 	 </div>
+{% if user.profile.learningType != '0' %}
 <div class="container-fluid">
 </br>
 {% if quiz.single_attempt %}
@@ -27,4 +29,9 @@
 </br>
  </div>
  </div>
+ 	{% else %}
+		<div class="alert alert-danger" role="alert"> <p class="label label-danger">Reminder</p></br> You need to enter your learning style ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+	
+	{% endif %}
 {% endblock %}

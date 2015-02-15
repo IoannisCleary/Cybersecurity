@@ -26,6 +26,7 @@ def chapters(request):
 	return render(request, 'trainingPortal/chapters.html', context_dict)
 def about(request):
 	context_dict = {}
+	context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/about.html', context_dict)
 def learningType(request):
 	context_dict = {}
