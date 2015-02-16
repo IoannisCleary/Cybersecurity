@@ -21,7 +21,9 @@ def chapters(request):
 	context_dict = {}
 	if request.user.is_authenticated():	
 		chapters = Chapter.objects.order_by('number')
+		number = Chapter.objects.order_by('number').count()
 		context_dict = {'chapters': chapters}
+		context_dict['number'] = number
 		for chapter in chapters:
 			chapter.url = chapter.title.replace(' ', '_')
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
@@ -99,6 +101,7 @@ def page(request,chapter_title,page_title):
 		context_dict ['chapter'] = chapter_tl
 		context_dict ['pages'] = pages
 		context_dict ['title'] = title
+		context_dict ['page'] = page
 		for page in pages:
 			page.url = page.title.replace(' ', '_')
 			print page.url

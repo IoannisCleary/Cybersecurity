@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% load static %} 
 {% block title %}Page{% endblock %}
-{% block page_title %}<span class="label label-success">{{chapter}} :</span><span class="label label-info"> <b>{{title}}</b></span>{% endblock %}
+{% block page_title %}<span class="label label-success"><b>Chapter :</b><b style="color:black"> {{chapter}}</b></span>&nbsp; <span class="label label-info"> <b>Section :</b><b style="color:black"> {{title}}</b></span>{% endblock %}
 	{% block content %}
 
      {% if user.is_authenticated %}

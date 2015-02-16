@@ -32,7 +32,8 @@ class Mode(models.Model):
 		
 class Chapter(models.Model):
 	number = models.IntegerField(default=0,help_text="This field is used to sort the chapters. Use a unique number")
-	title = models.CharField(max_length=128, unique=True)	
+	title = models.CharField(max_length=128, unique=True)
+	overview = models.CharField(max_length=500,default="Not available")
 	def __unicode__(self):
 		return self.title
 	class Meta:

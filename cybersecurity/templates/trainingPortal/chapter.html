@@ -4,7 +4,7 @@
 
 {% block title %}Chapter{% endblock %}
 	
-{% block page_title %}{% if user.is_authenticated %}	<span class="label label-success">{{title}} : </span><span class="label label-default"><b>Sections<b></span>{% endif %}{% endblock %}
+{% block page_title %}{% if user.is_authenticated %}<span class="label label-success"><b>Chapter :</b><b style="color:black"> {{title}}</b></span>{% endif %}{% endblock %}
 	{% block content%} 
 	{% if user.is_authenticated %}	
 	 <button class="btn btn-group-lg btn-success disabled" type="button"><b>Chapter : </b></button>
@@ -27,9 +27,11 @@
 
 	 {% if set_learningType %}
 	{% if pages %}
-			<div class="btn-group btn-group-vertical btn-block">
+			<ul class="list-group">
+			<div class="btn-group btn-block btn-group-horizontal  ">
 					{% for page in pages %}
-					<a href="/trainingPortal/chapter/{{ chapter }}/{{ page.url }}" class="btn btn-info" role="button"><span class="glyphicon glyphicon-file"></span>{{ page.title }}</a>
+					<li class="list-group-item"><button class="btn disabled btn-info">{{page.number}}</button><div class="btn-group "role="group"> 
+					<a href="/trainingPortal/chapter/{{ chapter }}/{{ page.url }}" class="btn btn-info" role="button"><span class="glyphicon glyphicon-file"></span> {{ page.title }} <span class="badge">Read</span></a>
 					{% endfor %}
 			</div>
 			{% else %}
