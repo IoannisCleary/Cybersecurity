@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block title %}{% trans "All Quizzes" %}{% endblock %}
-{% block page_title %}<b>{% trans "Available Tests" %}</b>{% endblock %}
+{% block page_title %}<b>{% trans "Available Quizzes" %}</b>{% endblock %}
 {% block content %}
  {% if user.is_authenticated %}
 <div class="panel panel-primary"style="border-color:#f3a433!important">
   <div class="panel-heading" style="background-color:#f3a433!important; border-color:#f3a433!important">
-    <h3 class="panel-title">List of tests</h3>
+    <h3 class="panel-title">List of quizzes</h3>
 	 </div>
 	 {% if user.profile.learningType != '0' %}
     {% if quiz_list %}

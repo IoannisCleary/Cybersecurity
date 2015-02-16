@@ -8,7 +8,7 @@
 
 {% block content %}
  {% if user.is_authenticated %}
-<h1>{% trans "Test Category Scores" %}</h1>
+<h1>{% trans "Quiz Category Scores" %}</h1>
 {% if user.profile.learningType != '0' %}
   {% if cat_scores %}
 
@@ -58,7 +58,7 @@
 
 	<thead>
 	  <tr>
-		<th>{% trans "Test Title" %}</th>
+		<th>{% trans "Quiz Title" %}</th>
 		<th>{% trans "Score" %}</th>
 		<th>{% trans "Possible Score" %}</th>
 		<th>%</th>
