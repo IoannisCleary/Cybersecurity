@@ -7,16 +7,16 @@
  {% if user.is_authenticated %}
 	{% if exists %}
 	{% if personal %}
-	  <div class="container-fluid"> <h2><span class="label label-info">Your Profile</span></h2></div>
+	  <div class="container-fluid"> <h2><span class="label label-info" style="background-color:#003333!important; border-color:#000B0B!important">Your Profile</span></h2></div>
 	 {% else%}
-	 	  <div class="container-fluid"> <h2><span class="label label-info">{{username}}'s Profile</span></h2></div>
+	 	  <div class="container-fluid"> <h2><span class="label label-info" style="background-color:#003333!important; border-color:#000B0B!important">{{username}}'s Profile</span></h2></div>
  {% endif %}
 	{% else%}
-	  <div class="container-fluid"> <h2><span class="label label-info">Unknown Profile</span></h2></div>
+	  <div class="container-fluid"> <h2><span class="label label-info" style="background-color:#003333!important; border-color:#000B0B!important">Unknown Profile</span></h2></div>
    	{% endif %}
 	
 	{% else%}
-	  <div class="container-fluid"> <h2><span class="label label-info">Unknown Profile</span></h2></div>
+	  <div class="container-fluid"> <h2><span class="label label-info" style="background-color:#003333!important; border-color:#000B0B!important">Unknown Profile</span></h2></div>
    	{% endif %}
 {% endblock %}
 	{% block content %}
@@ -30,6 +30,12 @@
 	{% endif %}
 	<div class="well">	
 	  <div class="container-fluid">
+	  	 <div class="panel panel-primary"style="border-color:#000202!important">
+  <div class="panel-heading"style="background-color:#003333!important; border-color:#000B0B!important">
+  <h2 class="panel-title"><b>Details</b></h2>
+  </div>
+    <div class="panel-body"> 
+			<div class="row text-center">
 	  {% if testing %}
 		 {% if type %}
 			&nbsp;&nbsp;<img class="img-rounded" style="height:150px; width:150px;" src="/media/images/A.png"/>
@@ -37,17 +43,30 @@
 			&nbsp;&nbsp;<img class="img-rounded" style="height:150px; width:150px;" src="/media/images/B.png"/>
 		{% endif %}
 	{% else%}
-		&nbsp;&nbsp;<img class="img-rounded" style="height:150px; width:150px;" src="/media/images/profile.png"/>
+&nbsp;&nbsp;<img class="img-rounded" style="height:150px; width:150px;" src="/media/images/profile.png"/>
 	{% endif %}
+	</div>
 	</br>
-	<div class="container-fluid">	
-    <span class="label label-info">Username:</span> <span class="badge">{{username}}</span><br/>
-    <span class="label label-primary" >Age:</span> <span class="badge">{{age}}</span><br/>
+	
+	<table class="table table-condensed table-responsive">
+   <tbody>
+                      <tr>
+                        <td><b>Username:</b></b></td>
+                        <td>{{username}}</td>
+                      </tr>
+					  <tr>
+                        <td><b>Age:</b></td>
+                        <td>{{age}}</td>
+                      </tr>
+
 	{% if personal %}
 	{% if set_learningType %}
-	 <span class="label label-info"style="background-color:#5F9EA0!important;border-color:#5F9EA0!important">Learning Style:</span> <span class="badge">{{learningType}}</span><br/>
+ <td><b>Learning Style:</b></td>
+                        <td>{{learningType}}</td>
+                      </tr>
+	 	</table>
 </div>	
-	</br>
+	</div>
 	 <div class="panel panel-primary"style="border-color:#000202!important">
   <div class="panel-heading"style="background-color:#003333!important; border-color:#000B0B!important">
   <h2 class="panel-title"><b>Progress Summary</b></h2>
@@ -62,7 +81,7 @@
 		{% for x in scores %}
 		{% for a in x %}
 			<div class="progress" style="background:red;">
-  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{a.correct}}" aria-valuemin="0" aria-valuemax="{{a.all}}" style="width: {{a.percentage}}%;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{a.correct}}" aria-valuemin="0" aria-valuemax="{{a.all}}" style="width: {{a.percentage}}%;">
 <b>{{a.chapter}}</b> :  {{a.percentage}} %
 		</div>
 		</div>
@@ -73,7 +92,7 @@
 	 </div>
 	 </br>
 		<div class="progress" style="background:grey;">
-  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{average}}" aria-valuemin="0" aria-valuemax="100" style="width: {{average}}%;background-color:#A3CC52!important;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{average}}" aria-valuemin="0" aria-valuemax="100" style="width: {{average}}%;background-color:#A3CC52!important;">
  <b>{{average}} % </b>
 		</div>
 		</div>
@@ -81,7 +100,10 @@
 			<a href="/test/progress/" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-list-alt"></span> Grade Breakdown</a></div>
 	  </div>
 </div>
-	 
+	 {% else %}
+	 </div>
+	 		</table>
+			</div>	
 	{% endif %}
   </div>
   {% endif %}
