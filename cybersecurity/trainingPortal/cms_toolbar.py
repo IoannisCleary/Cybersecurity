@@ -6,6 +6,18 @@ from cms.cms_toolbar import ADMIN_MENU_IDENTIFIER, ADMINISTRATION_BREAK
 from cms.toolbar_base import CMSToolbar
 
 @toolbar_pool.register
+class ProfileToolbar(CMSToolbar):
+
+    def populate(self):
+        admin_menu = self.toolbar.get_or_create_menu(ADMIN_MENU_IDENTIFIER, _('Training Portal'))
+        position = admin_menu.find_first(Break, identifier=ADMINISTRATION_BREAK)
+        menu = admin_menu.get_or_create_menu('add_profile', _('Profiles'), position=position)
+        url2 = reverse('admin:trainingPortal_profile_changelist')
+        url = reverse('admin:trainingPortal_profile_add')
+        menu.add_sideframe_item(_('View Profiles'), url=url2)
+        menu.add_sideframe_item(_('Create Profile'), url=url)
+		
+@toolbar_pool.register
 class ChapterToolbar(CMSToolbar):
 
     def populate(self):

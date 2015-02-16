@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block title %}{% trans "All Quizzes" %}{% endblock %}
-
+{% block page_title %}<b>{% trans "Available Tests" %}</b>{% endblock %}
 {% block content %}
-
+ {% if user.is_authenticated %}
 <div class="panel panel-primary"style="border-color:#f3a433!important">
   <div class="panel-heading" style="background-color:#f3a433!important; border-color:#f3a433!important">
-    <h3 class="panel-title"><b>{% trans "List of quizzes" %}</b></h3>
+    <h3 class="panel-title">List of tests</h3>
 	 </div>
 	 {% if user.profile.learningType != '0' %}
     {% if quiz_list %}
@@ -48,8 +48,13 @@
  </div>
  	{% else %}
 
-	<div class="alert alert-danger" role="alert"> <p class="label label-danger">Reminder</p></br> You need to enter your learning style ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
-	</div>
+	<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
 	 </div>
 	{% endif %}
+	{% else %}
+				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+                 
+		{% endif %}
 {% endblock %}

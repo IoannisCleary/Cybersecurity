@@ -3,18 +3,18 @@
 {% load static %} 
 
 {% block title %}About{% endblock %}
-{% block page_title %}About{% endblock %}
+{% block page_title %}<span class="label label-info">About</span>{% endblock %}
 	{% block content %}
 
 	<div class="well">	
 {% if user.is_authenticated %}
-		{% if set_learningType == False %}
+		{% if user.profile.learningType != '0' %}
 				<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
 
 	</br>
 {% endif %}
 	{% endif %}
-	This is the about paged</br></br>
+	This is the about page</br></br>
    </div>
        {% endblock %}

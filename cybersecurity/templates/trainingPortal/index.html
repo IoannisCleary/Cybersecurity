@@ -3,11 +3,11 @@
 {% load static %} 
 {% load socialaccount %}
 {% block title %}Index{% endblock %}
-{% block page_title %}Home{% endblock %}
+{% block page_title %}<span class="label label-info">Home</span>{% endblock %}
 	{% block content %}
-	{% if user.profile.learningType != '0' %}
-	Hi
-		{% endif %}
+		{% if user.is_authenticated %}
+		<div class="alert alert-success" role="alert"> Welcome back <b>{{user.username}}</b> <span class="glyphicon glyphicon-education"></span></div>
+			{% endif %}
 	{% if testing %}
 	<span class="label label-danger">Testing Mode</span>
 	{% endif %}

@@ -3,6 +3,7 @@
 {% block title %}{% trans "Quizzes related to" %} {{ category.category }}{% endblock %}
 
 {% block content %}
+ {% if user.is_authenticated %}
 {% if user.profile.learningType != '0' %}
 <h1>{% trans "Quizzes in the" %} <strong>{{ category.category }} </strong>{% trans "category" %}</h1>
 
@@ -22,7 +23,12 @@
     {% endif %}
   {% endwith %}
  	{% else %}
-<div class="alert alert-danger" role="alert"> <p class="label label-danger">Reminder</p></br> You need to enter your learning style ! <a href="/trainingPortal/learningType/" class="btn btn-danger" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>	
 	{% endif %}
+{% else %}
+				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+                 
+		{% endif %}
 {% endblock %}
