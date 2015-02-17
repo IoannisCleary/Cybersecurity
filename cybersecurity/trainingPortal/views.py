@@ -154,7 +154,10 @@ def profile(request,username):
 		context_dict['hasprogress'] = pro
 		try:
 			usr = User.objects.get(username = username)
-			context_dict['user'] = usr
+			if personal:
+				context_dict['user'] = usr
+			else :
+				context_dict['usr'] = usr
 			if testing:
 				if usr.profile.testingType =='0':
 					context_dict['type'] = True

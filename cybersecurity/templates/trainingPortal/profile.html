@@ -21,13 +21,15 @@
 {% endblock %}
 	{% block content %}
 	 {% if user.is_authenticated %}
-	{% if personal %}
-	 {% endif %}
+
+	
 	{% if exists %}
+		{% if personal %}
 	{% if user.profile.learningType == '0' %}
 		<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
 	{% endif %}
+	 {% endif %}
 	<div class="well">
 	  <div class="container-fluid">
 	  	 <div class="panel panel-primary"style="border-color:#000202!important">
