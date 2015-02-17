@@ -19,7 +19,7 @@ def index(request):
 	return render(request, 'trainingPortal/index.html', context_dict)
 def chapters(request):
 	context_dict = {}
-	if request.user.is_authenticated():	
+	if request.user.is_authenticated():
 		chapters = Chapter.objects.order_by('number')
 		number = Chapter.objects.order_by('number').count()
 		context_dict = {'chapters': chapters}
@@ -33,7 +33,7 @@ def about(request):
 	return render(request, 'trainingPortal/about.html', context_dict)
 def learningType(request):
 	context_dict = {}
-	if request.user.is_authenticated():	
+	if request.user.is_authenticated():
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 		if request.method == 'POST':
 			form = 	LearningTypeForm(request.POST)
@@ -52,7 +52,7 @@ def learningType(request):
 	return render(request, 'trainingPortal/learningtype.html', context_dict)
 def chapter(request,chapter_title):
 	context_dict = {}
-	if request.user.is_authenticated():	
+	if request.user.is_authenticated():
 		chapter_tl = chapter_title.replace('_', ' ')
 		chapt = Chapter.objects.get(title = chapter_tl)
 		pages = Page.objects.filter(chapter = chapt)
@@ -71,7 +71,7 @@ def chapter(request,chapter_title):
 	return render(request, 'trainingPortal/chapter.html', context_dict)
 def page(request,chapter_title,page_title):
 	context_dict = {}
-	if request.user.is_authenticated():	
+	if request.user.is_authenticated():
 		title= page_title.replace('_',' ')
 		chapter_tl = chapter_title.replace('_', ' ')
 		chapt = Chapter.objects.get(title = chapter_tl)
@@ -111,37 +111,47 @@ def page(request,chapter_title,page_title):
 		context_dict ['chapters'] = chapters
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/page.html', context_dict)
-	
+
 def profile(request,username):
 	context_dict = {"username" : username}
 	exists = True
 	personal = False
+	pro = True
 	testing = getMode()
 	context_dict['testing'] = testing
-	if request.user.is_authenticated():	
+	if request.user.is_authenticated():
 		if request.user.username == username:
-			progress = Progress.objects.get(user=request.user)
-			str = progress.score
-			val = str.split(',')
-			size = len(val)-1
-			times = size / 3
-			t=0
-			a=0
-			scores =[[{}] for t in range(0,times) ]
-			t=0
-			sum = 0.0
-			while t<size-1:
-				percentage =  (float(val[t+1])/float(val[t+2]))*100.0
-				sum = sum + percentage
-				score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percentage}]
-				scores[a]=score
-				t=t+3
-				a=a+1
-				if a == times:
-					break
-			personal = True
-			context_dict['scores'] = scores
-			context_dict['average'] = sum / times
+		    try:
+		        progress = Progress.objects.get(user=request.user)
+		        str = progress.score
+		        val = str.split(',')
+		        size = len(val)-1
+		        times = size / 3
+		        t=0
+		        a=0
+		        scores =[[{}] for t in range(0,times) ]
+		        t=0
+		        sum = 0.0
+		        while t<size-1:
+		            percentage =  (float(val[t+1])/float(val[t+2]))*100.0
+		            sum = sum + percentage
+		            score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percentage}]
+		            scores[a]=score
+		            t=t+3
+		            a=a+1
+		            if a == times:
+		                break
+		        personal = True
+		        if sum!=0.0:
+		             context_dict['average'] = sum / times
+		        else:
+		             context_dict['average'] = sum
+
+		        context_dict['scores'] = scores
+
+		    except Progress.DoesNotExist:
+		        pro = False
+		context_dict['hasprogress'] = pro
 		try:
 			usr = User.objects.get(username = username)
 			context_dict['user'] = usr
@@ -155,7 +165,7 @@ def profile(request,username):
 				context_dict['age'] = profile.age
 				context_dict['learningType'] = LEARNING_TYPES.get(profile.learningType)
 				#learning style
-				
+
 			except Profile.DoesNotExist:
 				exists = False
 		except User.DoesNotExist:
@@ -166,6 +176,6 @@ def profile(request,username):
 	return render(request, 'trainingPortal/profile.html', context_dict)
 def completedLearningStyle(user):
 	if (user.profile.learningType == '0'):
-		return False 	
+		return False
 	else :
 		return True

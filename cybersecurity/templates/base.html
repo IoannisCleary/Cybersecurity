@@ -5,7 +5,7 @@
 {% load url from future %}
 {% load pagination_tags %}
 {% load postman_tags %}
-{% load cms_tags sekizai_tags %} 
+{% load cms_tags sekizai_tags %}
 <html>
   <head>
 	 <meta charset="utf-8">
@@ -57,7 +57,7 @@
 						</li>
 						<li><a href="/messages/inbox/"> <span class="glyphicon glyphicon-envelope"></span> &nbsp;Messages</a></li>
 						<li><a href="/trainingPortal/user/profile/{{ user.username }}"> <b>{{user.username}}</b> &nbsp;<img class="img-rounded" style="width:20px;height:20px"src="/media/images/navprof.png"/></a></li>
-								
+
 						<li class="dropdown">
 							<a href="#" data-toggle="dropdown" class="dropdown-toggle"> &nbsp;<b class="caret"></b></a>
 							<ul class="dropdown-menu">
@@ -68,24 +68,24 @@
                         <li><a href="/accounts/signup">  <span class="glyphicon glyphicon-circle-arrow-up"></span> &nbsp;Sign up</a></li>
                         <li><a href="/accounts/login"> <span class="glyphicon glyphicon-circle-arrow-right"></span> &nbsp;Login</a></li>
                     {% endif %}
-                              
+
 
               </ul>
 		</div>
 		</div>
 		</div>
-		
+
     {% block body %}
 		<div class="page-header"> <h3><b>&nbsp;&nbsp;&nbsp;{% block page_title %}{% endblock %}</b></h3></div>
- <div class="container-fluid">   
-  <div class="container-fluid">   
+ <div class="container-fluid">
    {% block content %}
     {% endblock %}
     {% endblock %}
     {% block extra_body %}
     {% endblock %}
 	 {% render_block "js" %}
+	 	</div>
   </body>
-  </div>
-	</div>
+
+
 </html>

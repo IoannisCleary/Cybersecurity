@@ -1,6 +1,6 @@
 
 {% extends 'base.html' %}
-{% load static %} 
+{% load static %}
 	{% load thumbnail %}
 {% block title %}Index{% endblock %}
 {% block page_title %}
@@ -14,7 +14,7 @@
 	{% else%}
 	  <div class="container-fluid"> <h2><span class="label label-info" style="background-color:#003333!important; border-color:#000B0B!important">Unknown Profile</span></h2></div>
    	{% endif %}
-	
+
 	{% else%}
 	  <div class="container-fluid"> <h2><span class="label label-info" style="background-color:#003333!important; border-color:#000B0B!important">Unknown Profile</span></h2></div>
    	{% endif %}
@@ -28,13 +28,13 @@
 		<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
 	{% endif %}
-	<div class="well">	
+	<div class="well">
 	  <div class="container-fluid">
 	  	 <div class="panel panel-primary"style="border-color:#000202!important">
   <div class="panel-heading"style="background-color:#003333!important; border-color:#000B0B!important">
   <h2 class="panel-title"><b>Details</b></h2>
   </div>
-    <div class="panel-body"> 
+    <div class="panel-body">
 			<div class="row text-center">
 	  {% if testing %}
 		 {% if type %}
@@ -47,7 +47,7 @@
 	{% endif %}
 	</div>
 	</br>
-	
+
 	<table class="table table-condensed table-responsive">
    <tbody>
                       <tr>
@@ -65,18 +65,19 @@
                         <td>{{learningType}}</td>
                       </tr>
 	 	</table>
-</div>	
+</div>
 	</div>
+		{% if hasprogress %}
 	 <div class="panel panel-primary"style="border-color:#000202!important">
   <div class="panel-heading"style="background-color:#003333!important; border-color:#000B0B!important">
   <h2 class="panel-title"><b>Progress Summary</b></h2>
   </div>
-  
+
   </br>
   <div class="panel-heading" style="background-color:#E68A00!important; border-color:#FFB84D!important;color:white;">
     <h5 class="panel-title"><b>Chapters</b> (out of 100)</h5>
 	 </div>
-  <div class="panel-body"> 
+  <div class="panel-body">
 
 		{% for x in scores %}
 		{% for a in x %}
@@ -100,10 +101,11 @@
 			<a href="/test/progress/" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-list-alt"></span> Grade Breakdown</a></div>
 	  </div>
 </div>
+	{% endif %}
 	 {% else %}
 	 </div>
 	 		</table>
-			</div>	
+			</div>
 	{% endif %}
   </div>
   {% endif %}
@@ -113,8 +115,8 @@
        {% else %}
 				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
-                 
+
 		{% endif %}
 	   {% endblock %}
-	   
+
 	       </div>

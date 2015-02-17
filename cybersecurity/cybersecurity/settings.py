@@ -46,7 +46,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-	TEMPLATE_PATH,	
+	TEMPLATE_PATH,
 )
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -184,7 +184,7 @@ SOCIALACCOUNT_PROVIDERS = \
        { 'SCOPE': ['email'],
         'METHOD': 'oauth2',
         'VERIFIED_EMAIL': False}}
-		
+
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 

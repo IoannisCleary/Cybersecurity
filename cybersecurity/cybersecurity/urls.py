@@ -19,5 +19,5 @@ urlpatterns = patterns('',
 	url(r'^messages/', include('postman.urls')),
 	url(r'^', include('cms.urls')),
 	url(r'^ckeditor/', include('ckeditor.urls')),
-	url(r'^tinymce/', include('tinymce.urls')),		
+	url(r'^tinymce/', include('tinymce.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
