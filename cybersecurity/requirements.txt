@@ -1,4 +1,6 @@
+bsddb3==5.3.0
 bzr==2.6.0
+bzr-fastimport===0.13.0.final.0
 chardet==2.0.1
 Codeville==0.8.0
 cvs2svn==2.4.0
@@ -62,6 +64,7 @@ Mako==0.7.2
 MarkupSafe==0.15
 mercurial==3.0.1
 mingc==0.4.5
+netsnmp-python==1.0a1
 numpy==1.7.2
 oauthlib==0.7.2
 offlineimap==6.5.4
@@ -88,6 +91,7 @@ requests-oauthlib==0.4.2
 seantis-questionnaire==2.0.1
 six==1.9.0
 spambayes==1.0.4
+stgit===0.17.1-dirty
 tailor==0.9.35
 tox==1.8.1
 Twisted==12.3.0

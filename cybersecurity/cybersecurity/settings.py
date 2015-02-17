@@ -97,7 +97,6 @@ INSTALLED_APPS = (
 	'djangocms_teaser',
 	'djangocms_video',
 	'djangocms_link',
-	'djangocms_text_ckeditor',  # note this needs to be above the 'cms' entry
 	'cms',  # django CMS itself
 	'mptt',  # utilities for implementing a tree
 	'menus',  # helper for model independent hierarchical website navigation
