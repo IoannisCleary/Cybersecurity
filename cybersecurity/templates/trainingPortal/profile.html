@@ -4,6 +4,11 @@
 	{% load thumbnail %}
 {% block title %}Index{% endblock %}
 {% block page_title %}
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});</script>
+<!-- Source of function : http://bootsnipp.com/snippets/featured/progress-bar-meter-->
  {% if user.is_authenticated %}
 	{% if exists %}
 	{% if personal %}
@@ -83,7 +88,7 @@
 		{% for x in scores %}
 		{% for a in x %}
 			<div class="progress" style="background:red;">
-  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{a.correct}}" aria-valuemin="0" aria-valuemax="{{a.all}}" style="width: {{a.percentage}}%;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" data-toggle="tooltip" data-placement="top" title="{{a.chapter}} :  {{a.percentage}} % "  role="progressbar" aria-valuenow="{{a.correct}}" aria-valuemin="0" aria-valuemax="{{a.all}}" style="width: {{a.percentage}}%;">
 <b>{{a.chapter}}</b> :  {{a.percentage}} %
 		</div>
 		</div>
@@ -96,7 +101,7 @@
 	 
 	   <div class="panel-body">
 		<div class="progress" style="background:grey;">
-  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{average}}" aria-valuemin="0" aria-valuemax="100" style="width: {{average}}%;background-color:#A3CC52!important;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" data-toggle="tooltip" data-placement="top" title="Average : {{average}}"  role="progressbar" aria-valuenow="{{average}}" aria-valuemin="0" aria-valuemax="100" style="width: {{average}}%;background-color:#A3CC52!important;">
  <b>{{average}} % </b>
 		</div>
 		</div>
