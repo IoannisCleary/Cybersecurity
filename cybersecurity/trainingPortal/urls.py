@@ -9,4 +9,5 @@ urlpatterns = patterns('',
 		url(r'^chapter/(?P<chapter_title>[\w\-]+)/$', views.chapter, name='chapter'),
 		url(r'^chapter/(?P<chapter_title>[\w\-]+)/(?P<page_title>[\w\-]+)/$', views.page, name='page'),
 		url(r'^learningType', views.learningType, name='learningType'),	
+		url(r'^statistics', views.statistics, name='statistics'),
 		)

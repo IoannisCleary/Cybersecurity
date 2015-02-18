@@ -17,6 +17,117 @@ def index(request):
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 		context_dict['testing'] = getMode()
 	return render(request, 'trainingPortal/index.html', context_dict)
+def statistics(request):
+	context_dict = {}
+	if request.user.is_authenticated():
+		context_dict['set_learningType'] = completedLearningStyle(request.user)
+		users = User.objects.order_by('username')
+		all = 0.0
+		progressusers=0
+		allusers=0
+		activists=0
+		reflectors=0
+		theorists=0
+		pragmatists=0
+		none=0
+		for user in users:
+			try:
+				progress = Progress.objects.get(user=user)
+				type=user.profile.learningType
+				if type=='1':
+					activists = activists + 1
+				if type=='2':
+					reflectors = reflectors + 1
+				if type=='3':
+					theorists = theorists + 1
+				if type=='4':
+					pragmatists = pragmatists + 1
+				if type=='0':
+					none = none + 1
+				print "TYPE"
+				print type
+				str = progress.score
+				val = str.split(',')
+				size = len(val)-1
+				times = size / 3
+				t=0
+				a=0
+				scores =[[{}] for t in range(0,times) ]
+				t=0
+				sum = 0.0
+				while t<size-1:
+					percentage =  (float(val[t+1])/float(val[t+2]))*100.0
+					sum = sum + percentage
+					score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percentage}]
+					scores[a]=score
+					t=t+3
+					a=a+1
+					if a == times:
+						break
+				personal = True
+				all = all + sum / times
+				progressusers=progressusers+1
+				allusers=allusers+1
+			except Progress.DoesNotExist:
+				pro = False
+				allusers=allusers+1
+				type=user.profile.learningType
+				if type=='1':
+					activists = activists + 1
+				if type=='2':
+					reflectors = reflectors + 1
+				if type=='3':
+					theorists = theorists + 1
+				if type=='4':
+					pragmatists = pragmatists + 1
+				if type=='0':
+					none = none + 1
+		context_dict['all'] = all / progressusers
+		context_dict['percentageall'] = (float(all / progressusers)/float(100))*100.0
+		context_dict['progressusers'] = progressusers
+		if progressusers!=0:
+			context_dict['progressavailable'] = True
+			context_dict['percentage']=(float(activists)/float(allusers))*100.0
+		else:
+			context_dict['progressavailable'] = False
+			context_dict['percentage']=100.0
+		context_dict['allusers'] = allusers
+		context_dict['activists'] = activists
+		if activists!=0:
+			context_dict['activistsavailable'] = True
+			context_dict['activistspercentage']=(float(activists)/float(allusers))*100.0
+		else:
+			context_dict['activistsavailable'] = False
+			context_dict['activistspercentage']=100.0
+		context_dict['reflectors'] = reflectors
+		if reflectors!=0:
+			context_dict['reflectorsavailable'] = True
+			context_dict['reflectorspercentage']=(float(reflectors)/float(allusers))*100.0
+		else:
+			context_dict['reflectorsavailable'] = False
+			context_dict['reflectorspercentage']=100.0
+		context_dict['theorists'] = theorists
+		if theorists!=0:
+			context_dict['theoristsavailable'] = True
+			context_dict['theoristspercentage']=(float(theorists)/float(allusers))*100.0
+		else:
+			context_dict['theoristsavailable'] = False
+			context_dict['theoristspercentage']=100.0
+		context_dict['pragmatists'] = pragmatists
+		if pragmatists!=0:
+			context_dict['pragmatistsavailable'] = True
+			context_dict['pragmatistspercentage']=(float(pragmatists)/float(allusers))*100.0
+		else:
+			context_dict['pragmatistsavailable'] = False
+			context_dict['pragmatistspercentage']=100.0
+		context_dict['none'] = none
+		if none!=0:
+			context_dict['noneavailable'] = True	
+			context_dict['nonepercentage']=(float(none)/float(allusers))*100.0
+		else:
+			context_dict['noneavailable'] = False
+			context_dict['nonepercentage']=100.0
+	return render(request, 'trainingPortal/statistics.html', context_dict)
 def chapters(request):
 	context_dict = {}
 	if request.user.is_authenticated():
