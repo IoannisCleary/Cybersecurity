@@ -8,15 +8,32 @@
 {{% block page_title %}<span class="label label-default">{% trans "Sign Up" %}</span>{% endblock %}
 {% block content %}
 <div class="well">
-
+<div class="containter-fluid">
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
-  {{ form.as_p }}
+   {{ form.non_field_errors }}
+  <div class="input-group">
+             <span class="input-group-addon input-group-lg" style="background-color:#AEE30E;border-color:#7AC402;color:white;"><b>Username</b></span>
+			{{ form.username }}</div> {{ form.username.errors }}
+            <br>
+			  <div class="input-group">
+             <span class="input-group-addon input-group-lg" style="background-color:#AEE30E;border-color:#7AC402;color:white;"><b>Password</b></span>
+            {{ form.password1 }}</div> {{ form.password1.errors }}
+            <br>
+			  <div class="input-group">
+             <span class="input-group-addon input-group-lg" style="background-color:#AEE30E;border-color:#7AC402;color:white;"><b>Password (again)</b></span>
+            {{ form.password2 }} </div>{{ form.password2.errors }}
+            <br>
+			  <div class="input-group">
+             <span class="input-group-addon input-group-lg" style="background-color:#AEE30E;border-color:#7AC402;color:white;"><b>Age</b></span>
+			            {{ form.age }} </div>{{ form.age.errors }}
+            <br>
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <button class="btn btn-primary""type="submit"> <b>{% trans "Sign Up" %} </b></button>
+  <button class="btn btn-warning"type="submit"> <b>{% trans "Sign Up" %} </b></button>
 </form>
+</div>
 </div>
 	<div class="alert alert-info" role="alert"><p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}"><b>log in</b></a>.{% endblocktrans %}</p></div>
 
