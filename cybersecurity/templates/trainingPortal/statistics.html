@@ -56,61 +56,61 @@
 	 	{% if activistsavailable %}
 	 		<div class="progress" style="background:#B2B2B2;">
   <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{activists}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{activistspercentage}}%;background-color:#009999!important;">
- <b>Activists</b> : {{activists}} users 
+ <b>Activists</b> : {{activists}} user(s) 
 		</div>
 		</div>
 		{% else %}
 		<div class="progress" style="background:#B2B2B2;">
   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{activists}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{activistspercentage}}%;background-color:#5E5E5E!important;">
- <b>Activists</b> : {{activists}} users 
+ <b>Activists</b> : No users 
 		</div>
 		</div>
 	{% endif %}
 			{% if reflectorsavailable %}
 				<div class="progress" style="background:#B2B2B2;">
   <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{reflectors}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{reflectorspercentage}}%;background-color:#00CC99!important;">
- <b>Reflectors</b> : {{reflectors}} users 
+ <b>Reflectors</b> : {{reflectors}} user(s) 
 		</div>
 		</div>
 		{% else %}
 		<div class="progress" style="background:#B2B2B2;">
   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{reflectorspercentage}}%;background-color:#5E5E5E!important;">
- <b>Reflectors</b> : {{reflectors}} users 
+ <b>Reflectors</b> : No users
 		</div>
 		</div>
 	{% endif %}
 			{% if theoristsavailable %}
 				<div class="progress" style="background:#B2B2B2;">
   <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{theorists}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{theoristspercentage}}%;background-color:#009999!important;">
- <b>Theorists</b> : {{theorists}} users 
+ <b>Theorists</b> : {{theorists}} user(s) 
 		</div>
 		</div>
 		{% else %}
 		<div class="progress" style="background:#B2B2B2;">
-   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{theoristspercentage}}%;background-color:#5E5E5E!important;"> <b>Theorists</b> : {{theorists}} users 
+   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{theoristspercentage}}%;background-color:#5E5E5E!important;"> <b>Theorists</b> : No users 
 		</div>
 		</div>
 	{% endif %}
 			{% if pragmatistsavailable %}
 				<div class="progress" style="background:#B2B2B2;">
   <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{pragmatists}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{pragmatistspercentage}}%;background-color:#009999!important;">
-<b>Pragmatists</b> : {{pragmatists}} users 
+<b>Pragmatists</b> : {{pragmatists}} user(s) 
 		</div>
 		</div>
 		{% else %}
 		<div class="progress" style="background:#B2B2B2;">
-   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{pragmatistspercentage}}%;background-color:#5E5E5E!important;"><b>Pragmatists</b> : {{pragmatists}} users 
+   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{pragmatistspercentage}}%;background-color:#5E5E5E!important;"><b>Pragmatists</b> : No users 
 		</div>
 		</div>
 	{% endif %}
 			{% if noneavailable %}
 		<div class="progress" style="background:#B2B2B2;">
-   <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{nonepercentage}}%;background-color:#191919!important;"><b>No selection</b> : {{none}} users 
+   <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{nonepercentage}}%;background-color:#191919!important;"><b>No selection</b> : {{none}} user(s) 
 		</div>
 		</div>
 		{% else %}
 		<div class="progress" style="background:#B2B2B2;">
-   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{nonepercentage}}%;background-color:#5E5E5E!important;"><b>No selection</b> : {{none}} users 
+   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{nonepercentage}}%;background-color:#5E5E5E!important;"><b>No selection</b> : No users 
 		</div>
 		</div>
 	{% endif %}
