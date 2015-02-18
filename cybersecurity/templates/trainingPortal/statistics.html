@@ -24,8 +24,7 @@
   <div class="panel-heading"style="background-color:#CC0066!important; border-color:#DB4D94!important">
   <h2 class="panel-title"><b>Portal Statistics</b></h2>
   </div>
-
-  </br>
+  <div class="panel-body">
   <div class="panel-heading" style="background-color:#52A3CC!important; border-color:#4282A3!important;color:white;">
     <h5 class="panel-title"><b>Users</b></h5>
 	 </div>
@@ -49,10 +48,11 @@
 		</div>
 		</div>
 	{% endif %}
+	</div>
 		<div class="panel-heading" style="background-color:#0066FF!important; border-color:#0066FF!important;color:white;">
     <h5 class="panel-title"><b>Learning Styles</b></h5>
 	 </div>
-	 </br>
+	   <div class="panel-body">
 	 	{% if activistsavailable %}
 	 		<div class="progress" style="background:#B2B2B2;">
   <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{activists}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{activistspercentage}}%;background-color:#009999!important;">
@@ -114,17 +114,21 @@
 		</div>
 		</div>
 	{% endif %}
+
+	</div>
 		<div class="panel-heading" style="background-color:#B8E62E!important; border-color:#DBFF94!important;color:white;">
     <h5 class="panel-title"><b>Average performance</b> (out of 100) from <b>{{progressusers}}</b> user(s)</h5>
 	 </div>
-	 </br>
+	   <div class="panel-body">
 		<div class="progress" style="background:#EBFFD6;">
   <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{all}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percentageall}}%;background-color:#99FF33!important;">
  <b>{{percentageall}} % </b>
 		</div>
+			 </div>
 		</div>
+		
 </div>
-
+</div>
 	
    </div>
 
