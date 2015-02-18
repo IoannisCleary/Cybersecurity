@@ -74,8 +74,7 @@
   <div class="panel-heading"style="background-color:#003333!important; border-color:#000B0B!important">
   <h2 class="panel-title"><b>Progress Summary</b></h2>
   </div>
-
-  </br>
+  <div class="panel-body">
   <div class="panel-heading" style="background-color:#E68A00!important; border-color:#FFB84D!important;color:white;">
     <h5 class="panel-title"><b>Quizzes</b> (out of 100)</h5>
 	 </div>
@@ -90,16 +89,20 @@
 		</div>
 		{% endfor %}
 		{% endfor %}
+		</div>
 		<div class="panel-heading" style="background-color:#006666!important; border-004040:#4D9494!important;color:white;">
     <h5 class="panel-title"><b>Average</b> (out of 100)</h5>
 	 </div>
-	 </br>
+	 
+	   <div class="panel-body">
 		<div class="progress" style="background:grey;">
   <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{average}}" aria-valuemin="0" aria-valuemax="100" style="width: {{average}}%;background-color:#A3CC52!important;">
  <b>{{average}} % </b>
 		</div>
 		</div>
-		  <div class="container-fluid">
+		
+	  </div>
+	    <div class="container-fluid">
 			<a href="/test/progress/" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-list-alt"></span> Grade Breakdown</a></div>
 	  </div>
 </div>
