@@ -4,7 +4,7 @@
 {% load i18n %}
 
 {% block head_title %}{% trans "Log Out" %}{% endblock %}
-{% block page_title %}Log out{% endblock %}
+{% block page_title %}<span class="label label-default">Log out</span>{% endblock %}
 {% block content %}
 <div class="well">
 <p>{% trans 'Are you sure you want to log out?' %}</p>
@@ -14,7 +14,7 @@
   {% if redirect_field_value %}
   <input type="hidden" name="{{redirect_field_name}}" value="{{redirect_field_value}}"/>
   {% endif %}
-  <button class="btn btn-danger" type="submit">{% trans 'Log Out' %}</button>
+  <button class="btn btn-danger" type="submit"><b>{% trans 'Log Out' %}</b></button>
 </form>
 </div>
 

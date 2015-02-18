@@ -17,7 +17,7 @@
   js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=1587008694862538&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
+<div class="container-fluid">
 <div class="well">
 
 <!--{% if socialaccount.providers  %}
@@ -38,17 +38,31 @@ Log in with your <b>Training Portal</b> account: {% endblocktrans %}
 <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
 {% endif %}
 <br/>
-<div class="input-group input-group-lg">
+
+<div class="input-group">
 <form class="login" method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}
-  {{ form.as_p }}
+  {{ form.non_field_errors }}
+  <div class="input-group">
+             <span class="input-group-addon input-group-lg" style="background-color:#9BE81E;border-color:#7AC402;color:white;"><b>Username</b></span><input id="id_login" class="login-input form-control" maxlength="30" name="login" placeholder="Username" type="text" style="border-color:#7AC402;"/>{{ form.login.errors }}<br>
+            </div></br>
+			 <div class="input-group" >
+			   <span class="input-group-addon input-group-lg" style="background-color:#9BE81E;border-color:#7AC402;color:white;"><b>Password</b></span>
+			<input id="id_password"  class="login-input form-control" name="password" placeholder="Password" type="password" style="border-color:#7AC402;"/>{{ form.password.errors }}<br>
+             </div></br>
+			<div class="remember-forgot-section">
+                <input id="id_remember" name="remember" type="checkbox" />
+                <label for="id_remember">Remember Me</label>
+            </div>
+			</br>
   {% if redirect_field_value %}
  
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  <input type="text" class="form-control" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
   <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="btn btn-primary primaryAction" type="submit"><b>{% trans "Log In" %}</b></button>
+ &nbsp; <button class="btn btn-primary primaryAction" type="submit" style="background-color:#9BE81E;border-color:#7AC402;"><b>{% trans "Log In" %}</b></button>
 </form>
+</div>
 </div>
 </div>
 <div class="alert alert-info" role="alert">If you do not have an account, please <a href="{{ signup_url }}"><b>sign up</b></a></div>
