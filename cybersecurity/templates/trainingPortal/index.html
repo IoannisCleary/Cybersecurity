@@ -1,13 +1,11 @@
 
 {% extends 'base.html' %}
-{% load static %} 
+{% load static %}
 {% load socialaccount %}
 {% block title %}Index{% endblock %}
 {% block page_title %}<span class="label label-info">Home</span>{% endblock %}
 	{% block content %}
-		{% if user.is_authenticated %}
-		<div class="alert alert-success" role="alert"> Welcome back <b>{{user.username}}</b> <span class="glyphicon glyphicon-education"></span></div>
-			{% endif %}
+
 	{% if testing %}
 	<span class="label label-danger">Testing Mode</span>
 	{% endif %}
@@ -18,9 +16,13 @@
 
 	</br>
 	  	{% endif %}
+	  		{% if user.is_authenticated %}
+		<div class="alert alert-success" role="alert" style="color:#3D6614!important;background-color:#CCFF66!important;border-color:#CCFF66!important"> Welcome back <b style="color:#141A05!important">{{user.username}}</b> <span class="glyphicon glyphicon-education" style="color:#080A02!important"></span></div>
+			{% endif %}
 	{% endif %}
-<div class="well">	
+<div class="well">
+	</br>
 	Welcome to the Cybersecurity Training Portal</br></br>
    </div>
- 
+
 	    {% endblock %}
