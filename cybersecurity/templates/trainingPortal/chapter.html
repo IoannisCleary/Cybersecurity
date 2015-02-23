@@ -16,7 +16,7 @@
   {% if chapters %}
   <li role="presentation" class="dropdown-header">Chapters</li>
 					{% for chapter in chapters %}
-						<li><a role="menuitem" tabindex="-1" href="/trainingPortal/chapter/{{ chapter_url }}">{{ chapter.title }}</a></li>
+						<li><a role="menuitem" tabindex="-1" href="/trainingPortal/chapter/{{ chapter.url }}">{{ chapter.title }}</a></li>
 					{% endfor %}
 	{% endif %}
   </ul>

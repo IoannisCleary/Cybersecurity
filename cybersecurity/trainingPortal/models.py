@@ -22,23 +22,23 @@ class Profile(models.Model):
 	learningType = models.CharField(max_length=1,default='0',choices=LEARNING_TYPES)
 	testingType =  models.CharField(max_length=1,default='0',choices=TESTING_TYPES)
 	def __unicode__(self):
-		return self.user.username	
+		return self.user.username
 class Mode(models.Model):
 	name =  models.CharField(max_length=50)
 	enable = models.BooleanField(default=False,help_text="Select to enable Testing Mode where type A users see only default parts of chapters and type B users see learning style specific parts of chapters")
 	def __unicode__(self):
 		return self.name
-		
-		
+
+
 class Chapter(models.Model):
-	number = models.IntegerField(default=0,help_text="This field is used to sort the chapters. Use a unique number")
+	number = models.IntegerField(default=0,unique=True,help_text="This field is used to sort the chapters. Use a unique number")
 	title = models.CharField(max_length=128, unique=True)
 	overview = models.CharField(max_length=500,default="Not available")
 	def __unicode__(self):
 		return self.title
 	class Meta:
-		verbose_name_plural = "Chapters"		
-		
+		verbose_name_plural = "Chapters"
+
 class Page(models.Model):
 	chapter = models.ForeignKey(Chapter)
 	number = models.IntegerField(default=0,help_text="This field is used to sort the pages. Use a unique number")
@@ -50,7 +50,7 @@ class Page(models.Model):
 	entry_Theorist_Type = RichTextField(config_name='awesome_ckeditor',help_text="This field is displayed when learningStyleMode is enabled. Theorist specific content",default="Empty")
 	entry_Pragmatist_Type = RichTextField(config_name='awesome_ckeditor',help_text="This field is displayed when learningStyleMode is enabled. Pragmatist specific content",default="Empty")
 	def __unicode__(self):
-		return self.title		
+		return self.title
 	class Meta:
 		verbose_name_plural = "Pages"
-		unique_together = (("chapter", "title"),)
+		unique_together = (("chapter", "number"),)
