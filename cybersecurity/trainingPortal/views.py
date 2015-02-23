@@ -136,7 +136,7 @@ def chapters(request):
 		context_dict = {'chapters': chapters}
 		context_dict['number'] = number
 		for chapter in chapters:
-			chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace(' ', '_')
+			chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_')
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/chapters.html', context_dict)
 def about(request):
@@ -165,7 +165,7 @@ def chapter(request,chapter_title):
 	context_dict = {}
 	exists = True
 	if request.user.is_authenticated():
-		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_', ' ')
+		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_', ' ')
 		try:
 		    chapt = Chapter.objects.get(title = chapter_tl)
 		    pages = Page.objects.filter(chapter = chapt)
@@ -174,12 +174,12 @@ def chapter(request,chapter_title):
 		    context_dict['title'] = chapter_tl
 		    context_dict['pages'] = pages
 		    for page in pages:
-		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace(' ', '_')
+		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_')
 		except Chapter.DoesNotExist:
 		    exists = False
 		chapters = Chapter.objects.order_by('title')
 		for chapter in chapters:
-			chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace(' ', '_')
+			chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_')
 		context_dict ['chapters'] = chapters
 		context_dict['exists'] = exists
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
@@ -188,8 +188,8 @@ def page(request,chapter_title,page_title):
     context_dict = {}
     exists = True
     if request.user.is_authenticated():
-		title= page_title.replace('_111_',':').replace('_121_','=').replace('_', ' ')
-		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_', ' ')
+		title= page_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_', ' ')
+		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_', ' ')
 		try:
 		    chapt = Chapter.objects.get(title = chapter_tl)
 		    page = Page.objects.get(chapter = chapt, title = title)
@@ -220,14 +220,14 @@ def page(request,chapter_title,page_title):
 		    pages = Page.objects.filter(chapter = chapt)
 		    context_dict ['pages'] = pages
 		    for page in pages:
-		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace(' ', '_')
+		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
 		except Page.DoesNotExist:
 		    exists= False
 		except Chapter.DoesNotExist:
 		    exists= False
 		chapters = Chapter.objects.order_by('title')
 		for chapter in chapters:
-		    chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace(' ', '_')
+		    chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
 		context_dict ['chapters'] = chapters
 		context_dict['exists'] = exists
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
