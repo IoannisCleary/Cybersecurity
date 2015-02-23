@@ -122,7 +122,7 @@ def statistics(request):
 			context_dict['pragmatistspercentage']=100.0
 		context_dict['none'] = none
 		if none!=0:
-			context_dict['noneavailable'] = True	
+			context_dict['noneavailable'] = True
 			context_dict['nonepercentage']=(float(none)/float(allusers))*100.0
 		else:
 			context_dict['noneavailable'] = False
@@ -136,7 +136,7 @@ def chapters(request):
 		context_dict = {'chapters': chapters}
 		context_dict['number'] = number
 		for chapter in chapters:
-			chapter.url = chapter.title.replace(' ', '_')
+			chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace(' ', '_')
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/chapters.html', context_dict)
 def about(request):
@@ -163,65 +163,75 @@ def learningType(request):
 	return render(request, 'trainingPortal/learningtype.html', context_dict)
 def chapter(request,chapter_title):
 	context_dict = {}
+	exists = True
 	if request.user.is_authenticated():
-		chapter_tl = chapter_title.replace('_', ' ')
-		chapt = Chapter.objects.get(title = chapter_tl)
-		pages = Page.objects.filter(chapter = chapt)
-		pages = pages.order_by('number')
-		context_dict['chapter'] = chapter_title
-		context_dict['title'] = chapter_tl
-		context_dict['pages'] = pages
-		for page in pages:
-			page.url = page.title.replace(' ', '_')
-			print page.url
+		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_', ' ')
+		try:
+		    chapt = Chapter.objects.get(title = chapter_tl)
+		    pages = Page.objects.filter(chapter = chapt)
+		    pages = pages.order_by('number')
+		    context_dict['chapter'] = chapter_title
+		    context_dict['title'] = chapter_tl
+		    context_dict['pages'] = pages
+		    for page in pages:
+		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace(' ', '_')
+		except Chapter.DoesNotExist:
+		    exists = False
 		chapters = Chapter.objects.order_by('title')
 		for chapter in chapters:
-			chapter.url = chapter.title.replace(' ', '_')
+			chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace(' ', '_')
 		context_dict ['chapters'] = chapters
+		context_dict['exists'] = exists
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/chapter.html', context_dict)
 def page(request,chapter_title,page_title):
-	context_dict = {}
-	if request.user.is_authenticated():
-		title= page_title.replace('_',' ')
-		chapter_tl = chapter_title.replace('_', ' ')
-		chapt = Chapter.objects.get(title = chapter_tl)
-		page = Page.objects.get(chapter = chapt, title = title)
-		mode = page.learningStyleMode
-		pages = Page.objects.filter(chapter = chapt)
-		user = request.user
-		profile = user.profile
-		testing = getMode()
-		context_dict['testing'] = testing
-		if testing:
-			if profile.testingType == '0':
-				context_dict ['entry'] = page.entry_default
-			else:
-				if mode:
-					ENTRY_TYPES = {'1':page.entry_Activist_Type, '2':page.entry_Reflector_Type, '3':page.entry_Theorist_Type, '4':page.entry_Pragmatist_Type }
-					context_dict['entry'] = ENTRY_TYPES.get(profile.learningType)
-				else:
-					context_dict ['entry'] = page.entry_default
-		else:
-			if mode:
-				ENTRY_TYPES = {'1':page.entry_Activist_Type, '2':page.entry_Reflector_Type, '3':page.entry_Theorist_Type, '4':page.entry_Pragmatist_Type }
-				context_dict['entry'] = ENTRY_TYPES.get(profile.learningType)
-			else:
-				context_dict ['entry'] = page.entry_default
-		context_dict ['chapter_url'] = chapter_title
-		context_dict ['chapter'] = chapter_tl
-		context_dict ['pages'] = pages
-		context_dict ['title'] = title
-		context_dict ['page'] = page
-		for page in pages:
-			page.url = page.title.replace(' ', '_')
-			print page.url
+    context_dict = {}
+    exists = True
+    if request.user.is_authenticated():
+		title= page_title.replace('_111_',':').replace('_121_','=').replace('_', ' ')
+		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_', ' ')
+		try:
+		    chapt = Chapter.objects.get(title = chapter_tl)
+		    page = Page.objects.get(chapter = chapt, title = title)
+		    mode = page.learningStyleMode
+		    user = request.user
+		    profile = user.profile
+		    testing = getMode()
+		    context_dict['testing'] = testing
+		    if testing:
+		        if profile.testingType == '0':
+		            context_dict ['entry'] = page.entry_default
+		        else:
+		            if mode:
+		                ENTRY_TYPES = {'1':page.entry_Activist_Type, '2':page.entry_Reflector_Type, '3':page.entry_Theorist_Type, '4':page.entry_Pragmatist_Type }
+		                context_dict['entry'] = ENTRY_TYPES.get(profile.learningType)
+		            else:
+		                context_dict ['entry'] = page.entry_default
+		    else:
+		        if mode:
+		            ENTRY_TYPES = {'1':page.entry_Activist_Type, '2':page.entry_Reflector_Type, '3':page.entry_Theorist_Type, '4':page.entry_Pragmatist_Type }
+		            context_dict['entry'] = ENTRY_TYPES.get(profile.learningType)
+		        else:
+		            context_dict ['entry'] = page.entry_default
+		    context_dict ['chapter_url'] = chapter_title
+		    context_dict ['chapter'] = chapter_tl
+		    context_dict ['title'] = title
+		    context_dict ['page'] = page
+		    pages = Page.objects.filter(chapter = chapt)
+		    context_dict ['pages'] = pages
+		    for page in pages:
+		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace(' ', '_')
+		except Page.DoesNotExist:
+		    exists= False
+		except Chapter.DoesNotExist:
+		    exists= False
 		chapters = Chapter.objects.order_by('title')
 		for chapter in chapters:
-			chapter.url = chapter.title.replace(' ', '_')
+		    chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace(' ', '_')
 		context_dict ['chapters'] = chapters
+		context_dict['exists'] = exists
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
-	return render(request, 'trainingPortal/page.html', context_dict)
+    return render(request, 'trainingPortal/page.html', context_dict)
 
 def profile(request,username):
 	context_dict = {"username" : username}

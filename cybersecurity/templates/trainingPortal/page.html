@@ -1,17 +1,18 @@
 
 {% extends 'base.html' %}
-{% load static %} 
+{% load static %}
 {% block title %}Page{% endblock %}
 {% block page_title %}<span class="label label-success"><b>Chapter :</b><b style="color:black"> {{chapter}}</b></span>&nbsp; <span class="label label-info"> <b>Section :</b><b style="color:black"> {{title}}</b></span>{% endblock %}
 	{% block content %}
 
      {% if user.is_authenticated %}
+     {% if exists %}
 	 <button class="btn btn-group-lg btn-success disabled" type="button"><b>Chapter </b></button>
 <div class="btn-group dropdown">
 <button class="btn btn-group-lg btn-default disabled" type="button"><b>{{ chapter }}</b></button>
 <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
 	  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"> 
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
   {% if chapters %}
   <li role="presentation" class="dropdown-header">Chapters</li>
 					{% for chapter in chapters %}
@@ -25,7 +26,7 @@
 <button class="btn btn-group-lg btn-default disabled" type="button"><b>{{ title }}</b></button>
 	  <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
 	  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"> 
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
   {% if pages %}
   <li role="presentation" class="dropdown-header">Sections</li>
 					{% for page in pages %}
@@ -35,12 +36,12 @@
   </ul>
 </div>
 </br>
-	
+
 
 </br>
 <div class="well" style="background-color:#FCFCFC">
 	 {% if set_learningType %}
-	<div class="container-fluid" style="background-color:#FCFCFC">	
+	<div class="container-fluid" style="background-color:#FCFCFC">
 	{% autoescape off %}<p>{{entry}}</p>{% endautoescape %}
 	</div>
    </div>
@@ -48,7 +49,10 @@
 		<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
   {% endif %}
+   {% else%}
+     				<div class="alert alert-danger" role="alert"> <p class="label label-danger">WARNING</p> </br><b>Page</b> or <b>Chapter</b> does not exist ! Please check the url and try again.</a>
+     {% endif %}
 		{% else %}
-              Please log in to access this page.      
+  				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 		{% endif %}
        {% endblock %}

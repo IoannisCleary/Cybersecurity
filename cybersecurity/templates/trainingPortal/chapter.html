@@ -1,18 +1,19 @@
 
 {% extends 'base.html' %}
-{% load static %} 
+{% load static %}
 
 {% block title %}Chapter{% endblock %}
-	
+
 {% block page_title %}{% if user.is_authenticated %}<span class="label label-success"><b>Chapter :</b><b style="color:black"> {{title}}</b></span>{% endif %}{% endblock %}
-	{% block content%} 
-	{% if user.is_authenticated %}	
+	{% block content%}
+	{% if user.is_authenticated %}
+	     {% if exists %}
 	 <button class="btn btn-group-lg btn-success disabled" type="button"><b>Chapter : </b></button>
 <div class="btn-group dropdown">
 <button class="btn btn-group-lg btn-default disabled" type="button"><b>{{ chapter }}</b></button>
 <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
 	  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"> 
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
   {% if chapters %}
   <li role="presentation" class="dropdown-header">Chapters</li>
 					{% for chapter in chapters %}
@@ -30,7 +31,7 @@
 			<ul class="list-group">
 			<div class="btn-group btn-block btn-group-horizontal  ">
 					{% for page in pages %}
-					<li class="list-group-item"><button class="btn disabled btn-info">{{page.number}}</button><div class="btn-group "role="group"> 
+					<li class="list-group-item"><button class="btn disabled btn-info">{{page.number}}</button><div class="btn-group "role="group">
 					<a href="/trainingPortal/chapter/{{ chapter }}/{{ page.url }}" class="btn btn-info" role="button"><span class="glyphicon glyphicon-file"></span> {{ page.title }} <span class="badge">Read</span></a>
 					{% endfor %}
 			</div>
@@ -41,10 +42,13 @@
 					<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
 	{% endif %}
+	   {% else%}
+    				<div class="alert alert-danger" role="alert"> <p class="label label-danger">WARNING</p> </br><b>Chapter</b> does not exist ! Please check the url and try again.</a>
+      {% endif %}
 		{% else %}
 				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
-                 
+
 		{% endif %}
    </div>
        {% endblock %}
