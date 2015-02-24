@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block title %}{% trans "All Quizzes" %}{% endblock %}
+{% block page_title %}{% trans "All Quizzes" %}{% endblock %}
 
 {% block content %}
  {% if user.is_authenticated %}
@@ -22,6 +23,6 @@
 	{% else %}
 				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
-                 
+
 		{% endif %}
 {% endblock %}

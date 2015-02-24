@@ -3,14 +3,11 @@
 {% block title %}
 {{ quiz.title }}
 {% endblock %}
-
+{% block page_title %}<span class="label label-primary" style="background-color:#006699;border-color:#80B2CC;color:white;"><b>{{ quiz.category }}</b></span>{% endblock %}
 {% block content %}
  {% if user.is_authenticated %}
-<div class="panel panel-primary"style="border-color:#f3a433!important">
-  <div class="panel-heading" style="background-color:#f3a433!important; border-color:#fdab41!important">
-    <h1 class="panel-title"><b>{{ quiz.title }}</b></h1>
-	 </div>
-  <div class="panel-heading" style="background-color:#deaf56!important; border-color:#c7a461!important">
+<div class="panel panel-primary"style="border-color:#80B2CC!important">
+  <div class="panel-heading" style="background-color:#4D94B8;border-color:#80B2CC;color:white;">
     <h5 class="panel-title"><b>{% trans "Category" %}: {{ quiz.category }}</b></h5>
 	 </div>
 {% if user.profile.learningType != '0' %}
@@ -22,7 +19,7 @@
 <p>{{ quiz.description }}</p>
 <p>
   <a href="{% url 'quiz_question' quiz_name=quiz.url %}"><button class="btn btn-primary">
-	{% trans "Start quiz" %}
+	<b>{% trans "Start quiz" %}</b>
   </button>
   </a>
 </p>
@@ -32,11 +29,11 @@
  	{% else %}
 	<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 </div>
-	
+
 	{% endif %}
 	{% else %}
 				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
-                 
+
 		{% endif %}
 {% endblock %}

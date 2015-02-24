@@ -17,6 +17,13 @@ def index(request):
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 		context_dict['testing'] = getMode()
 	return render(request, 'trainingPortal/index.html', context_dict)
+
+def help(request):
+	context_dict = {}
+	if request.user.is_authenticated():
+		context_dict['set_learningType'] = completedLearningStyle(request.user)
+		context_dict['testing'] = getMode()
+	return render(request, 'trainingPortal/help.html', context_dict)
 def statistics(request):
 	context_dict = {}
 	if request.user.is_authenticated():
@@ -187,6 +194,8 @@ def chapter(request,chapter_title):
 def page(request,chapter_title,page_title):
     context_dict = {}
     exists = True
+    hasNext = False
+    hasPrevious = False
     if request.user.is_authenticated():
 		title= page_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_', ' ')
 		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_', ' ')
@@ -218,6 +227,44 @@ def page(request,chapter_title,page_title):
 		    context_dict ['title'] = title
 		    context_dict ['page'] = page
 		    pages = Page.objects.filter(chapter = chapt)
+		    numberofPages = Page.objects.filter(chapter = chapt).count()
+		    context_dict ['count'] = numberofPages
+		    current = page.number
+		    if numberofPages > 1:
+		        if current == numberofPages:
+		            hasPrevious=True
+		            n = numberofPages - 1
+		            previous = Page.objects.get(chapter = chapt,number=n)
+		            pt = previous.title
+		            context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
+		        elif current == numberofPages-1:
+		            hasNext=True
+		            next = Page.objects.get(chapter = chapt,number=numberofPages)
+		            nt=next.title
+		            context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
+		            if current>1:
+		                hasPrevious=True
+		                n = current - 1
+		                previous = Page.objects.get(chapter = chapt,number=n)
+		                pt = previous.title
+		                context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
+		        elif current==1:
+		            hasNext=True
+		            n = current + 1
+		            next = Page.objects.get(chapter = chapt,number=n)
+		            nt = next.title
+		            context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
+		        else:
+		            hasNext=True
+		            n = current + 1
+		            next = Page.objects.get(chapter = chapt,number=n)
+		            nt = next.title
+		            context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
+		            hasPrevious=True
+		            p = current - 1
+		            previous = Page.objects.get(chapter = chapt,number=p)
+		            pt = previous.title
+		            context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
 		    context_dict ['pages'] = pages
 		    for page in pages:
 		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
@@ -231,6 +278,8 @@ def page(request,chapter_title,page_title):
 		context_dict ['chapters'] = chapters
 		context_dict['exists'] = exists
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
+		context_dict['hasNext'] = hasNext
+		context_dict['hasPrevious'] = hasPrevious
     return render(request, 'trainingPortal/page.html', context_dict)
 
 def profile(request,username):
@@ -242,41 +291,48 @@ def profile(request,username):
 	context_dict['testing'] = testing
 	if request.user.is_authenticated():
 		if request.user.username == username:
+		    personal = True
 		    try:
 		        progress = Progress.objects.get(user=request.user)
 		        str = progress.score
 		        val = str.split(',')
 		        size = len(val)-1
 		        times = size / 3
+		        times = times - 1
 		        t=0
 		        a=0
 		        scores =[[{}] for t in range(0,times) ]
 		        t=0
+		        ignore='Example'
 		        sum = 0.0
 		        while t<size-1:
-		            percentage =  (float(val[t+1])/float(val[t+2]))*100.0
-		            sum = sum + percentage
-		            score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percentage}]
-		            scores[a]=score
+
+		            if val[t].lower() != ignore.lower():
+		                percentage =  (float(val[t+1])/float(val[t+2]))*100.0
+		                sum = sum + percentage
+		                score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percentage}]
+		                scores[a]=score
+		                a=a+1
 		            t=t+3
-		            a=a+1
 		            if a == times:
 		                break
-		        personal = True
+
 		        if sum!=0.0:
 		             context_dict['average'] = sum / times
 		        else:
 		             context_dict['average'] = sum
+		             pro = False
 
 		        context_dict['scores'] = scores
 
 		    except Progress.DoesNotExist:
 		        pro = False
 		context_dict['hasprogress'] = pro
+
 		try:
 			usr = User.objects.get(username = username)
 			if personal:
-				context_dict['user'] = usr
+				context_dict['usr'] = usr
 			else :
 				context_dict['usr'] = usr
 			if testing:
@@ -294,9 +350,9 @@ def profile(request,username):
 				exists = False
 		except User.DoesNotExist:
 			exists = False
-		context_dict['exists'] = exists
-		context_dict['personal'] = personal
-		context_dict['set_learningType'] = completedLearningStyle(request.user)
+	context_dict['exists'] = exists
+	context_dict['personal'] = personal
+	context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/profile.html', context_dict)
 def completedLearningStyle(user):
 	if (user.profile.learningType == '0'):

@@ -1,0 +1,104 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load socialaccount %}
+{% block title %}Index{% endblock %}
+
+{% block page_title %}<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Help Centre&nbsp;</span>
+{% endblock %}
+	{% block content %}
+
+	{% if testing %}
+	<span class="label label-danger">Testing Mode</span>
+	{% endif %}
+	{% if user.is_authenticated %}
+		{% if set_learningType == False %}
+			<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+
+	</br>
+	  	{% endif %}
+	{% endif %}
+<div class="well">
+    	</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Log in</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    Click on the &nbsp;" <span class="glyphicon glyphicon-circle-arrow-right"></span> &nbsp;<b>Log In</b>"&nbsp; button on the navigation bar above.
+	    	</br>At the log in page enter your Username and Password in the appropriate fields and then click the log in button at the bottom of the page.	</br> You will then be redirected to the home page	</br>
+	</br>
+	</div>
+		</br>
+	</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Sign up</b></span></h4></br>
+			<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    Click on the &nbsp;" <span class="glyphicon glyphicon-circle-arrow-up"></span> &nbsp;<b>Sign up</b>"&nbsp; button on the navigation bar above.
+	    	</br>At the Sign Up page enter a Username, a Password and your Age in the appropriate fields and then click the sign up button at the bottom of the page.</br> You will then be redirected to the home page	</br>
+	</br>
+	</div>
+    	{% if user.is_authenticated %}
+	</br>
+<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Chapters</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    	// TO DO
+    	 	</br>
+	</div>
+	</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Pages</b></span></h4></br>
+			<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    	// TO DO
+    	 	</br>
+	</div>
+	</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Navigation</b></span></h4></br>
+			<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    	// TO DO
+    	 	</br>
+	</div>
+	</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Profile</b></span></h4></br>
+		<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    	// TO DO
+    	 	</br>
+	</div>
+	</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Learning Style</b></span></h4></br>
+			<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    	// TO DO
+    	 	</br>
+	</div>
+	</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Assessment</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    	// TO DO
+    	 	</br>
+	</div>
+	</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Grade Breakdown</b></span></h4></br>
+		<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    	// TO DO
+    	 	</br>
+	</div>
+	</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Statistics</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    	// TO DO
+    	 	</br>
+	</div>
+		{% endif %}
+
+
+
+	</br>
+   </div>
+
+	    {% endblock %}

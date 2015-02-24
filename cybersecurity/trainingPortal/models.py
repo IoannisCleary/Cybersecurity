@@ -3,6 +3,7 @@ from filer.fields.image import FilerImageField
 from filer.fields.file import FilerFileField
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
+from django.core.validators import MinValueValidator
 
 from ckeditor.fields import RichTextField
 
@@ -31,7 +32,7 @@ class Mode(models.Model):
 
 
 class Chapter(models.Model):
-	number = models.IntegerField(default=0,unique=True,help_text="This field is used to sort the chapters. Use a unique number")
+	number = models.IntegerField(default=1,validators=[MinValueValidator(1)],unique=True,help_text="This field is used to sort the chapters. Use a unique number")
 	title = models.CharField(max_length=128, unique=True)
 	overview = models.CharField(max_length=500,default="Not available")
 	def __unicode__(self):
@@ -41,8 +42,8 @@ class Chapter(models.Model):
 
 class Page(models.Model):
 	chapter = models.ForeignKey(Chapter)
-	number = models.IntegerField(default=0,help_text="This field is used to sort the pages. Use a unique number")
-	title = models.CharField(max_length=256)
+	number = models.IntegerField(default=1,validators=[MinValueValidator(1)],help_text="This field is used to sort the pages. Use a unique number")
+	title = models.CharField(blank=False,max_length=256)
 	entry_default = RichTextField(config_name='awesome_ckeditor',help_text="This field is displayed when learningStyleMode is disabled.",default="Empty")
 	learningStyleMode = models.BooleanField(default=True,help_text="Select to enable Learning Style Mode based on Honey & Mumfords learning styles and use the entry fields below. Disable to use default entry field above")
 	entry_Activist_Type = RichTextField(config_name='awesome_ckeditor',help_text="This field is displayed when learningStyleMode is enabled. Activist specific content",default="Empty")

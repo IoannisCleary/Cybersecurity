@@ -3,9 +3,9 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>inbox.html : /home/CybersecurityProject/Cybersecurity/cybersecurity/templates/postman/inbox.html : Editor : CybersecurityProject : PythonAnywhere</title>
+        <title>email_visitor_subject.txt : /home/CybersecurityProject/Cybersecurity/cybersecurity/templates/postman/email_visitor_subject.txt : Editor : CybersecurityProject : PythonAnywhere</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="inbox.html : /home/CybersecurityProject/Cybersecurity/cybersecurity/templates/postman/inbox.html : Editor : CybersecurityProject : PythonAnywhere">
+        <meta name="description" content="email_visitor_subject.txt : /home/CybersecurityProject/Cybersecurity/cybersecurity/templates/postman/email_visitor_subject.txt : Editor : CybersecurityProject : PythonAnywhere">
         <meta name="author" content="PythonAnywhere LLP">
         <meta name="google-site-verification" content="O4UxDrfcHjC44jybs2vajc1GgRkTKCTRgVzeV6I9V14" />
 
@@ -29,15 +29,15 @@
     <script type="text/javascript">
         $(function() {
             $.extend(urls, {
-                save: '/user/CybersecurityProject/files/home/CybersecurityProject/Cybersecurity/cybersecurity/templates/postman/inbox.html',
-                check_hash: '/user/CybersecurityProject/files/home/CybersecurityProject/Cybersecurity/cybersecurity/templates/postman/inbox.html',
-                run: '/user/CybersecurityProject/files/home/CybersecurityProject/Cybersecurity/cybersecurity/templates/postman/inbox.html' + '?run',
+                save: '/user/CybersecurityProject/files/home/CybersecurityProject/Cybersecurity/cybersecurity/templates/postman/email_visitor_subject.txt',
+                check_hash: '/user/CybersecurityProject/files/home/CybersecurityProject/Cybersecurity/cybersecurity/templates/postman/email_visitor_subject.txt',
+                run: '/user/CybersecurityProject/files/home/CybersecurityProject/Cybersecurity/cybersecurity/templates/postman/email_visitor_subject.txt' + '?run',
                 update_editor_mode_preference: '/user/CybersecurityProject/account/update_editor_mode_preference',
 
             });
             $.extend(Anywhere.urls, urls);
-            var filename = "/home/CybersecurityProject/Cybersecurity/cybersecurity/templates/postman/inbox.html";
-            var hash = "8ffe0c1129dedcaba2b3416e2b9629b1";
+            var filename = "/home/CybersecurityProject/Cybersecurity/cybersecurity/templates/postman/email_visitor_subject.txt";
+            var hash = "1d8599abd619dbaeb19c43f9accb78f6";
             Anywhere.Editor.InitialiseAce(ace, urls, filename, hash);
             Anywhere.Editor.resetEditorState({pyflakes_warnings: [] });
             $("#id_keybinding_mode_select").val("normal");
@@ -127,7 +127,7 @@
             
                 <a class="breadcrumbs_link" href="/user/CybersecurityProject/files/home/CybersecurityProject/Cybersecurity/cybersecurity/templates/postman">postman</a> &gt;
             
-        <span id="id_file_name">inbox.html</span>
+        <span id="id_file_name">email_visitor_subject.txt</span>
         <span id="id_unsaved_changes_spacer">
           <span id="id_unsaved_changes" class="pa_hidden">*</span>
         </span>
@@ -152,16 +152,7 @@
         <div class="clear"></div>
     </div>
 
-    <div id="id_editor">{% extends &quot;postman/base_folder.html&quot; %}
-{% load i18n %}
-{% block panel_custom %}&lt;div class=&quot;panel panel-primary&quot; style=&quot;border-color:#40c5e8!important&quot;&gt;
-  &lt;div class=&quot;panel-heading&quot; style=&quot;background-color:#40c5e8!important; border-color:#40c5e8!important&quot;&gt;{% endblock %}
-{% block pm_folder_title %}{% trans &quot;Received Messages&quot; %}{% endblock %}
-{% block pm_undelete_button %}{% endblock %}
-{% block pm_recipient_header %}{% endblock %}
-{% block pm_date %}{% trans &quot;Received&quot; %}{% endblock %}
-{% block pm_recipient_cell %}{% endblock %}
-</div>
+    <div id="id_editor">{% load i18n %}{% autoescape off %}{% blocktrans with object.subject as subject and site.name as sitename %}Message &quot;{{ subject }}&quot; on the site {{ sitename }}{% endblocktrans %}{% endautoescape %}</div>
 
     <div id="id_go_to_line_dialog" class="pa_hidden">
         <p class="form-inline">Line number: <input id="id_go_to_line_dialog_input" /></p>

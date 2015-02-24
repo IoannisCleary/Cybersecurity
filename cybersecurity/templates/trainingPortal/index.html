@@ -3,7 +3,9 @@
 {% load static %}
 {% load socialaccount %}
 {% block title %}Index{% endblock %}
-{% block page_title %}<span class="label label-info" style="background-color:#9BE81E;border-color:#7AC402;color:white;">Home</span>{% endblock %}
+
+{% block page_title %}<span class="label label-info" style="background-color:#9BE81E;border-color:#7AC402;color:white;">&nbsp;<b>Home</b>&nbsp;</span>
+{% endblock %}
 	{% block content %}
 
 	{% if testing %}
@@ -22,7 +24,19 @@
 	{% endif %}
 <div class="well">
 	</br>
-	Welcome to the Cybersecurity Training Portal</br></br>
-   </div>
+	Welcome to the Cybersecurity Training Portal.
 
+   </div>
+   <h3><span class="label label-info"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;News&nbsp;<img class="img-rounded" style="height:30px;" src="/static/images/Twitter_logo_white.png"/></span></h3></br>
+   <div class="container-fluid" style="margin-left: auto;
+    margin-right: auto;
+    width: 90%;">
+       <!-- twitter widgets -->     &nbsp;&nbsp;  &nbsp;&nbsp;
+               <a  style=" margin-left: 40px" class="twitter-timeline"  href="https://twitter.com/hashtag/cybersecurity" data-widget-id="570189381999542272">Cybersecurity Tweets</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+         &nbsp;&nbsp;  &nbsp;&nbsp;  <a class="twitter-timeline"  href="https://twitter.com/hashtag/android%23security" data-widget-id="570191324952154112">Android Security Tweets</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</br>
+
+</div>
 	    {% endblock %}

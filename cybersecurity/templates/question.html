@@ -4,6 +4,7 @@
 {% load quiz_tags %}
 
 {% block title %} {{ quiz.title }} {% endblock %}
+{% block page_title %}<span class="label label-primary" style="background-color:#006699;border-color:#80B2CC;color:white;"> {{ quiz.title }}</span> {% endblock %}
 {% block description %} {{ quiz.title }} - {{ quiz.description }} {% endblock %}
 
 {% block content %}
@@ -53,9 +54,13 @@
   <small class="muted">{% trans "Question category" %}:</small>
   <strong>{{ question.category }}</strong>
 </p>
-
+<div class="container-fluid" style="background-color:#DBEAF1;">
+    </br>
+        </br>
 <p class="lead">{{ question.content }}</p>
-
+</br>
+</div>
+    </br>
 {% if question.figure %}
     <img src="{{ question.figure.url }}" alt="{{ question.content }}" />
 {% endif %}
@@ -72,9 +77,10 @@
 	{% endfor %}
 
   </ul>
-  <input type="submit" value={% trans "Check" %} class="btn btn-large btn-block btn-warning" >
+  <input type="submit" value={% trans "Check" %} class="btn btn-large btn-block btn-primary" >
 </form>
-
+</br>
+</br>
 {% endif %}
 
 <hr>
@@ -86,6 +92,6 @@
 	{% else %}
 				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
-                 
+
 		{% endif %}
 {% endblock %}

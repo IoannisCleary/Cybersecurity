@@ -4,23 +4,25 @@
 {% load quiz_tags %}
 
 {% block title %} {% trans "Progress Page" %} {% endblock %}
+{% block page_title %}<span class="label label-primary" > Grade Breakdown </span>{% endblock %}
 {% block description %} {% trans "User Progress Page" %} {% endblock %}
 
 {% block content %}
  {% if user.is_authenticated %}
-<h1>{% trans "Quiz Category Scores" %}</h1>
+   <div class="well" >
+<h3><span class="label label-warning" style="background-color:#006699!important;border-color:#006699!important;">&nbsp; <b>{% trans "Quiz Category Scores" %}</b>&nbsp;</span></h3></br>
 {% if user.profile.learningType != '0' %}
   {% if cat_scores %}
 
-  
+
 
   <table class="table table-bordered table-striped">
 
 	<thead>
-	  <tr>
-		<th>{% trans "Category" %}</th>
-		<th>{% trans "Correctly answererd" %}</th>
-		<th>{% trans "Total" %}</th>
+	  <tr style="background-color:#006699;color:white;">
+		<th >{% trans "Category" %}</th>
+		<th >{% trans "Correctly answererd" %}</th>
+		<th >{% trans "Total" %}</th>
 		<th>%</th>
 	  </tr>
 	</thead>
@@ -29,11 +31,11 @@
 
 
 	  {% for cat, value in cat_scores.items %}
-	  <tr>
-		<td>{{ cat }}</td>
-		<td>{{ value.0 }}</td>
-		<td>{{ value.1 }}</td>
-		<td>{{ value.2 }}</td>
+	  <tr style="background-color:white">
+		<td >{{ cat }}</td>
+		<td >{{ value.0 }}</td>
+		<td >{{ value.1 }}</td>
+		<td >{{ value.2 }}</td>
 	  </tr>
 
 	  {% endfor %}
@@ -49,15 +51,13 @@
 
   <hr>
 
-  <h1>{% trans "Previous exam papers" %}</h1>
-  <p class="lead">
-	{% trans "Below are the results of exams that you have sat." %}
-  </p>
+<h3><span class="label label-warning" style="background-color:#006699!important;border-color:#006699!important;" >&nbsp; <b>{% trans "Previous exam papers" %}</b>&nbsp;</span></h3>
+ <div class="alert alert-info" role="alert">{% trans "Below are the results of exams that you have sat." %}</div>
 
-  <table class="table table-bordered table-striped">
+  <table class="table table-bordered table-striped table-responsive">
 
 	<thead>
-	  <tr>
+	  <tr style="background-color:#006699;color:white;">
 		<th>{% trans "Quiz Title" %}</th>
 		<th>{% trans "Score" %}</th>
 		<th>{% trans "Possible Score" %}</th>
@@ -69,10 +69,10 @@
 
 	  {% for exam in exams %}
 
-	  <tr>
+	  <tr style="background-color:white">
 		<td>{{ exam.quiz.title }}</td>
-		<td>{{ exam.current_score }}</td>
-		<td>{{ exam.get_max_score }}</td>
+		<td >{{ exam.current_score }}</td>
+		<td >{{ exam.get_max_score }}</td>
 		<td>{{ exam.get_percent_correct }}</td>
 	  </tr>
 
@@ -90,6 +90,10 @@
 {% else %}
 				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
-                 
+
 		{% endif %}
+			</div>
+</br>
+</br>
+</br>
 {% endblock %}

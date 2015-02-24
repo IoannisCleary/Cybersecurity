@@ -2,13 +2,15 @@
 {% load i18n %}
 
 {% load quiz_tags %}
-
+{% block page_title %} <span class="label label-primary" style="background-color:#006699;border-color:#80B2CC;color:white;"> {{ quiz.title }}</span>{% endblock %}
 {% block title %} {{ quiz.title}} {% endblock %}
 {% block description %} {% trans "Exam Results for" %} {{ quiz.title }} {% endblock %}
 
 {% block content %}
  {% if user.is_authenticated %}
 {% if user.profile.learningType != '0' %}
+<div class="container-fluid">
+    </br>
   {% if previous.answers %}
 
   <p class="muted"><small>{% trans "The previous question" %}:</small></p>
@@ -103,6 +105,9 @@
 	{% else %}
 				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
-                 
+
 		{% endif %}
+</br>
+</br>
+</div>
 {% endblock %}

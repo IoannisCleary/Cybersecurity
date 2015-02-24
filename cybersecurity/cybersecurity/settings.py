@@ -107,6 +107,7 @@ INSTALLED_APPS = (
 	'ckeditor',
 	'tinymce',
 	'django_wysiwyg',
+	'pytz',
 	'postman',
 	'transmeta',
 	#django-quiz
