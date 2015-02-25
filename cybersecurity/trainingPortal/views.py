@@ -38,6 +38,7 @@ def statistics(request):
 		pragmatists=0
 		none=0
 		for user in users:
+			print user.username
 			try:
 				progress = Progress.objects.get(user=user)
 				type=user.profile.learningType
@@ -65,14 +66,15 @@ def statistics(request):
 				ignore='Example'
 				sum = 0.0
 				while t<size-1:
+				    print t;
 				    if val[t].lower() != ignore.lower():
 				        percentage =  (float(val[t+1])/float(val[t+2]))*100.0
 				        sum = sum + percentage
 				        score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percentage}]
 				        scores[a]=score
 				        a=a+1
-					t=t+3
-					if a == times:
+				    t=t+3
+				    if a == times:
 						break
 				personal = True
 				if sum!=0.0:
@@ -93,12 +95,12 @@ def statistics(request):
 					pragmatists = pragmatists + 1
 				if type=='0':
 					none = none + 1
-		if all!=0.0:
+		if all!=0:
 		    context_dict['hasall'] = True
 		    context_dict['all'] = all / progressusers
 		    context_dict['percentageall'] = (float(all / progressusers)/float(100))*100.0
 		else:
-		    context_dict['all'] = 0.0
+		    context_dict['all'] = 0
 		    context_dict['hasall'] = False
 		    context_dict['percentageall'] = 100.0
 
