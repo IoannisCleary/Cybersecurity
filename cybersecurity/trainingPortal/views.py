@@ -57,23 +57,27 @@ def statistics(request):
 				val = str.split(',')
 				size = len(val)-1
 				times = size / 3
+				times = times - 1
 				t=0
 				a=0
 				scores =[[{}] for t in range(0,times) ]
 				t=0
+				ignore='Example'
 				sum = 0.0
 				while t<size-1:
-					percentage =  (float(val[t+1])/float(val[t+2]))*100.0
-					sum = sum + percentage
-					score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percentage}]
-					scores[a]=score
+				    if val[t].lower() != ignore.lower():
+				        percentage =  (float(val[t+1])/float(val[t+2]))*100.0
+				        sum = sum + percentage
+				        score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percentage}]
+				        scores[a]=score
+				        a=a+1
 					t=t+3
-					a=a+1
 					if a == times:
 						break
 				personal = True
-				all = all + sum / times
-				progressusers=progressusers+1
+				if sum!=0.0:
+				    all = all + sum / times
+				    progressusers=progressusers+1
 				allusers=allusers+1
 			except Progress.DoesNotExist:
 				pro = False
@@ -89,8 +93,15 @@ def statistics(request):
 					pragmatists = pragmatists + 1
 				if type=='0':
 					none = none + 1
-		context_dict['all'] = all / progressusers
-		context_dict['percentageall'] = (float(all / progressusers)/float(100))*100.0
+		if all!=0.0:
+		    context_dict['hasall'] = True
+		    context_dict['all'] = all / progressusers
+		    context_dict['percentageall'] = (float(all / progressusers)/float(100))*100.0
+		else:
+		    context_dict['all'] = 0.0
+		    context_dict['hasall'] = False
+		    context_dict['percentageall'] = 100.0
+
 		context_dict['progressusers'] = progressusers
 		if progressusers!=0:
 			context_dict['progressavailable'] = True
@@ -178,6 +189,7 @@ def chapter(request,chapter_title):
 		    pages = Page.objects.filter(chapter = chapt)
 		    pages = pages.order_by('number')
 		    context_dict['chapter'] = chapter_title
+		    context_dict['c'] = chapt
 		    context_dict['title'] = chapter_tl
 		    context_dict['pages'] = pages
 		    for page in pages:

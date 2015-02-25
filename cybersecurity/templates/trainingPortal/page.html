@@ -2,11 +2,18 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Page{% endblock %}
-{% block page_title %}<span class="label label-success">&nbsp;<b>Chapter </b></span><span class="label label-success" style="background-color:#99CC99;border-color:#99CC99"><b style="color:white"> {{chapter}}</b>&nbsp;</span>&nbsp;</br>
+{% block page_title %}
+<div class="container-fluid">
+    <div class="btn-group" role="group" style="padding-left:4px;margin-bottom:10px" aria-label="...">
+    &nbsp; <a type="button"class="btn btn-primary" href="/trainingPortal/chapter/{{chapter_url}}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Back   </b>&nbsp;</a>
+</div></div>
+</br>
+<span class="label label-success" style="margin-left:20px">&nbsp;<b style="font-size:80%">Chapter </b></span><span class="label label-success" style="background-color:#99CC99;border-color:#99CC99"><b style="color:white;font-size: 80%"> {{chapter}}</b>&nbsp;</span>&nbsp;</br>
+
 <div class="well"style="margin-top:25px;">
     <div class="container-fluid"style="margin-top:10px;margin-left:10px;margin-right:10px;margin-bottom:10px;">
-<span class="label label-primary" style="margin-top:30px;background-color:#669999;border-color:#669999">&nbsp;&nbsp; &nbsp;<b>{{page.number}} &nbsp;</b></span>
-<span class="label label-default"></span><b style="color:black">&nbsp; {{title}}</b>&nbsp;</span></br></div>
+<span class="label label-info" style="margin-top:30px;background-color:#669999;border-color:#669999">&nbsp;&nbsp; &nbsp;<b>{{page.number}} &nbsp;</b></span>
+<span class="label label-default" ></span><b style="color:black;font-size: 82%">&nbsp; {{title}}</b>&nbsp;</span></br></div>
 </div>
 <div class="container-fluid"><div class="btn-group btn-group-sm" role="group" style="padding-left:4px;padding-top:5px;margin-bottom:15px" aria-label="...">
     {% if hasPrevious %}
@@ -46,7 +53,7 @@
 		{% else %}
   				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 		{% endif %}
-
+</br>
 </div>
 </br>
 

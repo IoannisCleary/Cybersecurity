@@ -73,12 +73,13 @@ $(function () {
 	 	</table>
 </div>
 	</div>
-		{% if hasprogress %}
+
 	 <div class="panel panel-primary"style="border-color:#000202!important">
   <div class="panel-heading"style="background-color:#003333!important; border-color:#000B0B!important">
-  <h2 class="panel-title"><b>Progress Summary</b></h2>
+  <h2 class="panel-title"><b>Progress Report</b></h2>
   </div>
   <div class="panel-body">
+    	{% if hasprogress %}
   <div class="panel-heading" style="background-color:#E68A00!important; border-color:#FFB84D!important;color:white;">
     <h5 class="panel-title"><b>Quizzes</b> (out of 100)</h5>
 	 </div>
@@ -110,10 +111,16 @@ $(function () {
 			<a href="/test/progress/" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-list-alt"></span> Grade Breakdown</a></div>
 	  </div>
 </div>
+ {% else %}
+	You do not have a progress report yet.</br> You need to complete quizzes other than the example quiz.
+	</br></br>
+		<a href="/test/" class="btn btn-danger" role="button"> &nbsp; &nbsp; &nbsp;<span class="glyphicon glyphicon-list-alt"></span> &nbsp;Take a quiz &nbsp; &nbsp; &nbsp;</a>
+		</br>
 	{% endif %}
 	 {% else %}
 	 </div>
 	 		</table>
+
 			</div>
 	{% endif %}
   </div>
