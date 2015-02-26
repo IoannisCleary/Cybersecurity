@@ -39,7 +39,8 @@
 					<li class="list-group-item"><button class="btn disabled btn-info">{{page.number}}</button><div class="btn-group "role="group">
 					<a href="/trainingPortal/chapter/{{ chapter }}/{{ page.url }}" class="btn btn-info" role="button"><span class="glyphicon glyphicon-file"></span> {{ page.title }} <span class="badge">Open</span></a>
 					{% endfor %}
-			</div>
+			</div
+			</ul>
 			{% else %}
             <strong>There are no pages!</strong>
 			{% endif %}
