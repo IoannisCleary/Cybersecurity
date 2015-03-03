@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from trainingPortal.models import Profile,Chapter,Page,Mode
+from trainingPortal.models import Profile,Chapter,Page,Mode,PageExercise,Exercise
 from trainingPortal.forms import LearningTypeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -156,7 +156,7 @@ def chapters(request):
 		context_dict = {'chapters': chapters}
 		context_dict['number'] = number
 		for chapter in chapters:
-			chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_')
+			chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'', '_001_')
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/chapters.html', context_dict)
 def about(request):
@@ -185,7 +185,7 @@ def chapter(request,chapter_title):
 	context_dict = {}
 	exists = True
 	if request.user.is_authenticated():
-		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_', ' ')
+		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
 		try:
 		    chapt = Chapter.objects.get(title = chapter_tl)
 		    pages = Page.objects.filter(chapter = chapt)
@@ -195,12 +195,12 @@ def chapter(request,chapter_title):
 		    context_dict['title'] = chapter_tl
 		    context_dict['pages'] = pages
 		    for page in pages:
-		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_')
+		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		except Chapter.DoesNotExist:
 		    exists = False
 		chapters = Chapter.objects.order_by('title')
 		for chapter in chapters:
-			chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_')
+			chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		context_dict ['chapters'] = chapters
 		context_dict['exists'] = exists
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
@@ -210,9 +210,13 @@ def page(request,chapter_title,page_title):
     exists = True
     hasNext = False
     hasPrevious = False
+    hasExercise = False
+    hasDiagram = True
+    hasMultiple = True
+    isFurtherReading = False
     if request.user.is_authenticated():
-		title= page_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_', ' ')
-		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_', ' ')
+		title= page_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
+		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
 		try:
 		    chapt = Chapter.objects.get(title = chapter_tl)
 		    page = Page.objects.get(chapter = chapt, title = title)
@@ -222,6 +226,42 @@ def page(request,chapter_title,page_title):
 		    testing = getMode()
 		    context_dict['testing'] = testing
 		    if testing:
+		        try:
+		            exercises = PageExercise.objects.get(chapter = chapt,page = page)
+		            hasExercise = True
+		            if profile.testingType == '0':
+		                e = exercises.Default_Exercise_id
+		                if e.furtherReadingMode:
+		                    isFurtherReading = True
+		                context_dict ['exercise'] = e
+		                if e.multipleMode:
+		                    hasMultiple = True
+		                else:
+		                    hasMultiple = False
+		                    if e.diagramMode:
+		                        hasDiagram = True
+		                    else:
+		                        hasDiagram = False
+		            else:
+		                EXERCISE_TYPES = {'1':exercises.exercise_Activist_id, '2':exercises.exercise_Reflector_id, '3':exercises.exercise_Theorist_id, '4':exercises.exercise_Pragmatist_id }
+		                e = EXERCISE_TYPES.get(profile.learningType)
+		                context_dict ['exercise'] = e
+		                if e.furtherReadingMode:
+		                    isFurtherReading = True
+		                if e.multipleMode:
+		                    hasMultiple = True
+		                else:
+		                    hasMultiple = False
+		                    if e.diagramMode:
+		                        context_dict ['diagram'] = e.diagram
+		                        hasDiagram = True
+		                    else:
+		                        hasDiagram = False
+
+		        except PageExercise.DoesNotExist:
+		            hasExercise = False
+		        except Exercise.DoesNotExist:
+		             hasExercise = False
 		        if profile.testingType == '0':
 		            context_dict ['entry'] = page.entry_default
 		        else:
@@ -232,9 +272,50 @@ def page(request,chapter_title,page_title):
 		                context_dict ['entry'] = page.entry_default
 		    else:
 		        if mode:
+		            try:
+		                exercises = PageExercise.objects.get(chapter = chapt,page = page)
+		                hasExercise = True
+		                EXERCISE_TYPES = {'1':exercises.exercise_Activist_id, '2':exercises.exercise_Reflector_id, '3':exercises.exercise_Theorist_id, '4':exercises.exercise_Pragmatist_id }
+		                e = EXERCISE_TYPES.get(profile.learningType)
+		                context_dict ['exercise'] = e
+		                if e.furtherReadingMode:
+		                    isFurtherReading = True
+		                if e.multipleMode:
+		                    hasMultiple = True
+		                else:
+		                    hasMultiple = False
+		                    if e.diagramMode:
+		                        context_dict ['diagram'] = e.diagram
+		                        hasDiagram = True
+		                    else:
+		                        hasDiagram = False
+		            except PageExercise.DoesNotExist:
+		                hasExercise = False
+		            except Exercise.DoesNotExist:
+		                hasExercise = False
 		            ENTRY_TYPES = {'1':page.entry_Activist_Type, '2':page.entry_Reflector_Type, '3':page.entry_Theorist_Type, '4':page.entry_Pragmatist_Type }
 		            context_dict['entry'] = ENTRY_TYPES.get(profile.learningType)
 		        else:
+		            try:
+		                exercises = PageExercise.objects.get(chapter = chapt,page = page)
+		                hasExercise = True
+		                e = exercises.exercise_Default_id
+		                context_dict ['exercise'] = e
+		                if e.furtherReadingMode:
+		                    isFurtherReading = True
+		                if e.multipleMode:
+		                    hasMultiple = True
+		                else:
+		                    hasMultiple = False
+		                    if e.diagramMode:
+		                        hasDiagram = True
+		                        context_dict ['diagram'] = e.diagram
+		                    else:
+		                        hasDiagram = False
+		            except PageExercise.DoesNotExist:
+		                hasExercise = False
+		            except Exercise.DoesNotExist:
+		                hasExercise = False
 		            context_dict ['entry'] = page.entry_default
 		    context_dict ['chapter_url'] = chapter_title
 		    context_dict ['chapter'] = chapter_tl
@@ -250,50 +331,54 @@ def page(request,chapter_title,page_title):
 		            n = numberofPages - 1
 		            previous = Page.objects.get(chapter = chapt,number=n)
 		            pt = previous.title
-		            context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
+		            context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		        elif current == numberofPages-1:
 		            hasNext=True
 		            next = Page.objects.get(chapter = chapt,number=numberofPages)
 		            nt=next.title
-		            context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
+		            context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		            if current>1:
 		                hasPrevious=True
 		                n = current - 1
 		                previous = Page.objects.get(chapter = chapt,number=n)
 		                pt = previous.title
-		                context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
+		                context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		        elif current==1:
 		            hasNext=True
 		            n = current + 1
 		            next = Page.objects.get(chapter = chapt,number=n)
 		            nt = next.title
-		            context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
+		            context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		        else:
 		            hasNext=True
 		            n = current + 1
 		            next = Page.objects.get(chapter = chapt,number=n)
 		            nt = next.title
-		            context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
+		            context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		            hasPrevious=True
 		            p = current - 1
 		            previous = Page.objects.get(chapter = chapt,number=p)
 		            pt = previous.title
-		            context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
+		            context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		    context_dict ['pages'] = pages
 		    for page in pages:
-		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
+		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		except Page.DoesNotExist:
 		    exists= False
 		except Chapter.DoesNotExist:
 		    exists= False
 		chapters = Chapter.objects.order_by('title')
 		for chapter in chapters:
-		    chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_')
+		    chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		context_dict ['chapters'] = chapters
 		context_dict['exists'] = exists
+		context_dict['hasExercise'] = hasExercise
+		context_dict['hasDiagram'] = hasDiagram
+		context_dict['hasMultiple'] = hasMultiple
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 		context_dict['hasNext'] = hasNext
 		context_dict['hasPrevious'] = hasPrevious
+		context_dict['furtherReading']	= isFurtherReading
     return render(request, 'trainingPortal/page.html', context_dict)
 
 def profile(request,username):

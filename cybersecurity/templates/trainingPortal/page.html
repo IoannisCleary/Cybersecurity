@@ -3,7 +3,30 @@
 {% load static %}
 {% load thumbnail %}
 {% block title %}Page{% endblock %}
+  {% block extra_head %}
+<!--reference http://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_hide_show -->
+<script>
+$(document).ready(function(){
+    $("answer").hide();
+     $("#close").hide()
+    $("#display").click(function(){
+        $("answer").show();
+         $("#display").hide()
+           $("#close").show()
+    });
+     $("#close").click(function(){
+        $("answer").hide();
+         $("#display").show()
+          $("#close").hide()
+    });
+});
+</script>
+    {% endblock %}
+
+
 {% block page_title %}
+     {% if user.is_authenticated %}
+      {% if exists %}
 <div class="container-fluid">
     <div class="btn-group" role="group" style="padding-left:4px;margin-bottom:10px" aria-label="...">
     &nbsp; <a type="button"class="btn btn-primary" href="/trainingPortal/chapter/{{chapter_url}}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Back   </b>&nbsp;</a>
@@ -31,7 +54,16 @@
     	{% endif %}
     	</div>
 </div>
+{% else %}
+	<div class="container-fluid">
+    <div class="btn-group" role="group" style="padding-left:4px;margin-bottom:10px" aria-label="...">
+    &nbsp; <a type="button"class="btn btn-primary" href="/trainingPortal/chapters/"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Back   </b>&nbsp;</a>
+</div></div>
+	{% endif %}
+
+		{% endif %}
 {% endblock %}
+
 	{% block content %}
 
      {% if user.is_authenticated %}
@@ -43,19 +75,78 @@
 	<div class="container-fluid" style="background-color:#FCFCFC">
 	{% autoescape off %}<p>{{entry}}</p>{% endautoescape %}
 	</div>
+</br>
+</div>
+<h3><span class="label label-info" style="margin-left:20px">&nbsp;<b>Exercises </b></span></h3>
+<div class="container-fluid" style="background-color:#F0F0F0;">
+     {% if hasExercise %}
 
+     {% if furtherReading %}
+     </br>
+         <h4><span class="label label-primary" style="margin-left:20px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>  Further Reading </b>&nbsp;&nbsp;</span></h4>
+  </br>
+    <div class="container-fluid" style="background-color:#FAFAFA"> </br> {% autoescape off %}<p>  {{exercise.text}} </p>{% endautoescape %}</br></div>
+     </br>
+      {% else %}
+    <h4><span class="label label-primary" style="margin-left:20px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>  {{exercise.question}} </b>&nbsp;&nbsp;</span></h4>
+           </br>
+       {% if hasMultiple %}
+         <div class="container-fluid" style="background-color:#FAFAFA"> </br> 	{% autoescape off %}<p>  {{exercise.text}} </p>{% endautoescape %}</br></div>
+           </br>
+         </br>
+                      <button class="btn btn-success"id="display">Display Answers</button> <button class="btn btn-danger"id="close">Close</button>
+       </br>
+          </br>
+
+       </br>
+          {% else %}
+          {% if hasDiagram %}
+<img class="img-rounded" style="width:80%;height:80%;" src="{% thumbnail diagram 800x600 crop %}"/>
+</br>
+ <h4><span class="label label-info" style="margin-left:20px">&nbsp;<b> Available answers</b>&nbsp;&nbsp;</span></h4>
+
+           <div class="container-fluid"> 	{% autoescape off %}<p>{{exercise.availableAnswers}}</p>{% endautoescape %}</div>
+</br>
+              <button class="btn btn-success"id="display">Display Answer</button> <button class="btn btn-danger"id="close">Close</button>
+       </br>
+           {% else%}
+            </br>
+     <div class="container-fluid" style="background-color:#FAFAFA"> </br>      	{% autoescape off %}<p>  {{exercise.text}} </p>{% endautoescape %}</br></div>
+           </br>
+            <h4><span class="label label-info" style="margin-left:20px">&nbsp;<b> Available answers</b>&nbsp;&nbsp;</span></h4>
+
+           <div class="container-fluid">	{% autoescape off %}<p> {{exercise.availableAnswers}}</p>{% endautoescape %}</div>
+                         <button class="btn btn-success"id="display">Display Answer</button> <button class="btn btn-danger"id="close">Close</button>
+       </br>
+           {% endif %}
+ {% endif %}
+     <answer></br><div class="container-fluid" style="background-color:#B8FFB8"></br></br>{% autoescape off %}<p>{{exercise.correctAnswer}}</p>{% endautoescape %}</br></br></div></answer>
+
+    </br>
+     {% endif %}
+    {% else%}
+  </br>
+  <div class="alert alert-info" role="alert">  There are no exercises available for this page.</div>
+    </br>
+     {% endif %}
+</div>
+
+</br>
   {% else%}
 		<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
   {% endif %}
    {% else%}
      				<div class="alert alert-danger" role="alert"> <p class="label label-danger">WARNING</p> </br><b>Page</b> or <b>Chapter</b> does not exist ! Please check the url and try again.</a>
+
      {% endif %}
 		{% else %}
   				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+
 		{% endif %}
 </br>
 </div>
+   {% if user.is_authenticated %}
 </br>
 
 	 <button class="btn btn-success disabled" type="button"><b>Chapter </b></button>
@@ -72,6 +163,7 @@
 	{% endif %}
   </ul>
   </div>
+
 	 <button class="btn btn-group-lg btn-info disabled" type="button"><b>Section </b></button>
  <div class="btn-group  dropup">
 <button class="btn btn-group-lg btn-default disabled" type="button"><b>{{ title }}</b></button>
@@ -89,7 +181,7 @@
   </ul>
 </div>
 </br>
-
+	{% endif %}
 </br>
 </br></br>
 </br>
