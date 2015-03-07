@@ -92,6 +92,18 @@ class QuestionsToolbar(CMSToolbar):
         menu.add_sideframe_item(_('Create EssayType'), url="/admin/essay/essay_question/add/")
         menu.add_sideframe_item(_('View EssayType'), url="/admin/essay/essay_question/")
 @toolbar_pool.register
+class ForumToolbar(CMSToolbar):
+
+    def populate(self):
+        admin_menu = self.toolbar.get_or_create_menu(ADMIN_MENU_IDENTIFIER, _('Training Portal'))
+        position = admin_menu.find_first(Break, identifier=ADMINISTRATION_BREAK)
+        menu = admin_menu.get_or_create_menu('add_forum', _('Forum'), position=position)
+        menu.add_sideframe_item(_('Create Forum'), url="/admin/pybb/forum/add/")
+        menu.add_sideframe_item(_('View Forums'), url="/admin/pybb/forum/")
+        menu.add_sideframe_item(_('Create Topic'), url="/admin/pybb/topic/add/")
+        menu.add_sideframe_item(_('View Topics'), url="/admin/pybb/topic/")
+        admin_menu.add_break('forum-break', position=menu)
+@toolbar_pool.register
 class TestingMoeToolbar(CMSToolbar):
 
     def populate(self):

@@ -1,0 +1,50 @@
+{% extends 'pybb/base.html' %}
+{% load pybb_tags i18n %}
+
+{% block title %}{{ forum.name }}{% endblock title %}
+{% block page_title %}
+
+<div class="container-fluid">
+    <div class="btn-group" role="group" style="margin-bottom:15px" aria-label="...">
+    &nbsp; <a type="button"class="btn btn-primary" href="/forum/"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Back   </b>&nbsp;</a>
+</div></div>
+<div class="container-fluid">
+<span class="label label-info" style="background-color:#00CC99;border-color:#66E0C2;color:white;font-size:18px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{ forum.category }}</b>&nbsp;</span>
+<span class="label label-info" style="background-color:#AECF6C;border-color:#7AC402;color:white;">&nbsp;{{ forum.name }}&nbsp;</span></div>
+{% endblock %}
+
+
+{% block breadcrumb %}
+    {% with forum as object %}
+        {% include "pybb/breadcrumb.html" %}
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+    <div class="forum">
+        <h2></h2>
+        {% if forum.headline %}
+            <div class="forum-headline alert alert-block">
+                {{ forum.headline|safe }}
+            </div>
+        {% endif %}
+
+        {% include "pybb/pagination.html" %}
+
+        {% include 'pybb/forum_list.html' with forum_list=forum.forums_accessed category='' parent_forum=forum %}
+
+        {% include "pybb/topic_list.html" %}
+
+        {% include "pybb/pagination.html" %}
+
+        {% if user|pybb_may_create_topic:forum %}
+            <div class="controls">
+                {% include "pybb/_button_new_topic.html" %}
+            </div>
+        {% endif %}
+    </div>
+    </br>
+     </br>
+      </br>
+       </br>
+{% endblock content %}

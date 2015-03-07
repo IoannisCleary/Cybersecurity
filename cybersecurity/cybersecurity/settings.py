@@ -14,7 +14,6 @@ gettext = lambda s: s
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 DATABASE_PATH = os.path.join(BASE_DIR, 'productfinder.db')
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -38,7 +37,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'cms.context_processors.cms_settings',
     # allauth specific context processors
     'allauth.account.context_processors.account',
-    'allauth.socialaccount.context_processors.socialaccount'
+    'allauth.socialaccount.context_processors.socialaccount',
+    'pybb.context_processors.processor',
 )
 ACCOUNT_EMAIL_REQUIRED = False
 
@@ -97,6 +97,7 @@ INSTALLED_APPS = (
 	'djangocms_teaser',
 	'djangocms_video',
 	'djangocms_link',
+	'djangocms_text_ckeditor',
 	'cms',  # django CMS itself
 	'mptt',  # utilities for implementing a tree
 	'menus',  # helper for model independent hierarchical website navigation
@@ -115,6 +116,7 @@ INSTALLED_APPS = (
 	'multichoice',
 	'true_false',
 	'essay',
+	'pybb',
 	#training portal
 	'trainingPortal',
 )
@@ -133,6 +135,7 @@ MIDDLEWARE_CLASSES = (
 	'cms.middleware.toolbar.ToolbarMiddleware',
 	'cms.middleware.language.LanguageCookieMiddleware',
 	'pagination.middleware.PaginationMiddleware',
+	'pybb.middleware.PybbMiddleware',
 )
 
 ROOT_URLCONF = 'cybersecurity.urls'
@@ -190,14 +193,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
 DJANGO_WYSIWYG_FLAVOR = "ckeditor"
-
+DJANGO_WYSIWYG_MEDIA_URL = "/static/ckeditor"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_RESTRICT_BY_USER=True
 CKEDITOR_CONFIGS = {
            'awesome_ckeditor': {
-               'toolbar': 'basic',
-               'height': 300,
-               'width': 300,
+               'toolbar': 'full',
+               'height': 480,
+               'width': 640,
+           },
+           'default': {
+               'toolbar': 'full',
+               'height': 480,
+               'width': 640,
            },
        }
 
@@ -208,7 +216,7 @@ SOCIALACCOUNT_FORMS = {'signup': 'trainingPortal.forms.RegisterForm'}
 TINYMCE_JS_URL = os.path.join(MEDIA_ROOT, "path/to/tiny_mce/tiny_mce.js")
 TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "path/to/tiny_mce")
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "table,spellchecker,paste,searchreplace",
+    'plugins': "table,spellchecker,paste,searchreplace,fullpage,image,link,textpattern",
     'theme': "advanced",
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 10,

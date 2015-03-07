@@ -31,7 +31,7 @@ $(document).ready(function(){
     <div class="btn-group" role="group" style="padding-left:4px;margin-bottom:10px" aria-label="...">
     &nbsp; <a type="button"class="btn btn-primary" href="/trainingPortal/chapter/{{chapter_url}}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Back   </b>&nbsp;</a>
 </div></div>
-</br>
+</br></br>
 <span class="label label-success" style="margin-left:20px">&nbsp;<b style="font-size:80%">Chapter </b></span><span class="label label-success" style="background-color:#99CC99;border-color:#99CC99"><b style="color:white;font-size: 80%"> {{chapter}}</b>&nbsp;</span>&nbsp;</br>
 
 <div class="well"style="margin-top:25px;">
@@ -71,7 +71,7 @@ $(document).ready(function(){
 </br>
 </br>
 
-<div class="well" style="background-color:#FCFCFC;">
+<div class="well" style="font-size:14px;background-color:#FCFCFC;">
 
 	 {% if set_learningType %}
 	<div class="container-fluid" style="background-color:#FCFCFC">
@@ -88,13 +88,13 @@ $(document).ready(function(){
      </br>
          <h4><span class="label label-primary" style="margin-left:20px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>  Further Reading </b>&nbsp;&nbsp;</span></h4>
   </br>
-    <div class="container-fluid" style="background-color:#FAFAFA"> </br> {% autoescape off %}<p>  {{exercise.text}} </p>{% endautoescape %}</br></div>
+    <div class="container-fluid" style="background-color:white!important"> </br> {% autoescape off %}<p>  {{exercise.text}} </p>{% endautoescape %}</br></div>
      </br>
       {% else %}
     <h4><span class="label label-primary" style="margin-left:20px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>  {{exercise.question}} </b>&nbsp;&nbsp;</span></h4>
            </br>
        {% if hasMultiple %}
-         <div class="container-fluid" style="background-color:#FAFAFA"> </br> 	{% autoescape off %}<p>  {{exercise.text}} </p>{% endautoescape %}</br></div>
+         <div class="container-fluid" style="background-color:white!important"> </br> 	{% autoescape off %}<p>  {{exercise.text}} </p>{% endautoescape %}</br></div>
            </br>
          </br>
                       <button class="btn btn-success"id="display">Display Answers</button> <button class="btn btn-danger"id="close">Close</button>

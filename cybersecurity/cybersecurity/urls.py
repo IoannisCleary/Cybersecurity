@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^admin/lookups/', include(ajax_select_urls)),
+	url(r'^forum/', include('pybb.urls', namespace='pybb')),
 	url(r'^accounts/', include('allauth.urls')),
 	url(r'^trainingPortal/', include('trainingPortal.urls')), #application
 	url(r'^test/', include('quiz.urls')),
