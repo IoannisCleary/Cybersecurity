@@ -55,6 +55,7 @@ class Page(models.Model):
 		verbose_name_plural = "Pages"
 		unique_together = (("chapter", "number"),)
 class Exercise(models.Model):
+	disableMode =  models.BooleanField(default=False,help_text="If you don't want this exercise to appear or to make it an empty option")
 	chapter = models.ForeignKey(Chapter)
 	number = models.IntegerField(default=1,validators=[MinValueValidator(1)],unique=True,help_text="This field is used to sort the exercises. Use a unique number")
 	question = models.CharField(max_length=150, default="(Empty)")

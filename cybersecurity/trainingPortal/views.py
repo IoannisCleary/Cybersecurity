@@ -231,6 +231,10 @@ def page(request,chapter_title,page_title):
 		            hasExercise = True
 		            if profile.testingType == '0':
 		                e = exercises.Default_Exercise_id
+		                if not e.disableMode and not e.multipleMode and not e.furtherReadingMode and not e.diagramMode :
+		                        hasExercise = False
+		                if e.disableMode:
+		                        hasExercise = False
 		                if e.furtherReadingMode:
 		                    isFurtherReading = True
 		                context_dict ['exercise'] = e
@@ -238,6 +242,7 @@ def page(request,chapter_title,page_title):
 		                    hasMultiple = True
 		                else:
 		                    hasMultiple = False
+
 		                    if e.diagramMode:
 		                        hasDiagram = True
 		                    else:
@@ -246,6 +251,10 @@ def page(request,chapter_title,page_title):
 		                EXERCISE_TYPES = {'1':exercises.exercise_Activist_id, '2':exercises.exercise_Reflector_id, '3':exercises.exercise_Theorist_id, '4':exercises.exercise_Pragmatist_id }
 		                e = EXERCISE_TYPES.get(profile.learningType)
 		                context_dict ['exercise'] = e
+		                if not e.disableMode and not e.multipleMode and not e.furtherReadingMode and not e.diagramMode :
+		                        hasExercise = False
+		                if e.disableMode:
+		                        hasExercise = False
 		                if e.furtherReadingMode:
 		                    isFurtherReading = True
 		                if e.multipleMode:
@@ -278,6 +287,10 @@ def page(request,chapter_title,page_title):
 		                EXERCISE_TYPES = {'1':exercises.exercise_Activist_id, '2':exercises.exercise_Reflector_id, '3':exercises.exercise_Theorist_id, '4':exercises.exercise_Pragmatist_id }
 		                e = EXERCISE_TYPES.get(profile.learningType)
 		                context_dict ['exercise'] = e
+		                if not e.disableMode and not e.multipleMode and not e.furtherReadingMode and not e.diagramMode :
+		                        hasExercise = False
+		                if e.disableMode:
+		                        hasExercise = False
 		                if e.furtherReadingMode:
 		                    isFurtherReading = True
 		                if e.multipleMode:
@@ -301,6 +314,11 @@ def page(request,chapter_title,page_title):
 		                hasExercise = True
 		                e = exercises.exercise_Default_id
 		                context_dict ['exercise'] = e
+		                if e.disableMode:
+		                        hasExercise = False
+
+		                if not e.disableMode and not e.multipleMode and not e.furtherReadingMode and not e.diagramMode :
+		                        hasExercise = False
 		                if e.furtherReadingMode:
 		                    isFurtherReading = True
 		                if e.multipleMode:

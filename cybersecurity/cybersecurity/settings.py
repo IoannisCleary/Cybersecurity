@@ -192,15 +192,11 @@ SOCIALACCOUNT_PROVIDERS = \
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
-DJANGO_WYSIWYG_FLAVOR = "ckeditor"
-DJANGO_WYSIWYG_MEDIA_URL = "/static/ckeditor"
-CKEDITOR_UPLOAD_PATH = "uploads/"
-CKEDITOR_RESTRICT_BY_USER=True
+DJANGO_WYSIWYG_FLAVOR = "tinymce_advanced"
+CKEDITOR_UPLOAD_PATH = "/media/uploads/"
 CKEDITOR_CONFIGS = {
            'awesome_ckeditor': {
                'toolbar': 'full',
-               'height': 480,
-               'width': 640,
            },
            'default': {
                'toolbar': 'full',
@@ -213,13 +209,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 ACCOUNT_SIGNUP_FORM_CLASS =('trainingPortal.forms.RegisterForm')
 SOCIALACCOUNT_FORMS = {'signup': 'trainingPortal.forms.RegisterForm'}
-TINYMCE_JS_URL = os.path.join(MEDIA_ROOT, "path/to/tiny_mce/tiny_mce.js")
-TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "path/to/tiny_mce")
+TINYMCE_JS_URL = os.path.join(STATIC_ROOT, "/tiny_mce/tiny_mce.js")
+TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "/tiny_mce")
 TINYMCE_DEFAULT_CONFIG = {
     'plugins': "table,spellchecker,paste,searchreplace,fullpage,image,link,textpattern",
     'theme': "advanced",
     'cleanup_on_startup': True,
-    'custom_undo_redo_levels': 10,
+    'custom_undo_redo_levels': 15,
 }
 TINYMCE_SPELLCHECKER = True
 TINYMCE_COMPRESSOR = True
