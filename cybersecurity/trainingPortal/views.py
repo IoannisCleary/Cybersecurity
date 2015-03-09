@@ -5,7 +5,7 @@ from trainingPortal.models import Profile,Chapter,Page,Mode,PageExercise,Exercis
 from trainingPortal.forms import LearningTypeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from quiz.models import Progress,Sitting,Quiz
+from quiz.models import Progress,Sitting,Quiz,Category
 
 LEARNING_TYPES = {'1':'Activist', '2':'Reflector', '3':'Theorist', '4':'Pragmatist' }
 def getMode():
@@ -77,12 +77,22 @@ def statistics(request):
 				while t<size-1:
 				    print t;
 				    if val[t].lower() != ignore.lower():
-				        qz = Quiz.objects.get(title=val[t])
-				        print val[t]
-				        sitting = Sitting.objects.filter(user=user, quiz=qz).order_by('-end')[:1]
-				        percentage = sitting[0].get_percent_correct
-				        sum = sum + percentage
-				        score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percentage}]
+				        cat = Category.objects.get(category=val[t])
+				        quizzes = Quiz.objects.filter(category=cat)
+				        q=0
+				        qsum=0.0
+				        for quiz in quizzes:
+				            sitting = Sitting.objects.filter(user=user, quiz=quiz).order_by('-end')[:1]
+				            if sitting.count()>0:
+				                percentage =  sitting[0].get_percent_correct
+				                qsum=qsum+percentage
+				                q=q+1
+				        # qz = Quiz.objects.get(title=val[t])
+				        percent = 0.0
+				        if q>0:
+				            percent = (float(qsum / q)/float(100))*100.0
+				        sum = sum + percent
+				        score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percent}]
 				        scores[a]=score
 				        valid=valid+1
 				        a=a+1
@@ -451,11 +461,22 @@ def profile(request,username):
 		        while t<size-1:
 
 		            if val[t].lower() != ignore.lower():
-		                qz = Quiz.objects.get(title=val[t])
-		                sitting = Sitting.objects.filter(user=request.user, quiz=qz).order_by('-end')[:1]
-		                percentage =  sitting[0].get_percent_correct
-		                sum = sum + percentage
-		                score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percentage}]
+		                cat = Category.objects.get(category=val[t])
+		                quizzes = Quiz.objects.filter(category=cat)
+		                q=0
+		                qsum=0.0
+		                for quiz in quizzes:
+		                    sitting = Sitting.objects.filter(user=request.user, quiz=quiz).order_by('-end')[:1]
+		                    if sitting.count()>0:
+		                        percentage =  sitting[0].get_percent_correct
+		                        qsum=qsum+percentage
+		                        q=q+1
+		               # qz = Quiz.objects.get(title=val[t])
+		                percent = 0.0
+		                if q>0:
+		                    percent = (float(qsum / q)/float(100))*100.0
+		                sum = sum + percent
+		                score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percent}]
 		                scores[a]=score
 		                a=a+1
 		                valid=valid+1
