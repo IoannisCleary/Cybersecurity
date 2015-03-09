@@ -144,7 +144,7 @@ $(document).ready(function(){
 
      {% endif %}
 		{% else %}
-  				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+  				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login/?next=/trainingPortal/chapters/" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 
 		{% endif %}
 </br>
@@ -154,7 +154,15 @@ $(document).ready(function(){
 <div class="container-fluid">
 	 <button class="btn btn-success disabled" type="button"><b>Chapter </b></button>
 <div class="btn-group  dropup">
+     {% if user.is_authenticated %}
+ {% if exists %}
 <button class="btn btn-group-lg btn-default disabled" type="button"><b>{{ chapter }}</b></button>
+	{% else %}
+	<button class="btn btn-group-lg btn-default disabled" type="button"><b>Chapter</b></button>
+{% endif %}
+	{% else %}
+	<button class="btn btn-group-lg btn-default disabled" type="button"><b>Chapter</b></button>
+{% endif %}
 <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
 	  </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -166,10 +174,16 @@ $(document).ready(function(){
 	{% endif %}
   </ul>
   </div>
-
+   {% if exists %}
 	 <button class="btn btn-group-lg btn-info disabled" type="button"><b>Section </b></button>
  <div class="btn-group  dropup">
+
+
 <button class="btn btn-group-lg btn-default disabled" type="button"><b>{{ title }}</b></button>
+
+
+
+
 	  <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
 	  </button>
 
@@ -180,11 +194,14 @@ $(document).ready(function(){
 					{% for page in pages %}
 						<li><a role="menuitem" tabindex="-1" href="/trainingPortal/chapter/{{ chapter_url }}/{{ page.url }}">{{ page.title }}</a></li>
 					{% endfor %}
-	{% endif %}
+
   </ul>
+
+{% endif %}
 </div>
 </div>
 </br>
+{% endif %}
 	{% endif %}
 </br>
 </br></br>

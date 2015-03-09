@@ -13,7 +13,7 @@ $(function () {
 {% endblock %}
 
 	{% block content %}
-
+{% if user.is_authenticated %}
 	{% if testing %}
 	<span class="label label-danger">Testing Mode</span>
 	{% endif %}
@@ -145,5 +145,8 @@ $(function () {
 </div>
 
    </div>
+	{% else %}
+  				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login/?next=/trainingPortal/statistics/" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 
+		{% endif %}
 	    {% endblock %}

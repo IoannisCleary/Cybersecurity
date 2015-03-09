@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block content %}
+ {% if user.is_authenticated %}
     {% if categories %}
         {% for category in categories %}
             {% include 'pybb/category.html' %}
@@ -31,7 +32,12 @@
     {% endif %}
     </br>
       </br>
+      {% else %}
+        		<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login/?next=/forum/" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+		{% endif %}
         </br>
           </br>
             </br>
+
 {% endblock content %}
