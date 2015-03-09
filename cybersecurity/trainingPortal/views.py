@@ -5,7 +5,7 @@ from trainingPortal.models import Profile,Chapter,Page,Mode,PageExercise,Exercis
 from trainingPortal.forms import LearningTypeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from quiz.models import Progress
+from quiz.models import Progress,Sitting,Quiz
 
 LEARNING_TYPES = {'1':'Activist', '2':'Reflector', '3':'Theorist', '4':'Pragmatist' }
 def getMode():
@@ -58,20 +58,33 @@ def statistics(request):
 				val = str.split(',')
 				size = len(val)-1
 				times = size / 3
-				times = times - 1
+				ignore='Example' #category
+				t=0
+				while t<size-1:
+				    if val[t].lower() == ignore.lower():
+				        times = times - 1
+				        break;
+				    t=t+3
+
+
 				t=0
 				a=0
 				scores =[[{}] for t in range(0,times) ]
 				t=0
-				ignore='Example'
+
 				sum = 0.0
+				valid=0
 				while t<size-1:
 				    print t;
 				    if val[t].lower() != ignore.lower():
-				        percentage =  (float(val[t+1])/float(val[t+2]))*100.0
+				        qz = Quiz.objects.get(title=val[t])
+				        print val[t]
+				        sitting = Sitting.objects.filter(user=user, quiz=qz).order_by('-end')[:1]
+				        percentage = sitting[0].get_percent_correct
 				        sum = sum + percentage
 				        score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percentage}]
 				        scores[a]=score
+				        valid=valid+1
 				        a=a+1
 				    t=t+3
 				    if a == times:
@@ -79,6 +92,8 @@ def statistics(request):
 				personal = True
 				if sum!=0.0:
 				    all = all + sum / times
+				    progressusers=progressusers+1
+				elif valid>0:
 				    progressusers=progressusers+1
 				allusers=allusers+1
 			except Progress.DoesNotExist:
@@ -185,6 +200,7 @@ def chapter(request,chapter_title):
 	context_dict = {}
 	exists = True
 	if request.user.is_authenticated():
+		context_dict['set_learningType'] = completedLearningStyle(request.user)
 		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
 		try:
 		    chapt = Chapter.objects.get(title = chapter_tl)
@@ -203,7 +219,7 @@ def chapter(request,chapter_title):
 			chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		context_dict ['chapters'] = chapters
 		context_dict['exists'] = exists
-		context_dict['set_learningType'] = completedLearningStyle(request.user)
+
 	return render(request, 'trainingPortal/chapter.html', context_dict)
 def page(request,chapter_title,page_title):
     context_dict = {}
@@ -215,6 +231,7 @@ def page(request,chapter_title,page_title):
     hasMultiple = True
     isFurtherReading = False
     if request.user.is_authenticated():
+		context_dict['set_learningType'] = completedLearningStyle(request.user)
 		title= page_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
 		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
 		try:
@@ -393,7 +410,7 @@ def page(request,chapter_title,page_title):
 		context_dict['hasExercise'] = hasExercise
 		context_dict['hasDiagram'] = hasDiagram
 		context_dict['hasMultiple'] = hasMultiple
-		context_dict['set_learningType'] = completedLearningStyle(request.user)
+
 		context_dict['hasNext'] = hasNext
 		context_dict['hasPrevious'] = hasPrevious
 		context_dict['furtherReading']	= isFurtherReading
@@ -405,8 +422,10 @@ def profile(request,username):
 	personal = False
 	pro = True
 	testing = getMode()
+
 	context_dict['testing'] = testing
 	if request.user.is_authenticated():
+		context_dict['set_learningType'] = completedLearningStyle(request.user)
 		if request.user.username == username:
 		    personal = True
 		    try:
@@ -415,21 +434,31 @@ def profile(request,username):
 		        val = str.split(',')
 		        size = len(val)-1
 		        times = size / 3
-		        times = times - 1
+		        t=0
+		        ignore='Example' #category
+		        while t<size-1:
+		            if val[t].lower() == ignore.lower():
+		                times = times - 1
+		                break;
+		            t=t+3
 		        t=0
 		        a=0
 		        scores =[[{}] for t in range(0,times) ]
-		        t=0
-		        ignore='Example'
+
+
 		        sum = 0.0
+		        valid=0
 		        while t<size-1:
 
 		            if val[t].lower() != ignore.lower():
-		                percentage =  (float(val[t+1])/float(val[t+2]))*100.0
+		                qz = Quiz.objects.get(title=val[t])
+		                sitting = Sitting.objects.filter(user=request.user, quiz=qz).order_by('-end')[:1]
+		                percentage =  sitting[0].get_percent_correct
 		                sum = sum + percentage
 		                score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percentage}]
 		                scores[a]=score
 		                a=a+1
+		                valid=valid+1
 		            t=t+3
 		            if a == times:
 		                break
@@ -438,7 +467,8 @@ def profile(request,username):
 		             context_dict['average'] = sum / times
 		        else:
 		             context_dict['average'] = sum
-		             pro = False
+		             if valid==0:
+		                 pro = False
 
 		        context_dict['scores'] = scores
 
@@ -469,7 +499,6 @@ def profile(request,username):
 			exists = False
 	context_dict['exists'] = exists
 	context_dict['personal'] = personal
-	context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/profile.html', context_dict)
 def completedLearningStyle(user):
 	if (user.profile.learningType == '0'):

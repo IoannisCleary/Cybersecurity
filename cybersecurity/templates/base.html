@@ -63,6 +63,9 @@
 						<li class="dropdown" style="padding-right:1px;">
 							<a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-check"></span> &nbsp;Course <b class="caret"></b></a>
 							<ul class="dropdown-menu"style="background-color:#E0E0E0!important">
+							    {% if request.user.is_superuser %}
+								<li><a href="/test/marking/"><span class="glyphicon glyphicon-pencil"></span> &nbsp;Mark quizzes</a></a>
+								{% endif %}
 								<li><a href="/test/"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;Take a quiz</a></li>
 								 <li class="divider"></li>
 								<li><a href="/test/progress"><span class="glyphicon glyphicon-font"></span> &nbsp;View Grade Breakdown</a></li>
