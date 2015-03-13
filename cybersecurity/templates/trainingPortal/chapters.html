@@ -43,7 +43,7 @@
 					{% for chapter in chapters %}
 					<li class="list-group-item"><button class="btn disabled btn-success">{{chapter.number}}</button><div class="btn-group "role="group">
 						<div id="{{ chapter.url }}" title="Overview of {{ chapter.title }} chapter">
-							<p>{{ chapter.overview }}</p>
+							<p>	{% autoescape off %}{{ chapter.overview }}{% endautoescape %}</p>
 						</div>
 
 					<a href="/trainingPortal/chapter/{{ chapter.url }}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-list-alt"></span> {{ chapter.title }} <span class="badge">Open</span></a>

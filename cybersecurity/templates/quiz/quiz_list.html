@@ -4,6 +4,9 @@
 {% block page_title %}<span class="label label-primary" style="background-color:#006699;border-color:#80B2CC;color:white;"><b>{% trans "Available Quizzes" %}</b></span>{% endblock %}
 {% block content %}
  {% if user.is_authenticated %}
+ 			<div class="alert alert-warning" role="alert"> <p class="label label-warning">Attention!</p> Quizzes with essay type of questions are reviewed by staff. Result at the end may change if your answer is marked as correct by a staff member.</span></a>
+	</div>
+
 <div class="panel panel-primary"style="border-color:#80B2CC!important">
   <div class="panel-heading" style="background-color:#006699;border-color:#80B2CC;color:white;">
     <h3 class="panel-title">List of quizzes</h3>
@@ -33,7 +36,7 @@
 			  <td>{{ quiz.single_attempt }}</td>
 			  <td>
 				<a href="{% url 'quiz_start_page' slug=quiz.url %}">
-				  {% trans "View details" %}
+				  {% trans "Go to quiz" %}
 				</a>
 			</tr>
 

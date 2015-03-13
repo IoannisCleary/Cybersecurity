@@ -212,9 +212,11 @@ SOCIALACCOUNT_FORMS = {'signup': 'trainingPortal.forms.RegisterForm'}
 TINYMCE_JS_URL = os.path.join(STATIC_ROOT, "/tiny_mce/tiny_mce.js")
 TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "/tiny_mce")
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "table,spellchecker,paste,searchreplace,fullpage,image,link,textpattern",
+    'plugins': "advlist autolink lists link image charmap print preview hr anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking save table contextmenu directionality emoticons template paste textcolor colorpicker textpattern",
     'theme': "advanced",
     'cleanup_on_startup': True,
+     'toolbar1': "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    'toolbar2': "print preview media | forecolor backcolor emoticons",
     'custom_undo_redo_levels': 15,
 }
 TINYMCE_SPELLCHECKER = True

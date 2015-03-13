@@ -5,7 +5,6 @@ from trainingPortal.models import Page,Chapter,Profile,Mode,Exercise,PageExercis
 # Register your models here.
 admin.site.register(Mode)
 admin.site.register(Profile)
-admin.site.register(Chapter)
 
 class PageAdmin(admin.ModelAdmin):
 	change_form_template = 'trainingPortal/admin/change_form.html'
@@ -16,4 +15,5 @@ class PageAdmin(admin.ModelAdmin):
 
 admin.site.register(Page,PageAdmin)
 admin.site.register(Exercise,PageAdmin)
+admin.site.register(Chapter,PageAdmin)
 admin.site.register(PageExercise,PageAdmin)

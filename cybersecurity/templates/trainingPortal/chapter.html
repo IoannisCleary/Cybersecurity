@@ -27,22 +27,35 @@
 	     {% if exists %}
 
     </br>
-<div class="well">
+<div class="well container-fluid">
 <div class="container-fluid"style="background-color:#E6E6E6;margin-top:5px;padding-left:25px;padding-right:25px;margin-bottom:5px;">
-	    </br>
-{{c.overview}} </br></br></div> </br>
+	    </br>	{% autoescape off %}{{c.overview}} {% endautoescape %}</br></div> </br>
 	 {% if set_learningType %}
 	{% if pages %}
+	    <h3><b class="label label-info">Sections</b></h3></br>
 			<ul class="list-group">
 			<div class="btn-group btn-block btn-group-horizontal  ">
 					{% for page in pages %}
 					<li class="list-group-item"><button class="btn disabled btn-info">{{page.number}}</button><div class="btn-group "role="group">
-					<a href="/trainingPortal/chapter/{{ chapter }}/{{ page.url }}" class="btn btn-info" role="button"><span class="glyphicon glyphicon-file"></span> {{ page.title }} <span class="badge">Open</span></a>
+					<a href="/trainingPortal/chapter/{{ chapter }}/{{ page.url }}" class="btn btn-info" role="button"><span class="glyphicon glyphicon-file"></span> {{ page.title }} <span class="badge">Read</span></a>	</div></li>
 					{% endfor %}
 			</div
 			</ul>
 			{% else %}
             <strong>There are no pages!</strong>
+			{% endif %}</br></br></br><h3><b class="label label-primary" style="background-color:#FF00AF;border-color:#FF6ED2;color:white;">Quizzes</b></h3></br>
+				{% if quizzes %}
+
+			<ul class="list-group">
+			<div class="btn-group btn-block btn-group-horizontal  ">
+					{% for quiz in quizzes %}
+					<li class="list-group-item"><button class="btn disabled btn-primary" style="background-color:#E45EBA;border-color:#FF6ED2;color:white;"><span class="glyphicon glyphicon-list-alt"></span></button><div class="btn-group "role="group">
+					<a href="/test/{{quiz.url}}" class="btn btn-primary" role="button"  style="background-color:#FF00AF;border-color:#FF6ED2;color:white;">{{ quiz.title }} <span class="badge" style="color:#FF00AF;">Take</span></a>
+					{% endfor %}
+			</div
+			</ul>
+				{% else %}
+            <strong>There are no quizzes for this chapter.</strong>
 			{% endif %}
 	 	 {% else%}
 					<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>

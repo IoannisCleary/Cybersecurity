@@ -4,7 +4,7 @@ from filer.fields.file import FilerFileField
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 from django.core.validators import MinValueValidator
-
+from quiz.models import Quiz,Category
 from ckeditor.fields import RichTextField
 
 LEARNING_TYPES = ( ('0','Not selected'), ('1','Activist'), ('2','Reflector'), ('3','Theorist'), ('4','Pragmatist'), )
@@ -34,7 +34,8 @@ class Mode(models.Model):
 class Chapter(models.Model):
 	number = models.IntegerField(default=1,validators=[MinValueValidator(1)],unique=True,help_text="This field is used to sort the chapters. Use a unique number")
 	title = models.CharField(max_length=128, unique=True)
-	overview = models.CharField(max_length=500,default="Not available")
+	overview = RichTextField(config_name='default',default="Not available",help_text="This field displays the correct answer and the explanation why. If multipleMode is enabled it will display all the correct answers from the exercises above. (Remember to add a number to each exercise)")
+	quiz_category =  models.ForeignKey(Category, default=None,blank=True,null=True)
 	def __unicode__(self):
 		return self.title
 	class Meta:

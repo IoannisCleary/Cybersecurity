@@ -36,21 +36,21 @@ $(document).ready(function(){
 
 <div class="well"style="margin-top:25px;">
     <div class="container-fluid"style="margin-top:10px;margin-left:10px;margin-right:10px;margin-bottom:10px;">
-<span class="label label-info" style="margin-top:30px;background-color:#669999;border-color:#669999">&nbsp;&nbsp; &nbsp;<b>{{page.number}} &nbsp;</b></span>
+<span class="label label-info">&nbsp;&nbsp; &nbsp;<b>{{page.number}} &nbsp;</b></span>
 <span class="label label-default" ></span><b style="color:black;font-size: 82%">&nbsp; {{title}}</b>&nbsp;</span></br></div>
 </div>
 <div class="container-fluid"><div class="btn-group btn-group-sm" role="group" style="padding-left:4px;padding-top:5px;margin-bottom:15px" aria-label="...">
     {% if hasPrevious %}
-    &nbsp; <a type="button"class="btn btn-primary" href="/trainingPortal/chapter/{{ chapter_url }}/{{previous}}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Previous   </b>&nbsp;</a>
+    &nbsp; <a type="button"class="btn btn-info" href="/trainingPortal/chapter/{{ chapter_url }}/{{previous}}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Previous   </b>&nbsp;</a>
 
     {% else %}
-   &nbsp;  <a type="button"class="btn btn-primary disabled" href="/trainingPortal/chapter/{{ chapter_url }}/{{previous}}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Previous   </b>&nbsp;</a>
+   &nbsp;  <a type="button"class="btn btn-info disabled" href="/trainingPortal/chapter/{{ chapter_url }}/{{previous}}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Previous   </b>&nbsp;</a>
 
     	{% endif %}
        {% if hasNext %}
-   &nbsp; <a type="button"class="btn btn-primary" href="/trainingPortal/chapter/{{ chapter_url }}/{{next}}">&nbsp;&nbsp;&nbsp;<b> Next   </b>&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
+   &nbsp; <a type="button"class="btn btn-info" href="/trainingPortal/chapter/{{ chapter_url }}/{{next}}">&nbsp;&nbsp;&nbsp;<b> Next   </b>&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
     	{% else %}
-    &nbsp;	 <a type="button"class="btn btn-primary disabled" href="/trainingPortal/chapter/{{ chapter_url }}/{{next}}">&nbsp;&nbsp;&nbsp;<b> Next   </b>&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
+    &nbsp;	 <a type="button"class="btn btn-info disabled" href="/trainingPortal/chapter/{{ chapter_url }}/{{next}}">&nbsp;&nbsp;&nbsp;<b> Next   </b>&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
     	{% endif %}
     	</div>
 </div>
@@ -68,10 +68,8 @@ $(document).ready(function(){
 
      {% if user.is_authenticated %}
      {% if exists %}
-</br>
-</br>
 
-<div class="well" style="font-size:14px;background-color:#FCFCFC;">
+<div class="well" style="font-size:14px;background-color:#FCFCFC;width:92%;margin-left:4%;margin-right:4%; white-space: normal;">
 
 	 {% if set_learningType %}
 	<div class="container-fluid" style="background-color:#FCFCFC">
@@ -79,7 +77,7 @@ $(document).ready(function(){
 	</div>
 </br>
 </div>
-</br></br>
+</br>
 <h3><span class="label label-primary" style="margin-left:20px">&nbsp;<b>Exercise(s) </b></span></h3>
 <div class="container-fluid" style="background-color:#F0F0F0;">
      {% if hasExercise %}
@@ -206,6 +204,6 @@ $(document).ready(function(){
 </br>
 </br></br>
 </br>
-
+</br></br></br>
 </br>
        {% endblock %}

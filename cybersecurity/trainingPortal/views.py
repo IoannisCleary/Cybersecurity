@@ -209,6 +209,8 @@ def learningType(request):
 def chapter(request,chapter_title):
 	context_dict = {}
 	exists = True
+	hasCat = True
+	hasQuiz = True
 	if request.user.is_authenticated():
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
@@ -222,11 +224,22 @@ def chapter(request,chapter_title):
 		    context_dict['pages'] = pages
 		    for page in pages:
 		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		    try:
+		        quiz_cat = chapt.quiz_category
+		        quizzes = Quiz.objects.filter(category = quiz_cat)
+		        context_dict['quizzes'] = quizzes
+		    except Category.DoesNotExist:
+		        hasCat = False
+		        hasQuiz = False
+		    except Quiz.DoesNotExist:
+		        hasQuiz = False
 		except Chapter.DoesNotExist:
 		    exists = False
 		chapters = Chapter.objects.order_by('title')
 		for chapter in chapters:
 			chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		context_dict['hasQuiz'] = hasQuiz
+		context_dict['hasCat'] = hasCat
 		context_dict ['chapters'] = chapters
 		context_dict['exists'] = exists
 

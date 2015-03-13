@@ -83,9 +83,16 @@
         {% endif %}
 
         {% if user|pybb_may_create_post:topic %}
-     <h3> <span class="label label-warning"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Post a Reply &nbsp;</span></h3></br>
+        </br>     </br>
+         <div class="panel panel-primary"style="border-color:#F0B982!important">
+        	<div class="panel-heading" style="background-color:#E68A2E!important; border-color:#F0B982!important;color:white;">
+    <h5 class="panel-title"><b>Post a Reply</b></h5>
+	 </div>
+
+	   <div class="panel-body">
 
             {% include "pybb/post_form.html" %}
+                </div>
         {% else %}
             {% if not user.is_authenticated %}
                 {% include 'pybb/_need_to_login_message.html' %}
@@ -105,8 +112,11 @@
             </div>
         {% endif %}
     </div>
+    </div>
+
     	{% else %}
         		<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login/?next=/forum/" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
 		{% endif %}
+		 </br>     </br>     </br>     </br>
 {% endblock %}
