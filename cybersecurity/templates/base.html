@@ -64,7 +64,7 @@
 
 						<li style="padding-right:1px;"><a href="/trainingPortal/chapters/"><span class="glyphicon glyphicon-th-large"></span> &nbsp;Chapters</a></li>
 						<li class="dropdown" style="padding-right:1px;color:black!imporant">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-check"></span> &nbsp;Course <b class="caret"></b></a>
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-check"></span> &nbsp;Assessment <b class="caret"></b></a>
 							<ul class="dropdown-menu"style="background-color:#E0E0E0!important">
 							    {% if request.user.is_superuser %}
 								<li><a href="/test/marking/"><span class="glyphicon glyphicon-pencil"></span> &nbsp;Mark quizzes</a></a>
@@ -80,7 +80,7 @@
 		<li style="padding-right:3px;"><a href="/forum/"> <span class="glyphicon glyphicon-comment"></span> &nbsp;Forum</a></li>
 
 						<li class="dropdown" style="padding-right:10px;background-color:#E1E1E1!important;color:black!imporant">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle"style="background-color:#E1E1E1!important"> &nbsp;<b class="caret"style="background-color:#E1E1E1!important"></b> &nbsp;</a>
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle"style="background-color:#E1E1E1!important"> &nbsp;<b class="caret"style="background-color:#E1E1E1!important;"></b> &nbsp;</a>
 							<ul class="dropdown-menu"style="background-color:#E0E0E0!important" >
 							     <li style="padding-right:3px;"><a href="{% url 'about' %}">  <span class="glyphicon glyphicon-info-sign"></span>  &nbsp;About</a></li>
 								<li ><a href="/trainingPortal/help/"> <span class="glyphicon glyphicon-question-sign"></span> &nbsp;Help Centre</a></li>
