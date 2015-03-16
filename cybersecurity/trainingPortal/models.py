@@ -2,6 +2,7 @@ from django.db import models
 from filer.fields.image import FilerImageField
 from filer.fields.file import FilerFileField
 from django.contrib.auth.models import User
+from django.utils.encoding import smart_str
 from tinymce.models import HTMLField
 from django.core.validators import MinValueValidator
 from quiz.models import Quiz,Category
@@ -30,7 +31,21 @@ class Mode(models.Model):
 	def __unicode__(self):
 		return self.name
 
-
+class Announcement(models.Model):
+    number = models.IntegerField(unique=True,default=1,validators=[MinValueValidator(1)],help_text="This field is used to sort the announcements. Use a unique number")
+    title = models.CharField(max_length=128, unique=True)
+    entry = models.CharField(max_length=250, null=False,blank=False)
+    def __unicode__(self):
+		return self.title
+    class Meta:
+		verbose_name_plural = "Announcements"
+class IndexElement(models.Model):
+    number = models.IntegerField(unique=True,default=1,validators=[MinValueValidator(1)],help_text="This field is used to sort the elements. Use a unique number")
+    entry = RichTextField(config_name='awesome_ckeditor',help_text="This field will be shown on the homepage.",default="Empty")
+    def __unicode__(self):
+		return smart_str(self.entry)
+    class Meta:
+		verbose_name_plural = "IndexElements"
 class Chapter(models.Model):
 	number = models.IntegerField(default=1,validators=[MinValueValidator(1)],unique=True,help_text="This field is used to sort the chapters. Use a unique number")
 	title = models.CharField(max_length=128, unique=True)

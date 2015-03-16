@@ -1,5 +1,5 @@
 from django.contrib import admin
-from trainingPortal.models import Page,Chapter,Profile,Mode,Exercise,PageExercise
+from trainingPortal.models import Page,Chapter,Profile,Mode,Exercise,PageExercise,Announcement,IndexElement
 
 
 # Register your models here.
@@ -17,3 +17,5 @@ admin.site.register(Page,PageAdmin)
 admin.site.register(Exercise,PageAdmin)
 admin.site.register(Chapter,PageAdmin)
 admin.site.register(PageExercise,PageAdmin)
+admin.site.register(Announcement)
+admin.site.register(IndexElement,PageAdmin)

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from trainingPortal.models import Profile,Chapter,Page,Mode,PageExercise,Exercise
+from trainingPortal.models import Profile,Chapter,Page,Mode,PageExercise,Exercise,Announcement,IndexElement
 from trainingPortal.forms import LearningTypeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -13,9 +13,27 @@ def getMode():
 	return testing.enable
 def index(request):
 	context_dict = {}
+	hasAnnouncement=False
+	hasIndex=False
 	if request.user.is_authenticated():
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 		context_dict['testing'] = getMode()
+		try:
+		    announcements = Announcement.objects.all().order_by('-number')
+		    hasAnnouncement=True
+		    context_dict['announcements'] = announcements
+		except Announcement.DoesNotExist:
+		    hasAnnouncement=False
+		try:
+		    indexelements = IndexElement.objects.all()
+		    hasIndex=True
+		    context_dict['indexelements'] = indexelements
+		except IndexElement.DoesNotExist:
+		    hasIndex=False
+		context_dict['hasIndex'] = hasIndex
+		context_dict['hasAnnouncement'] = hasAnnouncement
+
+
 	return render(request, 'trainingPortal/index.html', context_dict)
 
 def help(request):

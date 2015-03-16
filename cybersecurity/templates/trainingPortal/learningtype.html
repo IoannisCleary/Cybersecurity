@@ -1,13 +1,13 @@
 
 {% extends 'base.html' %}
-{% load static %} 
+{% load static %}
 {% load socialaccount %}
 {% block title %}Learning Style{% endblock %}
 {% block page_title %}<span class="label label-danger">Learning Style</span>{% endblock %}
 	{% block content %}
 	     {% if user.is_authenticated %}
 		 		{% if set_learningType == False %}
-	<div class="well">	
+	<div class="well">
 	</br>
 	<b>Complete one</b> of the following questionnaires based on Honey & Mumford's learning style:
 	<ul>
@@ -15,6 +15,10 @@
 		<li type="square"><a href="http://www.clinteach.com.au/assets/LEARNING-STYLES-Kolb-QUESTIONNAIRE.pdf"> <b>B</b> </a></li>
 		<li type="square"><a href="http://www.brianmac.co.uk/documents/hmlsq.pdf"> <b>C</b> </a></li>
 	</ul>
+		</br>
+			</br>
+			Use this <a href="/media/files/completeQ_template (1).pdf">helper sheet</a> to calculate your results.
+				</br>
 	</br>
 	<form id="learningTypeForm" method="post" action="/trainingPortal/learningType/">
 	And then select the <b>learning style</b> you have the <b>highest score</b> in:</br></br>
@@ -24,15 +28,15 @@
                 {{ field.help_text }}
                 {{ field }}
             {% endfor %}
-			
+
 		<input class="btn btn-info" type="submit" name="submit" value="Submit" />
 	</form>
 			{% else %}
-             You have already completed your learning style.      
+             You have already completed your learning style.
 			{% endif %}
 		{% else %}
-              Please log in to access this page.      
+              Please log in to access this page.
 		{% endif %}
    </div>
- 
+
 	    {% endblock %}

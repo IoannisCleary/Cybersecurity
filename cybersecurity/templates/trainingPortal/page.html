@@ -32,12 +32,14 @@ $(document).ready(function(){
     &nbsp; <a type="button"class="btn btn-primary" href="/trainingPortal/chapter/{{chapter_url}}"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Back   </b>&nbsp;</a>
 </div></div>
 </br></br>
-<span class="label label-success" style="margin-left:20px">&nbsp;<b style="font-size:80%">Chapter </b></span><span class="label label-success" style="background-color:#99CC99;border-color:#99CC99"><b style="color:white;font-size: 80%"> {{chapter}}</b>&nbsp;</span>&nbsp;</br>
+<span id="top" class="label label-success" style="margin-left:20px">&nbsp;<b style="font-size:80%">Chapter </b></span><span class="label label-success" style="background-color:#99CC99;border-color:#99CC99"><b style="color:white;font-size: 80%"> {{chapter}}</b>&nbsp;</span>&nbsp;</br>
 
-<div class="well"style="margin-top:25px;">
+<div  class="well"style="margin-top:25px;">
     <div class="container-fluid"style="margin-top:10px;margin-left:10px;margin-right:10px;margin-bottom:10px;">
 <span class="label label-info">&nbsp;&nbsp; &nbsp;<b>{{chapter_number}}.{{page.number}} &nbsp;</b></span>
-<span class="label label-default" ></span><b style="color:black;font-size: 82%">&nbsp; {{title}}</b>&nbsp;</span></br></div>
+<span  class="label label-default" ></span><b style="color:black;font-size: 82%">&nbsp; {{title}}</b>&nbsp;</span>   {% if hasExercise %}
+	      <a class="badge" href="#exercise"style="background-color:#069ACB!important;border-color:#25B0DE!important">Exercise Available</a>
+	        {% endif %}</br></div>
 </div>
 <div class="container-fluid"><div class="btn-group btn-group-sm" role="group" style="padding-left:4px;padding-top:5px;margin-bottom:15px" aria-label="...">
     {% if hasPrevious %}
@@ -55,8 +57,8 @@ $(document).ready(function(){
     	</div>
 </div>
 {% else %}
-	<div class="container-fluid">
-    <div class="btn-group" role="group" style="padding-left:4px;margin-bottom:10px" aria-label="...">
+	<div  class="container-fluid">
+    <div  class="btn-group" role="group" style="padding-left:4px;margin-bottom:10px" aria-label="...">
     &nbsp; <a type="button"class="btn btn-primary" href="/trainingPortal/chapters/"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Back   </b>&nbsp;</a>
 </div></div>
 	{% endif %}
@@ -73,12 +75,17 @@ $(document).ready(function(){
 
 	 {% if set_learningType %}
 	<div class="container-fluid" style="background-color:#FCFCFC">
+
 	{% autoescape off %}<p>{{entry}}</p>{% endautoescape %}
+	</br>
+
+	    <a class="badge" href="#top"style="background-color:#080808!important;border-color:#303030!important">Go to top</a>
+	   </br>
 	</div>
 </br>
 </div>
 </br>
-<h3><span class="label label-primary" style="margin-left:20px">&nbsp;<b>Exercise(s) </b></span></h3>
+<h3><span id="exercise" class="label label-primary" style="margin-left:20px">&nbsp;<b>Exercise(s) </b></span></h3>
 <div class="container-fluid" style="background-color:#F0F0F0;">
      {% if hasExercise %}
 

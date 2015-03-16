@@ -26,6 +26,26 @@ class DjangoFilerToolbar(CMSToolbar):
         menu.add_sideframe_item(_('Upload/View Files'), url="/admin/filer/folder/")
         admin_menu.add_break('file-break', position=menu)
 @toolbar_pool.register
+class AnnouncementToolbar(CMSToolbar):
+
+    def populate(self):
+        admin_menu = self.toolbar.get_or_create_menu(ADMIN_MENU_IDENTIFIER, _('Training Portal'))
+        position = admin_menu.find_first(Break, identifier=ADMINISTRATION_BREAK)
+        menu = admin_menu.get_or_create_menu('add_announcement', _('Announcements'), position=position)
+        menu.add_sideframe_item(_('View Announcements'), url="/admin/trainingPortal/announcement/")
+        menu.add_sideframe_item(_('Create Announcement'), url="/admin/trainingPortal/announcement/add")
+        admin_menu.add_break('file-announcement', position=menu)
+@toolbar_pool.register
+class IndexeElementToolbar(CMSToolbar):
+
+    def populate(self):
+        admin_menu = self.toolbar.get_or_create_menu(ADMIN_MENU_IDENTIFIER, _('Training Portal'))
+        position = admin_menu.find_first(Break, identifier=ADMINISTRATION_BREAK)
+        menu = admin_menu.get_or_create_menu('add_indexelement', _('Index Element'), position=position)
+        menu.add_sideframe_item(_('View Index Elements'), url="/admin/trainingPortal/indexelement/")
+        menu.add_sideframe_item(_('Create Index Element'), url="/admin/trainingPortal/indexelement/add")
+        admin_menu.add_break('file-indexelement', position=menu)
+@toolbar_pool.register
 class ChapterToolbar(CMSToolbar):
 
     def populate(self):
