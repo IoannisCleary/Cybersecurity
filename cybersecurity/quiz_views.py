@@ -198,7 +198,7 @@ class QuizTake(FormView):
     def form_valid_user(self, form):
         progress, c = Progress.objects.get_or_create(user=self.request.user)
         guess = form.cleaned_data['answers']
-        is_correct = self.question.check_if_correct(smart_str(guess))
+        is_correct = self.question.check_if_correct(smart_str(guess.encode))
         if is_correct is True:
             self.sitting.add_to_score(1)
             progress.update_score(self.question, 1, 1)

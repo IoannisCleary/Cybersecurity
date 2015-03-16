@@ -13,7 +13,7 @@
 
 <div class="well"style="margin-top:25px;">
     <div class="container-fluid"style="margin-top:10px;margin-left:10px;margin-right:10px;margin-bottom:10px;">
-<span class="label label-success">&nbsp;<b>Chapter</b></span>
+<span class="label label-success">&nbsp;<b>Chapter</b></span><span class="label label-success" style="background-color:#558952!important"><b>&nbsp;{{c.number}}&nbsp;</b></span>
 <span class="label label-default"></span><b style="color:black; font-size: 78%">&nbsp; {{title}}</b>&nbsp;</span></div>
 </div>
 {% endif %}
@@ -36,7 +36,7 @@
 			<ul class="list-group">
 			<div class="btn-group btn-block btn-group-horizontal  ">
 					{% for page in pages %}
-					<li class="list-group-item"><button class="btn disabled btn-info">{{page.number}}</button><div class="btn-group "role="group">
+					<li class="list-group-item"><button class="btn disabled btn-info">{{c.number}}.{{page.number}}</button><div class="btn-group "role="group">
 					<a href="/trainingPortal/chapter/{{ chapter }}/{{ page.url }}" class="btn btn-info" role="button"><span class="glyphicon glyphicon-file"></span> {{ page.title }} <span class="badge">Read</span></a>	</div></li>
 					{% endfor %}
 			</div

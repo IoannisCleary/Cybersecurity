@@ -253,6 +253,7 @@ def page(request,chapter_title,page_title):
     hasDiagram = True
     hasMultiple = True
     isFurtherReading = False
+    chapNum=0
     if request.user.is_authenticated():
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 		title= page_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
@@ -260,6 +261,7 @@ def page(request,chapter_title,page_title):
 		try:
 		    chapt = Chapter.objects.get(title = chapter_tl)
 		    page = Page.objects.get(chapter = chapt, title = title)
+		    chapNum = chapt.number
 		    mode = page.learningStyleMode
 		    user = request.user
 		    profile = user.profile
@@ -377,6 +379,7 @@ def page(request,chapter_title,page_title):
 		            context_dict ['entry'] = page.entry_default
 		    context_dict ['chapter_url'] = chapter_title
 		    context_dict ['chapter'] = chapter_tl
+		    context_dict ['chapter_number'] = chapNum
 		    context_dict ['title'] = title
 		    context_dict ['page'] = page
 		    pages = Page.objects.filter(chapter = chapt)

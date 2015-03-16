@@ -8,6 +8,7 @@
 {% load cms_tags sekizai_tags %}
 <html>
   <head>
+
       <!--https://app.getsitecontrol.com/ widget created from getsitecontrol-->
       <script>
   var _gscq = _gscq || [];
@@ -58,7 +59,9 @@
           <ul class="nav navbar-nav navbar-right" >
                 <li style="padding-right:1px;"><a href="{% url 'index' %}"> <span class="glyphicon glyphicon-home"></span>  &nbsp;Home</a></li>
 
+
                     {% if user.is_authenticated %}
+
 						<li style="padding-right:1px;"><a href="/trainingPortal/chapters/"><span class="glyphicon glyphicon-th-large"></span> &nbsp;Chapters</a></li>
 						<li class="dropdown" style="padding-right:1px;color:black!imporant">
 							<a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-check"></span> &nbsp;Course <b class="caret"></b></a>

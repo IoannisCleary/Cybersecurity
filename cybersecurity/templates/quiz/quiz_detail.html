@@ -12,10 +12,13 @@
 <span class="label label-info"><b>{{ quiz.title }}</b></span></div>{% endblock %}
 {% block content %}
  {% if user.is_authenticated %}
+ 			<div class="alert alert-warning" role="alert"> <p class="label label-warning">Attention!</p> Quizzes with essay type of questions are reviewed by staff. Result at the end may change if your answer is marked as correct by a staff member.</span></a>
+	</div>
+
 <div class="panel panel-primary"style="border-color:#FF6ED2;">
   <div class="panel-heading" style="background-color:#FF00AF;border-color:#FF6ED2;color:white;">
     <h5 class="panel-title"><b>{% trans "Category" %}: {{ quiz.category }}</b>{% if quiz.single_attempt %}
-  <span class="badge"style="color:#FF00AF;">{% trans "Single attempt" %}</span>
+  <span class="badge"style="color:#FF00AF;"><b>{% trans "Single attempt" %}</b></span>
 {% endif %}</h5>
 	 </div>
 {% if user.profile.learningType != '0' %}
@@ -24,7 +27,6 @@
 
 
 </br>
-
 <div class="container-fluid" style="background-color:#058997;color:white; margin-left:15px;margin-right:15px">
     </br><h4><b>Description</b></h4>
 <p>{{ quiz.description }}</p></br></br></div>
