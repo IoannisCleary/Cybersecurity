@@ -33,7 +33,7 @@ class Mode(models.Model):
 
 class Announcement(models.Model):
     number = models.IntegerField(unique=True,default=1,validators=[MinValueValidator(1)],help_text="This field is used to sort the announcements. Use a unique number")
-    title = models.CharField(max_length=128, unique=True)
+    title = models.CharField(max_length=128)
     entry = models.CharField(max_length=250, null=False,blank=False)
     def __unicode__(self):
 		return self.title

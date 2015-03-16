@@ -19,7 +19,7 @@ def index(request):
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 		context_dict['testing'] = getMode()
 		try:
-		    announcements = Announcement.objects.all().order_by('-number')
+		    announcements = Announcement.objects.all().order_by('-number')[:3]
 		    hasAnnouncement=True
 		    context_dict['announcements'] = announcements
 		except Announcement.DoesNotExist:
