@@ -43,7 +43,7 @@
 	  	{% endif %}
 	{% endif %}
 <div class="well">
-    	</br>
+	    	</br>
   <!--  	<div class="row text-center">
     	<img class="img" src="/media/images/helper.png"/></div>-->
 	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Log in/out</b></span></h4></br>
@@ -66,6 +66,19 @@
 	</br>
 	</div>
     	{% if user.is_authenticated %}
+
+	</br>
+<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Announcements</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+	    	</br>
+            Announcements are shown on the home page from staff members in order to inform all users of modifications in quizzes or chapters and updates on certain events.
+            </br>
+	    			<h3><span class="label label-danger" style="color:white!imporant"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;Announcements&nbsp;
+	    			<div class="btn-group btn-group-xs" role="group" aria-label="..."><b><a class="btn btn-danger"style="font-size:14px;">Show</a> </b></div>
+</span></h3>
+	    	</br>
+	</div>
+
 	</br>
 <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Chapters</b></span></h4></br>
 	<div class="container-fluid" style="background-color:white;">
@@ -179,6 +192,35 @@
     	 			</br>
     	 				</br>
 	</div>
+
+	   </br>
+	    <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Forum</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+	     </br>
+  The forum is split into three categories: <b>General, Course, Help</b>.</br>
+  Each category has it's own set of forums and they are shown in tables like this: </br></br>
+       <a class="btn btn-default" type="button" >&nbsp;&nbsp;&nbsp;<b>Forum name&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></b></a></br>
+</br>
+<b>Topics</b> are shown in forums in tables like this:</br></br>
+  <a class="btn btn-default" type="button">&nbsp;&nbsp;<span class="glyphicon glyphicon-apple"></span>&nbsp;<b>Topic name&nbsp;&nbsp;</b></a>
+                <a  class="first-unread-post-link btn btn-success" title="Go to first unread post">&nbsp;&nbsp;⇨&nbsp;&nbsp;</a>
+</br>
+</br>
+  - In order to create a topic you click on the create topic button in a forum. </br>
+
+  </br>
+  <a class="new-topic btn btn-block btn-warning">&nbsp;<span class="glyphicon glyphicon-plus"></span>&nbsp;New topic</a>
+ 	     </br>
+ 	     - Enter the topic's page  </br>
+ 	     - Enter message  </br>
+ 	     - Select poll type (default = none)  </br>
+ 	     - Enter poll question if you have chosen to use a poll  </br>
+ 	     - Some emoticons are available. In order to use them hover over one to see the character combination that you need to enter </br>
+ 	      </br>
+ 	       </br>
+	    </div>
+
+
 	</br>
 
 	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Messages</b></span></h4></br>
@@ -281,6 +323,54 @@
   -  The only special characters allowed are : ':','=' and '&' </br></br>
 	    </br>
 	    </div>
+
+	    	    </br>
+	    <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Creating an announcement</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+  -  Click on the Announcements button on the toolbar and then the Create Announcement sidebar button </br>
+  -  Enter a unique number (for that chapter) greater than 0 and a title.</br>
+  -  Enter an announcement entry. (250 characters long) </br>
+  - Save </br>
+ 	    </br>
+	    </div>
+
+   	    </br>
+	    <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Creating an index element</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+  -  Click on the Index Elements button on the toolbar and then the Create Index Element sidebar button </br>
+  -  Enter a unique number (for that chapter) greater than 0.</br>
+  -  Enter an index element entry. (250 characters long) </br>
+  - Save </br>
+  - This will appear in the home page's grey container.
+ 	    </br>
+	    </div>
+
+
+   	    </br>
+	    <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Creating an exercise</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+  -  Click on the Exercise button on the toolbar and then the Create Exercise sidebar button </br>
+  - Select chapter it belongs to. </br>
+  -  Enter a unique number (for that chapter) greater than 0.</br>
+  -  Enter an a question / task in the question field </br>
+  -  There are some modes that you can select</br>
+  ---- <b>Multiple mode</b>: Use the text field and the CorrectAnswers field. Add a number to each question in the text field and add the ansers in the CorrectAnswers field in the same format.</br>
+  ---- <b>Diagram mode</b>: Upload an image. Enter AvailableAnswers for the diagram and then the CorrectAnswer </br>
+  ---- <b>Further reading mode</b>: Use only the textfield to create an exercise</br>
+  ---- <b>Disable mode</b>: Select this to disable the exercise </br>
+  - Save </br>
+  </br>
+ 	   </br>
+ 	   In order to add the exercise to a page go the Exercise button on the toolbar and then the Add to Page sidebar button</br>
+ 	    - Select the chapter and page it belongs to. </br>
+         - Select exercises in the appropriate fields. One for the default and other four below (one for each learning style) </br>
+         -Save </br>
+
+ 	   </br> </br>
+	    </div>
+
+
+
 	    </br>
 	    <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Creating a page (aka section)</b></span></h4></br>
 	<div class="container-fluid" style="background-color:white;">
