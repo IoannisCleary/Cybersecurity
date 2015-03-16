@@ -59,16 +59,16 @@ class ChapterToolbar(CMSToolbar):
         admin_menu.add_break('chapters-break', position=menu)
 
 @toolbar_pool.register
-class PageToolbar(CMSToolbar):
+class SectionToolbar(CMSToolbar):
 
     def populate(self):
         admin_menu = self.toolbar.get_or_create_menu(ADMIN_MENU_IDENTIFIER, _('Training Portal'))
         position = admin_menu.find_first(Break, identifier=ADMINISTRATION_BREAK)
-        menu = admin_menu.get_or_create_menu('add_page', _('Page'), position=position)
+        menu = admin_menu.get_or_create_menu('add_page', _('Section'), position=position)
         url = reverse('admin:trainingPortal_page_add')
         url2 = reverse('admin:trainingPortal_page_changelist')
-        menu.add_sideframe_item(_('View Pages'), url=url2)
-        menu.add_sideframe_item(_('Create Page'), url=url)
+        menu.add_sideframe_item(_('View Sections'), url=url2)
+        menu.add_sideframe_item(_('Create Section'), url=url)
 @toolbar_pool.register
 class ExerciseToolbar(CMSToolbar):
 
@@ -80,8 +80,8 @@ class ExerciseToolbar(CMSToolbar):
         url2 = reverse('admin:trainingPortal_exercise_changelist')
         menu.add_sideframe_item(_('View Exercises'), url=url2)
         menu.add_sideframe_item(_('Create Exercise'), url=url)
-        menu.add_sideframe_item(_('View Page Exercises'), url="/admin/trainingPortal/pageexercise/")
-        menu.add_sideframe_item(_('Add to Page'), url="/admin/trainingPortal/pageexercise/add/")
+        menu.add_sideframe_item(_('View Section Exercises'), url="/admin/trainingPortal/pageexercise/")
+        menu.add_sideframe_item(_('Add to Section'), url="/admin/trainingPortal/pageexercise/add/")
 @toolbar_pool.register
 class QuizToolbar(CMSToolbar):
 
