@@ -57,7 +57,7 @@ class Chapter(models.Model):
 		verbose_name_plural = "Chapters"
 class Page(models.Model):
 	chapter = models.ForeignKey(Chapter)
-	number = models.IntegerField(default=1,validators=[MinValueValidator(1)],help_text="This field is used to sort the pages. Use a unique number")
+	number = models.IntegerField(default=1,validators=[MinValueValidator(1)],help_text="This field is used to sort the sections. Use a unique number")
 	title = models.CharField(blank=False,max_length=256)
 	entry_default = RichTextField(config_name='awesome_ckeditor',help_text="This field is displayed when learningStyleMode is disabled.",default="Empty")
 	learningStyleMode = models.BooleanField(default=True,help_text="Select to enable Learning Style Mode based on Honey & Mumfords learning styles and use the entry fields below. Disable to use default entry field above")
