@@ -44,13 +44,13 @@ $(function () {
 		</div>
 			{% if progressavailable %}
 		<div class="progress" style="background:#D1FFFF;">
-  <div class="progress-bar progress-bar-success progress-bar-striped active" data-toggle="tooltip" data-placement="top" title="Quizzes taken by :  {{progressusers}}  user(s)" role="progressbar" aria-valuenow="{{progressusers}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{percentage}}%;background-color:#4A93B8;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" data-toggle="tooltip" data-placement="top" title="Quizzes taken by :  {{progressusers}}  user(s)" role="progressbar" aria-valuenow="{{progressusers}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{percentageall}}%;background-color:#4A93B8;">
 <b>Quizzes taken by</b> :  {{progressusers}}  user(s)
 		</div>
 		</div>
 			{% else %}
 			<div class="progress" style="background:#D1FFFF;">
-  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progressusers}}"  data-toggle="tooltip" data-placement="top" title="Quizzes taken by :  {{progressusers}}  user(s)" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{percentage}}%;background-color:#5E5E5E;">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progressusers}}"  data-toggle="tooltip" data-placement="top" title="Quizzes taken by :  {{progressusers}}  user(s)" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{percentageall}}%;background-color:#5E5E5E;">
 <b>Quizzes taken by</b> :  {{progressusers}}  user(s)
 		</div>
 		</div>
