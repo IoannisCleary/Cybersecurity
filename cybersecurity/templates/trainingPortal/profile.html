@@ -61,11 +61,20 @@ $(function () {
                         <td><b>Username:</b></b></td>
                         <td>{{username}}</td>
                       </tr>
+                       <tr>
+                        <td><b>Ranking:</b></td>
+                        <td><span class="label label-default" style="background:{{rankingColor}}">{{ranking}}</span></td>
+                      </tr>
 					  <tr>
                         <td><b>Age:</b></td>
                         <td>{{age}}</td>
                       </tr>
+
 	{% if personal %}
+	 <tr>
+                        <td><b>Quizzes taken:</b></td>
+                        <td>{{quizCount}}</td>
+                      </tr>
 	{% if set_learningType %}
  <td><b>Learning Style:</b></td>
                         <td>{{learningType}}</td>

@@ -466,6 +466,7 @@ def profile(request,username):
 	personal = False
 	pro = True
 	testing = getMode()
+	ranking = 'Novice'
 
 	context_dict['testing'] = testing
 	if request.user.is_authenticated():
@@ -488,6 +489,7 @@ def profile(request,username):
 		        t=0
 		        a=0
 		        scores =[[{}] for t in range(0,times) ]
+		        quizCount=0
 
 
 		        sum = 0.0
@@ -505,6 +507,7 @@ def profile(request,username):
 		                        percentage =  sitting[0].get_percent_correct
 		                        qsum=qsum+percentage
 		                        q=q+1
+		                        quizCount=quizCount+1
 		               # qz = Quiz.objects.get(title=val[t])
 		                percent = 0.0
 		                if q>0:
@@ -526,12 +529,30 @@ def profile(request,username):
 		                 pro = False
 
 		        context_dict['scores'] = scores
+		        color='blue'
+		        if quizCount>0 and quizCount<6:
+		            ranking='Beginner'
+		            color='green'
+		        elif quizCount>5 and quizCount<15:
+		            ranking='Advanced Learner'
+		            color='orange'
+		        elif  quizCount>15:
+		            ranking='Expert'
+		            color='red'
+
+		        context_dict['ranking'] = ranking
+		        context_dict['rankingColor'] = color
+		        context_dict['quizCount'] = quizCount
+
 
 		    except Progress.DoesNotExist:
 		        pro = False
 		context_dict['hasprogress'] = pro
-
+		quizCount=0
+		ranking='Novice'
+		color='blue'
 		try:
+
 			usr = User.objects.get(username = username)
 			if personal:
 				context_dict['usr'] = usr
@@ -547,7 +568,53 @@ def profile(request,username):
 				context_dict['age'] = profile.age
 				context_dict['learningType'] = LEARNING_TYPES.get(profile.learningType)
 				#learning style
+				try:
+				    progress = Progress.objects.get(user=usr)
+				    str = progress.score
+				    val = str.split(',')
+				    size = len(val)-1
+				    times = size / 3
+				    t=0
+				    ignore='Example' #category
+				    while t<size-1:
+				        if val[t].lower() == ignore.lower():
+				            times = times - 1
+				            break;
+				        t=t+3
+				    t=0
+				    a=0
+				    scores =[[{}] for t in range(0,times) ]
 
+				    sum = 0.0
+				    valid=0
+				    while t<size-1:
+				        if val[t].lower() != ignore.lower():
+				            cat = Category.objects.get(category=val[t])
+				            quizzes = Quiz.objects.filter(category=cat)
+				            for quiz in quizzes:
+				                sitting = Sitting.objects.filter(user=usr, quiz=quiz).order_by('-end')[:1]
+				                if sitting.count()>0:
+				                    quizCount=quizCount+1
+				            a=a+1
+				            valid=valid+1
+				        t=t+3
+				        if a == times:
+				            break
+
+				    if quizCount>0 and quizCount<6:
+				        ranking='Beginner'
+				        color='green'
+				    elif quizCount>5 and quizCount<15:
+				        ranking='Advanced Learner'
+				        color='orange'
+				    elif  quizCount>15:
+				        ranking='Expert'
+				        color='red'
+
+				except Progress.DoesNotExist:
+				    pro = False
+				context_dict['ranking'] = ranking
+				context_dict['rankingColor'] = color
 			except Profile.DoesNotExist:
 				exists = False
 		except User.DoesNotExist:
