@@ -141,6 +141,24 @@ $(function () {
 			{% endif %}
 		</div>
 
+			<div class="panel-heading" style="background-color:#DF013A!important; border-color:#FF0040!important;color:white;">
+    <h5 class="panel-title"><b>Average performance of Testing mode</b> (out of 100) from <b>{{progressusersT}}</b> user(s)</h5>
+	 </div>
+	   <div class="panel-body">
+	   {% if hasTesting %}
+		<div class="progress" style="background:#EBFFD6;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" data-toggle="tooltip" data-placement="top" title="Average : {{percentageallT}} " role="progressbar" aria-valuenow="{{allT}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percentageallT}}%;background-color:#DF013A!important;">
+ <b>{{percentageallT}} % </b>
+		</div>
+			 </div>
+			{% else %}
+	<div class="progress" style="background:#EBFFD6;">
+  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="Average : Not available " role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{percentageallT}}%;background-color:#5E5E5E!important;">
+ <b> Not available </b>
+		</div>
+			{% endif %}
+		</div>
+
 </div>
 </div>
 

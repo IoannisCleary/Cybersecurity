@@ -9,6 +9,7 @@ from django.views.generic import DetailView, ListView, TemplateView, FormView
 
 from .forms import QuestionForm, EssayForm
 from .models import Quiz, Category, Progress, Sitting, Question
+from trainingPortal.models import Mode
 from essay.models import Essay_Question
 
 
@@ -135,7 +136,9 @@ class QuizTake(FormView):
     form_class = QuestionForm
     template_name = 'question.html'
 
+
     def dispatch(self, request, *args, **kwargs):
+        testing = Mode.objects.get(name = 'testing')
         self.quiz = get_object_or_404(Quiz, url=self.kwargs['quiz_name'])
         if self.quiz.draft and not request.user.has_perm('quiz.change_quiz'):
             raise PermissionDenied
@@ -145,8 +148,10 @@ class QuizTake(FormView):
         if self.logged_in_user:
             self.sitting = Sitting.objects.user_sitting(request.user,
                                                         self.quiz)
+            self.sitting.testing=testing.enable
         else:
             self.sitting = self.anon_load_sitting()
+            self.sitting.testing=testing.enable
 
         if self.sitting is False:
             return render(request, 'single_complete.html')
@@ -196,9 +201,10 @@ class QuizTake(FormView):
         return context
 
     def form_valid_user(self, form):
+        testing = Mode.objects.get(name = 'testing')
         progress, c = Progress.objects.get_or_create(user=self.request.user)
         guess = form.cleaned_data['answers']
-        is_correct = self.question.check_if_correct(smart_str(guess.encode))
+        is_correct = self.question.check_if_correct(smart_str(guess))
         if is_correct is True:
             self.sitting.add_to_score(1)
             progress.update_score(self.question, 1, 1)
@@ -218,8 +224,11 @@ class QuizTake(FormView):
 
         self.sitting.add_user_answer(self.question, smart_str(guess))
         self.sitting.remove_first_question()
+        self.sitting.testing=testing.enable
 
     def final_result_user(self):
+        testing = Mode.objects.get(name = 'testing')
+        self.sitting.testing=testing.enable
         results = {
             'quiz': self.quiz,
             'score': self.sitting.get_current_score,

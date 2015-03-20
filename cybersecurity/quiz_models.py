@@ -366,6 +366,8 @@ class Sitting(models.Model):
 
     quiz = models.ForeignKey(Quiz, verbose_name=_("Quiz"))
 
+    testing = models.BooleanField(default=False)
+
     question_order = models.CommaSeparatedIntegerField(
         max_length=1024, verbose_name=_("Question Order"))
 

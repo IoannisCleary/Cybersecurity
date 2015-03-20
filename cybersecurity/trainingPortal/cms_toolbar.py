@@ -98,6 +98,7 @@ class QuizToolbar(CMSToolbar):
         menu.add_sideframe_item(_('Create Quiz'), url=url2)
         menu.add_sideframe_item(_('View Quizzes'), url=url4)
         menu.add_sideframe_item(_('View Progress'), url="/admin/quiz/progress/")
+        menu.add_sideframe_item(_('View Sittings'), url="/admin/quiz/sitting/")
         admin_menu.add_break('quiz-break', position=menu)
 @toolbar_pool.register
 class QuestionsToolbar(CMSToolbar):

@@ -16,7 +16,9 @@
 			  <th>{% trans "Quiz" %}</th>
 			  <th>{% trans "Completed" %}</th>
 			  <th>{% trans "Score" %}(%)</th>
+
 			  <th></th>
+			  <th>Testing Mode</th>
 			</tr>
 		  </thead>
 
@@ -36,6 +38,7 @@
 
 			<tr>
 			  <td>{{ sitting.user }}</td>
+
 			  <td>{{ sitting.quiz }}</td>
 			  <td>{{ sitting.end|date }}</td>
 			  <td>{{ sitting.get_percent_correct }}</td>
@@ -43,6 +46,8 @@
 				<a href="{% url 'quiz_marking_detail' pk=sitting.id %}">
 				  {% trans "View details" %}
 				</a>
+				</td>
+				  <td>{{ sitting.testing }}</td>
 			</tr>
 
         {% endfor %}

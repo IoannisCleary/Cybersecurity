@@ -44,11 +44,14 @@ def help(request):
 	return render(request, 'trainingPortal/help.html', context_dict)
 def statistics(request):
 	context_dict = {}
+	testing = getMode()
 	if request.user.is_authenticated():
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 		users = User.objects.order_by('username')
 		all = 0.0
+		allT = 0.0
 		progressusers=0
+		progressusersT=0
 		allusers=0
 		activists=0
 		reflectors=0
@@ -91,7 +94,9 @@ def statistics(request):
 				t=0
 
 				sum = 0.0
+				sumT=0.0
 				valid=0
+				validT=0
 				while t<size-1:
 				    print t;
 				    if val[t].lower() != ignore.lower():
@@ -99,20 +104,35 @@ def statistics(request):
 				        quizzes = Quiz.objects.filter(category=cat)
 				        q=0
 				        qsum=0.0
+				        tsum=0.0
+				        tq=0
 				        for quiz in quizzes:
-				            sitting = Sitting.objects.filter(user=user, quiz=quiz).order_by('-end')[:1]
+				            sitting = Sitting.objects.filter(user=user, quiz=quiz,testing=False).order_by('-end')[:1]
 				            if sitting.count()>0:
+
 				                percentage =  sitting[0].get_percent_correct
 				                qsum=qsum+percentage
 				                q=q+1
+				                valid=valid+1
+				        for quiz in quizzes:
+				            sitting = Sitting.objects.filter(user=user, quiz=quiz,testing=True).order_by('-end')[:1]
+				            if sitting.count()>0:
+				                percentage =  sitting[0].get_percent_correct
+				                tsum=tsum+percentage
+				                tq=tq+1
+				                validT=validT+1
 				        # qz = Quiz.objects.get(title=val[t])
 				        percent = 0.0
+				        percentQ = 0.0
 				        if q>0:
 				            percent = (float(qsum / q)/float(100))*100.0
+				        if tq>0:
+				            percentQ = (float(tsum / tq)/float(100))*100.0
 				        sum = sum + percent
+				        sumT = sumT + percentQ
 				        score = [{'chapter': val[t], 'correct': val[t+1], 'all':val[t+2],'percentage':percent}]
 				        scores[a]=score
-				        valid=valid+1
+
 				        a=a+1
 				    t=t+3
 				    if a == times:
@@ -120,9 +140,17 @@ def statistics(request):
 				personal = True
 				if sum!=0.0:
 				    all = all + sum / times
+				    if sumT>0.0:
+				        allT = allT + sumT / times
+				        progressusersT=progressusersT+1
 				    progressusers=progressusers+1
 				elif valid>0:
+				    if sumT>0.0:
+				        print sumT
+				        allT = allT + sumT / times
+				        progressusersT=progressusersT+1
 				    progressusers=progressusers+1
+
 				allusers=allusers+1
 			except Progress.DoesNotExist:
 				pro = False
@@ -146,14 +174,26 @@ def statistics(request):
 		    context_dict['all'] = 0
 		    context_dict['hasall'] = False
 		    context_dict['percentageall'] = 100.0
-
+		if allT!=0:
+		    context_dict['hasTesting'] = True
+		    context_dict['allT'] = allT / progressusersT
+		    context_dict['percentageallT'] = (float(allT / progressusersT)/float(100))*100.0
+		else:
+		    context_dict['allT'] = 0
+		    context_dict['hasTesting'] = False
+		    context_dict['percentageallT'] = 100.0
 		context_dict['progressusers'] = progressusers
+		context_dict['progressusersT'] = progressusersT
 		if progressusers!=0:
 			context_dict['progressavailable'] = True
 			context_dict['percentage']=(float(activists)/float(allusers))*100.0
 		else:
 			context_dict['progressavailable'] = False
 			context_dict['percentage']=100.0
+		if progressusersT!=0:
+			context_dict['progressTavailable'] = True
+		else:
+			context_dict['progressTavailable'] = False
 		context_dict['allusers'] = allusers
 		context_dict['activists'] = activists
 		if activists!=0:
@@ -502,7 +542,7 @@ def profile(request,username):
 		                q=0
 		                qsum=0.0
 		                for quiz in quizzes:
-		                    sitting = Sitting.objects.filter(user=request.user, quiz=quiz).order_by('-end')[:1]
+		                    sitting = Sitting.objects.filter(user=request.user, quiz=quiz, testing=False).order_by('-end')[:1]
 		                    if sitting.count()>0:
 		                        percentage =  sitting[0].get_percent_correct
 		                        qsum=qsum+percentage
