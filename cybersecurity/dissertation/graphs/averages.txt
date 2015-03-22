@@ -1,0 +1,11 @@
+Theoretical Questions average:
+Malware: 74%
+Phishing Threats: 53%
+Spyware: 79%
+Man In The Middle Attack: 56%
+Average: 65.5%
+
+
+
+
+
