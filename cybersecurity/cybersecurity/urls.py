@@ -8,9 +8,6 @@ from trainingPortal import views
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'cybersecurity.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^admin/lookups/', include(ajax_select_urls)),
 	url(r'^forum/', include('pybb.urls', namespace='pybb')),

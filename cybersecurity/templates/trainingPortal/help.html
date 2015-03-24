@@ -7,6 +7,21 @@
  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+  <!-- Increase/Decrease font feature's source: http://www.programming-free.com/2013/12/increase-decrease-font-size-jquery.html -->
+  <script type="text/javascript">
+	 $(document).ready(function() {
+		$('#incfont').click(function(){
+        curSize= parseInt($('#content').css('font-size')) + 2;
+		if(curSize<=20)
+        $('#content').css('font-size', curSize);
+        });
+		$('#decfont').click(function(){
+        curSize= parseInt($('#content').css('font-size')) - 2;
+		if(curSize>=12)
+        $('#content').css('font-size', curSize);
+        });
+	});
+</script>
  <script>
  <!-- Source of the original function : http://jqueryui.com/dialog/#animated-->
   $(function() {
@@ -27,7 +42,7 @@
     });
   });
   </script>    {% endblock %}
-{% block page_title %}<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Help Centre&nbsp;</span>
+{% block page_title %}<span id="top" class="label label-info" style="background-color:#fb4186;border-color:#fb4186"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Help Centre&nbsp;</span>
 {% endblock %}
 	{% block content %}
 
@@ -42,7 +57,12 @@
 	</br>
 	  	{% endif %}
 	{% endif %}
-<div class="well" style"overflow: auto;">
+<div id="content" class="well" style"overflow: auto;">
+      <div id="fontlinks">
+        <div class="btn-group btn-group-sm">
+		<a href="#top" id="incfont" class="button buttonfont btn btn-primary"><span class="glyphicon glyphicon-font"></span>+</a>
+		<a href="#top" id="decfont" class="button buttonfont btn btn-primary"><span class="glyphicon glyphicon-font"></span>-</a>
+	</div>	</div>
 	    	</br>
   <!--  	<div class="row text-center">
     	<img class="img" src="/media/images/helper.png"/></div>-->

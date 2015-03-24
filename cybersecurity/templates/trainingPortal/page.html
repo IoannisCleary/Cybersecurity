@@ -4,6 +4,21 @@
 {% load thumbnail %}
 {% block title %}Page{% endblock %}
   {% block extra_head %}
+  <!-- Increase/Decrease font feature's source: http://www.programming-free.com/2013/12/increase-decrease-font-size-jquery.html -->
+  <script type="text/javascript">
+	 $(document).ready(function() {
+		$('#incfont').click(function(){
+        curSize= parseInt($('#content').css('font-size')) + 2;
+		if(curSize<=20)
+        $('#content').css('font-size', curSize);
+        });
+		$('#decfont').click(function(){
+        curSize= parseInt($('#content').css('font-size')) - 2;
+		if(curSize>=12)
+        $('#content').css('font-size', curSize);
+        });
+	});
+</script>
 <!--reference http://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_hide_show -->
 <script>
 $(document).ready(function(){
@@ -74,8 +89,13 @@ $(document).ready(function(){
 <div class="well" style="font-size:14px;background-color:#FCFCFC;width:92%;margin-left:4%;margin-right:4%; white-space: normal;">
 
 	 {% if set_learningType %}
-	<div class="container-fluid" style="background-color:#FCFCFC;overflow: auto;">
-
+	<div id="content"class="container-fluid" style="background-color:#FCFCFC;overflow: auto;">
+      <!-- Increase/Decrease font feature's source: http://www.programming-free.com/2013/12/increase-decrease-font-size-jquery.html -->
+    <div id="fontlinks">
+        <div class="btn-group btn-group-sm">
+		<a href="#top" id="incfont" class="button buttonfont btn btn-primary"><span class="glyphicon glyphicon-font"></span>+</a>
+		<a href="#top" id="decfont" class="button buttonfont btn btn-primary"><span class="glyphicon glyphicon-font"></span>-</a>
+	</div>	</div>
 	{% autoescape off %}<p>{{entry}}</p>{% endautoescape %}
 	</br>
 

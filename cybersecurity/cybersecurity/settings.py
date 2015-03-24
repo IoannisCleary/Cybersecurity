@@ -13,7 +13,7 @@ import os
 gettext = lambda s: s
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
-DATABASE_PATH = os.path.join(BASE_DIR, 'productfinder.db')
+DATABASE_PATH = os.path.join(BASE_DIR, 'trainingPortal.db')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
