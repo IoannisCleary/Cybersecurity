@@ -41,14 +41,14 @@
 			<ul class="list-group">
 			<div class="btn-group btn-block btn-group-horizontal  ">
 					{% for chapter in chapters %}
-					<li class="list-group-item"><button class="btn disabled btn-success">{{chapter.number}}</button><div class="btn-group "role="group">
+					<li class="list-group-item">	<div class="btn-group"><button class="btn disabled btn-success">{{chapter.number}}</button><div class="btn-group "role="group">
 						<div id="{{ chapter.url }}" title="Overview of {{ chapter.title }} chapter">
 							<p>	{% autoescape off %}{{ chapter.overview }}{% endautoescape %}</p>
 						</div>
 
 					<a href="/trainingPortal/chapter/{{ chapter.url }}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-list-alt"></span> {{ chapter.title }} <span class="badge">Open</span></a>
 					<button  type="button" class="btn btn-default" id="open_{{ chapter.url }}">Overview</button>
-					</div></li>
+					</div></div></li>
 					{% endfor %}
 			</div>
 			</ul>

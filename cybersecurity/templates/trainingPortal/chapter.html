@@ -36,8 +36,8 @@
 			<ul class="list-group">
 			<div class="btn-group btn-block btn-group-horizontal  ">
 					{% for page in pages %}
-					<li class="list-group-item"><button class="btn disabled btn-info">{{c.number}}.{{page.number}}</button><div class="btn-group "role="group">
-					<a href="/trainingPortal/chapter/{{ chapter }}/{{ page.url }}" class="btn btn-info" role="button"><span class="glyphicon glyphicon-file"></span> {{ page.title }} <span class="badge">Read</span></a>	</div></li>
+					<li class="list-group-item"><div class="btn-group"><button class="btn disabled btn-info">{{c.number}}.{{page.number}}</button><div class="btn-group "role="group">
+					<a href="/trainingPortal/chapter/{{ chapter }}/{{ page.url }}" class="btn btn-info" role="button"><span class="glyphicon glyphicon-file"></span> {{ page.title }} <span class="badge">Read</span></a>	</div></div></li>
 					{% endfor %}
 			</div
 			</ul>
@@ -49,10 +49,10 @@
 			<ul class="list-group">
 			<div class="btn-group btn-block btn-group-horizontal  ">
 					{% for quiz in quizzes %}
-					<li class="list-group-item"><button class="btn disabled btn-primary" style="background-color:#E45EBA;border-color:#FF6ED2;color:white;"><span class="glyphicon glyphicon-list-alt"></span></button><div class="btn-group "role="group">
-					<a href="/test/{{quiz.url}}" class="btn btn-primary" role="button"  style="background-color:#FF00AF;border-color:#FF6ED2;color:white;">{{ quiz.title }} <span class="badge" style="color:#FF00AF;">Take</span></a>
+					<li class="list-group-item"><div class="btn-group"><button class="btn disabled btn-primary" style="background-color:#E45EBA;border-color:#FF6ED2;color:white;"><span class="glyphicon glyphicon-list-alt"></span></button><div class="btn-group "role="group">
+					<a href="/test/{{quiz.url}}" class="btn btn-primary" role="button"  style="background-color:#FF00AF;border-color:#FF6ED2;color:white;">{{ quiz.title }} <span class="badge" style="color:#FF00AF;">Take</span></a></div></li>
 					{% endfor %}
-			</div
+			</div>
 			</ul>
 				{% else %}
             <strong>There are no quizzes for this chapter.</strong>
