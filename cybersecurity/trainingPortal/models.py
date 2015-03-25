@@ -36,7 +36,7 @@ class Announcement(models.Model):
     title = models.CharField(max_length=128)
     entry = models.CharField(max_length=250, null=False,blank=False)
     def __unicode__(self):
-		return self.title
+		return str(self.number)+' - ['+ self.title +'] '+(self.entry[:40] + ' ...')
     class Meta:
 		verbose_name_plural = "Announcements"
 class IndexElement(models.Model):
@@ -52,7 +52,7 @@ class Chapter(models.Model):
 	overview = RichTextField(config_name='default',default="Not available",help_text="This field displays the correct answer and the explanation why. If multipleMode is enabled it will display all the correct answers from the exercises above. (Remember to add a number to each exercise)")
 	quiz_category =  models.ForeignKey(Category, default=None,blank=True,null=True)
 	def __unicode__(self):
-		return self.title
+		return str(self.number)+' - '+self.title
 	class Meta:
 		verbose_name_plural = "Chapters"
 class Page(models.Model):
@@ -66,7 +66,7 @@ class Page(models.Model):
 	entry_Theorist_Type = RichTextField(config_name='awesome_ckeditor',help_text="This field is displayed when learningStyleMode is enabled. Theorist specific content",default="Empty")
 	entry_Pragmatist_Type = RichTextField(config_name='awesome_ckeditor',help_text="This field is displayed when learningStyleMode is enabled. Pragmatist specific content",default="Empty")
 	def __unicode__(self):
-		return self.title
+		return str(self.chapter.number)+'.'+str(self.number)+' '+self.title
 	class Meta:
 		verbose_name_plural = "Pages"
 		unique_together = (("chapter", "number"),)
@@ -88,7 +88,7 @@ class Exercise(models.Model):
 	availableAnswers = RichTextField(config_name='awesome_ckeditor',help_text="Used only when multipleMode is disabled. This field displays the available answers to this exercise",default="Empty")
 	correctAnswer = RichTextField(config_name='awesome_ckeditor',default="Not available",help_text="This field displays the correct answer and the explanation why. If multipleMode is enabled it will display all the correct answers from the exercises above. (Remember to add a number to each exercise)")
 	def __unicode__(self):
-		return self.question
+		return  str(self.chapter.number)+' : '+self.question
 	class Meta:
 		verbose_name_plural = "Exercises"
 		unique_together = (("chapter", "number"),)
@@ -102,7 +102,7 @@ class PageExercise(models.Model):
 	exercise_Theorist_id = models.ForeignKey(Exercise,related_name='exercise_Theorist')
 	exercise_Pragmatist_id = models.ForeignKey(Exercise,related_name='exercise_Pragmatist')
 	def __unicode__(self):
-		return self.chapter.title +' - '+self.page.title
+		return self.chapter.title +' - '+str(self.chapter.number)+'.'+str(self.page.number)+' '+self.page.title
 	class Meta:
 		verbose_name_plural = "PageExercises"
 		unique_together = (("chapter","page"),)
