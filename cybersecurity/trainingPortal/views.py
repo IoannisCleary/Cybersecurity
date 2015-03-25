@@ -239,7 +239,7 @@ def chapters(request):
 		context_dict = {'chapters': chapters}
 		context_dict['number'] = number
 		for chapter in chapters:
-			chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'', '_001_')
+		    chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'', '_001_')
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/chapters.html', context_dict)
 def about(request):
@@ -316,6 +316,8 @@ def page(request,chapter_title,page_title):
 		context_dict['set_learningType'] = completedLearningStyle(request.user)
 		title= page_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
 		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
+		print title
+		print chapter_tl
 		try:
 		    chapt = Chapter.objects.get(title = chapter_tl)
 		    page = Page.objects.get(chapter = chapt, title = title)
@@ -448,9 +450,12 @@ def page(request,chapter_title,page_title):
 		        if current == numberofPages:
 		            hasPrevious=True
 		            n = numberofPages - 1
-		            previous = Page.objects.get(chapter = chapt,number=n)
-		            pt = previous.title
-		            context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		            try:
+		                previous = Page.objects.get(chapter = chapt,number=n)
+		                pt = previous.title
+		                context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		            except Page.DoesNotExist:
+		                hasPrevious = False
 		        elif current == numberofPages-1:
 		            hasNext=True
 		            next = Page.objects.get(chapter = chapt,number=numberofPages)
@@ -459,33 +464,47 @@ def page(request,chapter_title,page_title):
 		            if current>1:
 		                hasPrevious=True
 		                n = current - 1
-		                previous = Page.objects.get(chapter = chapt,number=n)
-		                pt = previous.title
-		                context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		                try:
+		                    previous = Page.objects.get(chapter = chapt,number=n)
+		                    pt = previous.title
+		                    context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		                except Page.DoesNotExist:
+		                    hasPrevious = False
 		        elif current==1:
 		            hasNext=True
 		            n = current + 1
-		            next = Page.objects.get(chapter = chapt,number=n)
-		            nt = next.title
-		            context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		            try:
+		                next = Page.objects.get(chapter = chapt,number=n)
+		                nt = next.title
+		                context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		            except Page.DoesNotExist:
+		                hasNext = False
 		        else:
 		            hasNext=True
 		            n = current + 1
-		            next = Page.objects.get(chapter = chapt,number=n)
-		            nt = next.title
-		            context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		            try:
+		                next = Page.objects.get(chapter = chapt,number=n)
+		                nt = next.title
+		                context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		            except Page.DoesNotExist:
+		                hasNext = False
 		            hasPrevious=True
 		            p = current - 1
-		            previous = Page.objects.get(chapter = chapt,number=p)
-		            pt = previous.title
-		            context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		            try:
+		                previous = Page.objects.get(chapter = chapt,number=p)
+		                pt = previous.title
+		                context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		            except Page.DoesNotExist:
+		                hasPrevious = False
 		    context_dict ['pages'] = pages
 		    for page in pages:
 		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		except Page.DoesNotExist:
 		    exists= False
+		    print 'Page not Found'
 		except Chapter.DoesNotExist:
 		    exists= False
+		    print 'Chapter not Found'
 		chapters = Chapter.objects.order_by('title')
 		for chapter in chapters:
 		    chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
@@ -659,6 +678,7 @@ def profile(request,username):
 				exists = False
 		except User.DoesNotExist:
 			exists = False
+
 	context_dict['exists'] = exists
 	context_dict['personal'] = personal
 	return render(request, 'trainingPortal/profile.html', context_dict)
