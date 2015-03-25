@@ -148,10 +148,9 @@ class QuizTake(FormView):
         if self.logged_in_user:
             self.sitting = Sitting.objects.user_sitting(request.user,
                                                         self.quiz)
-            self.sitting.testing=testing.enable
+
         else:
             self.sitting = self.anon_load_sitting()
-            self.sitting.testing=testing.enable
 
         if self.sitting is False:
             return render(request, 'single_complete.html')
