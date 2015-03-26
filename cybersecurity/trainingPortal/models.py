@@ -8,7 +8,7 @@ from django.core.validators import MinValueValidator
 from quiz.models import Quiz,Category
 from ckeditor.fields import RichTextField
 
-LEARNING_TYPES = ( ('0','Not selected'), ('1','Activist'), ('2','Reflector'), ('3','Theorist'), ('4','Pragmatist'), )
+LEARNING_STYLES = ( ('0','Not selected'), ('1','Activist'), ('2','Reflector'), ('3','Theorist'), ('4','Pragmatist'), )
 TESTING_TYPES = ( ('0','A'), ('1','B'))
 
 # Create your models here.
@@ -21,7 +21,7 @@ class Profile(models.Model):
 		on_delete=models.SET_NULL,  # Important
 	)
 	age = models.IntegerField()
-	learningType = models.CharField(max_length=1,default='0',choices=LEARNING_TYPES)
+	learningStyle = models.CharField(max_length=1,default='0',choices=LEARNING_STYLES)
 	testingType =  models.CharField(max_length=1,default='0',choices=TESTING_TYPES)
 	def __unicode__(self):
 		return self.user.username
@@ -55,7 +55,7 @@ class Chapter(models.Model):
 		return str(self.number)+' - '+self.title
 	class Meta:
 		verbose_name_plural = "Chapters"
-class Page(models.Model):
+class Section(models.Model):
 	chapter = models.ForeignKey(Chapter)
 	number = models.IntegerField(default=1,validators=[MinValueValidator(1)],help_text="This field is used to sort the sections. Use a unique number")
 	title = models.CharField(blank=False,max_length=256)
@@ -68,7 +68,7 @@ class Page(models.Model):
 	def __unicode__(self):
 		return str(self.chapter.number)+'.'+str(self.number)+' '+self.title
 	class Meta:
-		verbose_name_plural = "Pages"
+		verbose_name_plural = "Sections"
 		unique_together = (("chapter", "number"),)
 class Exercise(models.Model):
 	disableMode =  models.BooleanField(default=False,help_text="If you don't want this exercise to appear or to make it an empty option")
@@ -93,16 +93,16 @@ class Exercise(models.Model):
 		verbose_name_plural = "Exercises"
 		unique_together = (("chapter", "number"),)
 
-class PageExercise(models.Model):
+class SectionExercise(models.Model):
 	chapter = models.ForeignKey(Chapter)
-	page = models.ForeignKey(Page)
+	section = models.ForeignKey(Section)
 	exercise_Default_id = models.ForeignKey(Exercise,related_name='exercise_Default')
 	exercise_Activist_id = models.ForeignKey(Exercise,related_name='exercise_Activist')
 	exercise_Reflector_id = models.ForeignKey(Exercise,related_name='exercise_Reflector')
 	exercise_Theorist_id = models.ForeignKey(Exercise,related_name='exercise_Theorist')
 	exercise_Pragmatist_id = models.ForeignKey(Exercise,related_name='exercise_Pragmatist')
 	def __unicode__(self):
-		return self.chapter.title +' - '+str(self.chapter.number)+'.'+str(self.page.number)+' '+self.page.title
+		return self.chapter.title +' - '+str(self.chapter.number)+'.'+str(self.section.number)+' '+self.section.title
 	class Meta:
-		verbose_name_plural = "PageExercises"
-		unique_together = (("chapter","page"),)
+		verbose_name_plural = "SectionExercises"
+		unique_together = (("chapter","section"),)

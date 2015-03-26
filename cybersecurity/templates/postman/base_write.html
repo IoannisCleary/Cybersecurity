@@ -24,11 +24,11 @@
 {% endblock %}
 {% block page_title %}
 <div class="btn-group" role="group" aria-label="...">
-<a type="button"class="btn btn-info" href="/messages/inbox/"><b> Inbox   <span class="glyphicon glyphicon-inbox"></span></b></a>
-<a href="/messages/write/" type="button "class="btn btn-warning"><b> Write   <span class="glyphicon glyphicon-pencil"></span></b></a>
-<a type="button"class="btn btn-primary" style="background-color:#9b30f4!important; border-color:#9b30f4!important" href="/messages/sent/"><b> Sent   <span class="glyphicon glyphicon-send"></span></b></a>
-<a href="/messages/trash/" type="button "class="btn btn-danger"><b> Trash   <span class="glyphicon glyphicon-trash"></span></b></a>
-<a href="/messages/archives/" type="button "class="btn btn-success"><b> Archives   <span class="glyphicon glyphicon-folder-open"></span></b></a></div>{% endblock %}
+<a type="button"class="btn btn-info" href="/trainingPortal/user/messages/inbox/"><b> Inbox   <span class="glyphicon glyphicon-inbox"></span></b></a>
+<a href="/trainingPortal/user/messages/write/" type="button "class="btn btn-warning"><b> Write   <span class="glyphicon glyphicon-pencil"></span></b></a>
+<a type="button"class="btn btn-primary" style="background-color:#9b30f4!important; border-color:#9b30f4!important" href="/trainingPortal/user/messages/sent/"><b> Sent   <span class="glyphicon glyphicon-send"></span></b></a>
+<a href="/trainingPortal/user/messages/trash/" type="button "class="btn btn-danger"><b> Trash   <span class="glyphicon glyphicon-trash"></span></b></a>
+<a href="/trainingPortal/user/messages/archives/" type="button "class="btn btn-success"><b> Archives   <span class="glyphicon glyphicon-folder-open"></span></b></a></div>{% endblock %}
 
 {% block content %}
 <div class="panel panel-primary"style="border-color:#f3a433!important">
@@ -44,7 +44,7 @@
 {{ form.as_table }}
 </table>
 </div>
-<div class="btn-group btn-group-lg" role="group"><button class="btn btn-warning"type="submit">{% trans "Send" %}</button></div>
+<div class="btn-group btn-group-lg" role="group"><button class="btn btn-warning"type="submit"><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;{% trans "Send" %}</button></div>
 </br>
 </form>
 </div>

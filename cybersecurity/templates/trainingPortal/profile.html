@@ -30,8 +30,8 @@ $(function () {
 
 	{% if exists %}
 		{% if personal %}
-	{% if user.profile.learningType == '0' %}
-		<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	{% if user.profile.learningStyle == '0' %}
+		<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
 	{% endif %}
 	 {% endif %}
@@ -75,9 +75,9 @@ $(function () {
                         <td><b>Quizzes taken:</b></td>
                         <td>{{quizCount}}</td>
                       </tr>
-	{% if set_learningType %}
+	{% if set_learningStyle %}
  <td><b>Learning Style:</b></td>
-                        <td>{{learningType}}</td>
+                        <td>{{learningStyle}}</td>
                       </tr>
 	 	</table>
 </div>

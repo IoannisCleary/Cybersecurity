@@ -36,7 +36,7 @@
 	{% block content %}
 <div class="well">
      {% if user.is_authenticated %}
-	 {% if set_learningType %}
+	 {% if set_learningStyle %}
 			{% if chapters %}
 			<ul class="list-group">
 			<div class="btn-group btn-block btn-group-horizontal  ">
@@ -56,7 +56,7 @@
             <strong>There are no chapters!</strong>
 			{% endif %}
 			{% else%}
-				<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+				<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
 	{% endif %}
 		{% else %}
