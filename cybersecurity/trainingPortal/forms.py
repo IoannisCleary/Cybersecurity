@@ -3,14 +3,14 @@ from trainingPortal.models import Profile
 from random import randint
 from django.contrib.auth.models import User
 
-class LearningStyleForm(forms.ModelForm):
+class LearningTypeForm(forms.ModelForm):
 	#LEARNING_TYPES = (('1','Activist'), ('2','Reflector'), ('3','Theorist'), ('4','Pragmatist'), )
 	#type = forms.ChoiceField(choices=LEARNING_TYPES, required=True, label="Enter learning type: ")
 	class Meta:
 		model = Profile
-		fields = ('learningStyle',)
+		fields = ('learningType',)
 		exclude = ('age','profile_pic','user')
-
+		
 class RegisterForm(forms.Form):
 	username = forms.CharField(max_length=25, label='Username (Note = Do not use real name.')
 	age = forms.IntegerField(label='Age')
@@ -30,4 +30,5 @@ class RegisterForm(forms.Form):
 		profile.save();
 		user.profile = profile
 		user.save()
-
+		
+	

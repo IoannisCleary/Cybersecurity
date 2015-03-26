@@ -10,18 +10,13 @@ in the INSTALLED_APPS setting.
 {% endcomment %}
 {% block page_title %}
 <div class="btn-group" role="group" aria-label="...">
-<a type="button"class="btn btn-info" href="/trainingPortal/user/messages/inbox/"><b> Inbox   <span class="glyphicon glyphicon-inbox"></span></b></a>
-<a href="/trainingPortal/user/messages/write/" type="button "class="btn btn-warning"><b> Write   <span class="glyphicon glyphicon-pencil"></span></b></a>
-<a type="button"class="btn btn-primary" style="background-color:#9b30f4!important; border-color:#9b30f4!important" href="/trainingPortal/user/messages/sent/"><b> Sent   <span class="glyphicon glyphicon-send"></span></b></a>
-<a href="/trainingPortal/user/messages/trash/" type="button "class="btn btn-danger"><b> Trash   <span class="glyphicon glyphicon-trash"></span></b></a>
-<a href="/trainingPortal/user/messages/archives/" type="button "class="btn btn-success"><b> Archives   <span class="glyphicon glyphicon-folder-open"></span></b></a></div>{% endblock %}
+<a type="button"class="btn btn-info" href="/messages/inbox/"><b> Inbox   <span class="glyphicon glyphicon-inbox"></span></b></a>
+<a href="/messages/write/" type="button "class="btn btn-warning"><b> Write   <span class="glyphicon glyphicon-pencil"></span></b></a>
+<a type="button"class="btn btn-primary" style="background-color:#9b30f4!important; border-color:#9b30f4!important" href="/messages/sent/"><b> Sent   <span class="glyphicon glyphicon-send"></span></b></a>
+<a href="/messages/trash/" type="button "class="btn btn-danger"><b> Trash   <span class="glyphicon glyphicon-trash"></span></b></a>
+<a href="/messages/archives/" type="button "class="btn btn-success"><b> Archives   <span class="glyphicon glyphicon-folder-open"></span></b></a></div>{% endblock %}
 
 {% block content %}
- {% if user.profile.learningStyle == '0' %}
- 				<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
-	</div>
-
-   {% endif %}
 <div class="well">
 <div id="postman">
 {% autopaginate pm_messages %}

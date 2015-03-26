@@ -5,18 +5,13 @@
 {% load i18n %}
 
 {% block title %}{{ PYBB_DEFAULT_TITLE }}{% endblock title %}
-{% block page_title %}<span class="label label-info" style="background-color:#AECF6C;border-color:#7AC402;color:white;">List of Forum Categories </span><p style="margin-left:20px;font-size:8px"></br></br>{{ PYBB_DEFAULT_TITLE }}</p>{% endblock page_title %}
+{% block page_title %}<span class="label label-info" style="background-color:#AECF6C;border-color:#7AC402;color:white;">List of Forums </span><p style="margin-left:20px;font-size:8px"></br></br>{{ PYBB_DEFAULT_TITLE }}</p>{% endblock page_title %}
 {% block breadcrumb %}
     {% with extra_crumb="Forum" %}{% include "pybb/breadcrumb.html" %}{% endwith %}
 {% endblock %}
 
 {% block content %}
  {% if user.is_authenticated %}
- {% if user.profile.learningStyle == '0' %}
- 				<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
-	</div>
-
-   {% endif %}
     {% if categories %}
         {% for category in categories %}
             {% include 'pybb/category.html' %}
@@ -38,7 +33,7 @@
     </br>
       </br>
       {% else %}
-        		<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login/?next=/trainingPortal/forum/" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+        		<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login/?next=/forum/" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
 		{% endif %}
         </br>

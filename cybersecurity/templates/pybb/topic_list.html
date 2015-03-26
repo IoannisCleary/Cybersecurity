@@ -22,11 +22,10 @@
         <tr class="topic-row {% if topic.sticky %} sticky {% endif %} {% cycle "odd" "even" %} {% if topic.on_moderation %} on-moderation {% endif %}">
             <td class="topic-name{% if topic.unread %} topic-unread{% endif %}">
                 <div class="state-indicator"></div>
-                <a href="{{ topic.get_absolute_url }}" class="btn btn-default" type="button">&nbsp;&nbsp;&nbsp;<b>{{ topic.name|truncatewords:10 }}&nbsp;&nbsp;</b>
-                {% if topic.sticky %} &nbsp;<span class="label label-warning">&nbsp;&nbsp;&nbsp;{% trans "Sticky" %}&nbsp;&nbsp; &nbsp;</span> {% endif %}
-                {% if topic.closed %} &nbsp;<span class="label label-danger">&nbsp;&nbsp;{% trans "Closed" %}&nbsp;&nbsp; </span>{% endif %}</a>
-                     <a href="{{ topic.get_absolute_url }}?first-unread=1" class="first-unread-post-link btn btn-success" title="{% trans 'Go to first unread post' %}">&nbsp;&nbsp;<span class="glyphicon glyphicon-hand-right"></span>&nbsp;</a>
-
+                <a href="{{ topic.get_absolute_url }}" class="btn btn-default" type="button">&nbsp;&nbsp;<span class="glyphicon glyphicon-apple"></span>&nbsp;<b>{{ topic.name|truncatewords:10 }}&nbsp;&nbsp;</b></a>
+                <a href="{{ topic.get_absolute_url }}?first-unread=1" class="first-unread-post-link btn btn-success" title="{% trans 'Go to first unread post' %}">&nbsp;&nbsp;⇨&nbsp;&nbsp;</a>
+                {% if topic.sticky %} &nbsp;[{% trans "Sticky" %}] {% endif %}
+                {% if topic.closed %} &nbsp;[{% trans "Closed" %}] {% endif %}
                 {% with topic|pybb_topic_inline_pagination as pages %}
                     {% if pages|length > 1 %}
                         <span class="mini-pagination">

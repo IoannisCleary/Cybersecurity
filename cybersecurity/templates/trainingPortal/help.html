@@ -50,8 +50,8 @@
 	<span class="label label-danger">Testing Mode</span>
 	{% endif %}
 	{% if user.is_authenticated %}
-		{% if set_learningStyle == False %}
-			<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+		{% if set_learningType == False %}
+			<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
 
 	</br>
@@ -231,7 +231,7 @@
   </br>
   <a class="new-topic btn btn-block btn-warning">&nbsp;<span class="glyphicon glyphicon-plus"></span>&nbsp;New topic</a>
  	     </br>
- 	     - Enter the topic's title  </br>
+ 	     - Enter the topic's page  </br>
  	     - Enter message  </br>
  	     - Select poll type (default = none)  </br>
  	     - Enter poll question if you have chosen to use a poll  </br>

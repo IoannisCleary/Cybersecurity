@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load thumbnail %}
-{% block title %}Section{% endblock %}
+{% block title %}Page{% endblock %}
   {% block extra_head %}
   <!-- Increase/Decrease font feature's source: http://www.programming-free.com/2013/12/increase-decrease-font-size-jquery.html -->
   <script type="text/javascript">
@@ -51,7 +51,7 @@ $(document).ready(function(){
 
 <div  class="well"style="margin-top:25px;">
     <div class="container-fluid"style="margin-top:10px;margin-left:10px;margin-right:10px;margin-bottom:10px;">
-<span class="label label-info">&nbsp;&nbsp; &nbsp;<b>{{chapter_number}}.{{section.number}} &nbsp;</b></span>
+<span class="label label-info">&nbsp;&nbsp; &nbsp;<b>{{chapter_number}}.{{page.number}} &nbsp;</b></span>
 <span  class="label label-default" ></span><b style="color:black;font-size: 82%">&nbsp; {{title}}</b>&nbsp;</span>   {% if hasExercise %}
 	      <a class="badge" href="#exercise"style="background-color:#069ACB!important;border-color:#25B0DE!important">Exercise Available</a>
 	        {% endif %}</br></div>
@@ -88,7 +88,7 @@ $(document).ready(function(){
 
 <div class="well" style="font-size:14px;background-color:#FCFCFC;width:92%;margin-left:4%;margin-right:4%; white-space: normal;">
 
-	 {% if set_learningStyle %}
+	 {% if set_learningType %}
 	<div id="content"class="container-fluid" style="background-color:#FCFCFC;overflow: auto;">
       <!-- Increase/Decrease font feature's source: http://www.programming-free.com/2013/12/increase-decrease-font-size-jquery.html -->
     <div id="fontlinks">
@@ -161,7 +161,7 @@ $(document).ready(function(){
 
 </br>
   {% else%}
-		<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+		<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
   {% endif %}
    {% else%}
@@ -214,10 +214,10 @@ $(document).ready(function(){
 
 
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-  {% if sections %}
+  {% if pages %}
   <li role="presentation" class="dropdown-header">Sections</li>
-					{% for section in sections %}
-						<li><a role="menuitem" tabindex="-1" href="/trainingPortal/chapter/{{ chapter_url }}/{{ section.url }}">{{ section.title }}</a></li>
+					{% for page in pages %}
+						<li><a role="menuitem" tabindex="-1" href="/trainingPortal/chapter/{{ chapter_url }}/{{ page.url }}">{{ page.title }}</a></li>
 					{% endfor %}
 
   </ul>

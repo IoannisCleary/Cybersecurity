@@ -18,8 +18,8 @@ $(function () {
 	<span class="label label-danger">Testing Mode</span>
 	{% endif %}
 	{% if user.is_authenticated %}
-		{% if set_learningStyle == False %}
-			<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+		{% if set_learningType == False %}
+			<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
 
 	</br>

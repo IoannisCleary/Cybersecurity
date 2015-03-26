@@ -57,7 +57,7 @@
       </div>
         <div class="navbar-collapse collapse" >
           <ul class="nav navbar-nav navbar-right" >
-                <li style="padding-right:1px;"><a href="{% url 'home' %}"> <span class="glyphicon glyphicon-home"></span>  &nbsp;Home</a></li>
+                <li style="padding-right:1px;"><a href="{% url 'index' %}"> <span class="glyphicon glyphicon-home"></span>  &nbsp;Home</a></li>
 
 
                     {% if user.is_authenticated %}
@@ -67,17 +67,17 @@
 							<a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-check"></span> &nbsp;Assessment <b class="caret"></b></a>
 							<ul class="dropdown-menu"style="background-color:#E0E0E0!important">
 							    {% if request.user.is_superuser %}
-								<li><a href="/trainingPortal/test/marking/"><span class="glyphicon glyphicon-pencil"></span> &nbsp;Mark quizzes</a></a>
+								<li><a href="/test/marking/"><span class="glyphicon glyphicon-pencil"></span> &nbsp;Mark quizzes</a></a>
 								{% endif %}
-								<li><a href="/trainingPortal/test/"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;Take a quiz</a></li>
+								<li><a href="/test/"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;Take a quiz</a></li>
 								 <li class="divider"></li>
-								<li><a href="/trainingPortal/test/progress"><span class="glyphicon glyphicon-font"></span> &nbsp;View Grade Breakdown</a></li>
+								<li><a href="/test/progress"><span class="glyphicon glyphicon-font"></span> &nbsp;View Grade Breakdown</a></li>
 							</ul>
 						</li>
 
-						<li style="padding-right:3px;"><a href="/trainingPortal/user/messages/inbox/"> <span class="glyphicon glyphicon-envelope"></span> &nbsp;Messages</a></li>
+						<li style="padding-right:3px;"><a href="/messages/inbox/"> <span class="glyphicon glyphicon-envelope"></span> &nbsp;Messages</a></li>
 						<li style="padding-right:3px;"><a href="/trainingPortal/user/profile/{{ user.username }}"> <b>{{user.username}}</b> &nbsp;<img class="img-rounded" style="width:20px;height:20px"src="/media/images/navprof.png"/></a></li>
-		<li style="padding-right:3px;"><a href="/trainingPortal/forum/"> <span class="glyphicon glyphicon-comment"></span> &nbsp;Forum</a></li>
+		<li style="padding-right:3px;"><a href="/forum/"> <span class="glyphicon glyphicon-comment"></span> &nbsp;Forum</a></li>
 
 						<li class="dropdown" style="padding-right:10px;background-color:#E1E1E1!important;color:black!imporant">
 							<a href="#" data-toggle="dropdown" class="dropdown-toggle"style="background-color:#E1E1E1!important"> &nbsp;<b class="caret"style="background-color:#E1E1E1!important;"></b> &nbsp;</a>

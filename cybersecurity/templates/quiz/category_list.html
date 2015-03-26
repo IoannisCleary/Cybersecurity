@@ -6,7 +6,7 @@
 {% block content %}
  {% if user.is_authenticated %}
 <h2>{% trans "Category list" %}</h2>
-{% if user.profile.learningStyle != '0' %}
+{% if user.profile.learningType != '0' %}
 <ul>
   {% for cat in category_list %}
   <li>
@@ -17,7 +17,7 @@
   {% endfor %}
 </ul>
 	{% else %}
-				<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+				<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
 	{% endif %}
 	{% else %}
