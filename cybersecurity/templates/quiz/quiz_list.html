@@ -11,7 +11,7 @@
   <div class="panel-heading" style="background-color:#006699;border-color:#80B2CC;color:white;">
     <h3 class="panel-title">List of quizzes</h3>
 	 </div>
-	 {% if user.profile.learningType != '0' %}
+	 {% if user.profile.learningStyle != '0' %}
     {% if quiz_list %}
 		<table class="table table-bordered table-striped table-responsive">
 
@@ -51,7 +51,7 @@
  </div>
  	{% else %}
 
-	<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningType/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
 </div>
 	 </div>
 	{% endif %}

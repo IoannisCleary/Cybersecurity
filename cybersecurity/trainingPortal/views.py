@@ -1,22 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from trainingPortal.models import Profile,Chapter,Page,Mode,PageExercise,Exercise,Announcement,IndexElement
-from trainingPortal.forms import LearningTypeForm
+from trainingPortal.models import Profile,Chapter,Section,Mode,SectionExercise,Exercise,Announcement,IndexElement
+from trainingPortal.forms import LearningStyleForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from quiz.models import Progress,Sitting,Quiz,Category
 
-LEARNING_TYPES = {'1':'Activist', '2':'Reflector', '3':'Theorist', '4':'Pragmatist' }
+LEARNING_STYLES = {'1':'Activist', '2':'Reflector', '3':'Theorist', '4':'Pragmatist' }
 def getMode():
 	testing = Mode.objects.get(name = 'testing')
 	return testing.enable
-def index(request):
+def home(request):
 	context_dict = {}
 	hasAnnouncement=False
 	hasIndex=False
 	if request.user.is_authenticated():
-		context_dict['set_learningType'] = completedLearningStyle(request.user)
+		context_dict['set_learningStyle'] = completedLearningStyle(request.user)
 		context_dict['testing'] = getMode()
 		try:
 		    announcements = Announcement.objects.all().order_by('-number')[:3]
@@ -34,19 +34,19 @@ def index(request):
 		context_dict['hasAnnouncement'] = hasAnnouncement
 
 
-	return render(request, 'trainingPortal/index.html', context_dict)
+	return render(request, 'trainingPortal/home.html', context_dict)
 
 def help(request):
 	context_dict = {}
 	if request.user.is_authenticated():
-		context_dict['set_learningType'] = completedLearningStyle(request.user)
+		context_dict['set_learningStyle'] = completedLearningStyle(request.user)
 		context_dict['testing'] = getMode()
 	return render(request, 'trainingPortal/help.html', context_dict)
 def statistics(request):
 	context_dict = {}
 	testing = getMode()
 	if request.user.is_authenticated():
-		context_dict['set_learningType'] = completedLearningStyle(request.user)
+		context_dict['set_learningStyle'] = completedLearningStyle(request.user)
 		users = User.objects.order_by('username')
 		all = 0.0
 		allT = 0.0
@@ -62,7 +62,7 @@ def statistics(request):
 			print user.username
 			try:
 				progress = Progress.objects.get(user=user)
-				type=user.profile.learningType
+				type=user.profile.learningStyle
 				if type=='1':
 					activists = activists + 1
 				if type=='2':
@@ -155,7 +155,7 @@ def statistics(request):
 			except Progress.DoesNotExist:
 				pro = False
 				allusers=allusers+1
-				type=user.profile.learningType
+				type=user.profile.learningStyle
 				if type=='1':
 					activists = activists + 1
 				if type=='2':
@@ -240,48 +240,48 @@ def chapters(request):
 		context_dict['number'] = number
 		for chapter in chapters:
 		    chapter.url = chapter.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'', '_001_')
-		context_dict['set_learningType'] = completedLearningStyle(request.user)
+		context_dict['set_learningStyle'] = completedLearningStyle(request.user)
 	return render(request, 'trainingPortal/chapters.html', context_dict)
 def about(request):
 	context_dict = {}
 	return render(request, 'trainingPortal/about.html', context_dict)
-def learningType(request):
+def learningStyle(request):
 	context_dict = {}
 	if request.user.is_authenticated():
-		context_dict['set_learningType'] = completedLearningStyle(request.user)
+		context_dict['set_learningStyle'] = completedLearningStyle(request.user)
 		if request.method == 'POST':
-			form = 	LearningTypeForm(request.POST)
+			form = 	LearningStyleForm(request.POST)
 			user = request.user
 			profile = user.profile
 			print profile
 			if form.is_valid():
-				form = 	LearningTypeForm(request.POST, instance=profile)
+				form = 	LearningStyleForm(request.POST, instance=profile)
 				form.save()
 				return index(request)
 			else:
 				print form.errors
 		else:
-			form = 	LearningTypeForm()
+			form = 	LearningStyleForm()
 		context_dict['form'] = form
-	return render(request, 'trainingPortal/learningtype.html', context_dict)
+	return render(request, 'trainingPortal/learningstyle.html', context_dict)
 def chapter(request,chapter_title):
 	context_dict = {}
 	exists = True
 	hasCat = True
 	hasQuiz = True
 	if request.user.is_authenticated():
-		context_dict['set_learningType'] = completedLearningStyle(request.user)
+		context_dict['set_learningStyle'] = completedLearningStyle(request.user)
 		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
 		try:
 		    chapt = Chapter.objects.get(title = chapter_tl)
-		    pages = Page.objects.filter(chapter = chapt)
-		    pages = pages.order_by('number')
+		    sections = Section.objects.filter(chapter = chapt)
+		    sections = sections.order_by('number')
 		    context_dict['chapter'] = chapter_title
 		    context_dict['c'] = chapt
 		    context_dict['title'] = chapter_tl
-		    context_dict['pages'] = pages
-		    for page in pages:
-		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		    context_dict['sections'] = sections
+		    for section in sections:
+		        section.url = section.title.replace(':','_111_').replace('=','_121_').replace('&', '_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		    try:
 		        quiz_cat = chapt.quiz_category
 		        quizzes = Quiz.objects.filter(category = quiz_cat)
@@ -302,7 +302,7 @@ def chapter(request,chapter_title):
 		context_dict['exists'] = exists
 
 	return render(request, 'trainingPortal/chapter.html', context_dict)
-def page(request,chapter_title,page_title):
+def section(request,chapter_title,section_title):
     context_dict = {}
     exists = True
     hasNext = False
@@ -313,23 +313,23 @@ def page(request,chapter_title,page_title):
     isFurtherReading = False
     chapNum=0
     if request.user.is_authenticated():
-		context_dict['set_learningType'] = completedLearningStyle(request.user)
-		title= page_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
+		context_dict['set_learningStyle'] = completedLearningStyle(request.user)
+		title= section_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
 		chapter_tl = chapter_title.replace('_111_',':').replace('_121_','=').replace('_131_','&').replace('_141_','(').replace('_142_',')').replace('_151_','[').replace('_152_',']').replace('_001_','\'').replace('_', ' ')
 		print title
 		print chapter_tl
 		try:
 		    chapt = Chapter.objects.get(title = chapter_tl)
-		    page = Page.objects.get(chapter = chapt, title = title)
+		    section = Section.objects.get(chapter = chapt, title = title)
 		    chapNum = chapt.number
-		    mode = page.learningStyleMode
+		    mode = section.learningStyleMode
 		    user = request.user
 		    profile = user.profile
 		    testing = getMode()
 		    context_dict['testing'] = testing
 		    if testing:
 		        try:
-		            exercises = PageExercise.objects.get(chapter = chapt,page = page)
+		            exercises = SectionExercise.objects.get(chapter = chapt,section = section)
 		            hasExercise = True
 		            if profile.testingType == '0':
 		                e = exercises.Default_Exercise_id
@@ -351,7 +351,7 @@ def page(request,chapter_title,page_title):
 		                        hasDiagram = False
 		            else:
 		                EXERCISE_TYPES = {'1':exercises.exercise_Activist_id, '2':exercises.exercise_Reflector_id, '3':exercises.exercise_Theorist_id, '4':exercises.exercise_Pragmatist_id }
-		                e = EXERCISE_TYPES.get(profile.learningType)
+		                e = EXERCISE_TYPES.get(profile.learningStyle)
 		                context_dict ['exercise'] = e
 		                if not e.disableMode and not e.multipleMode and not e.furtherReadingMode and not e.diagramMode :
 		                        hasExercise = False
@@ -369,25 +369,25 @@ def page(request,chapter_title,page_title):
 		                    else:
 		                        hasDiagram = False
 
-		        except PageExercise.DoesNotExist:
+		        except SectionExercise.DoesNotExist:
 		            hasExercise = False
 		        except Exercise.DoesNotExist:
 		             hasExercise = False
 		        if profile.testingType == '0':
-		            context_dict ['entry'] = page.entry_default
+		            context_dict ['entry'] = section.entry_default
 		        else:
 		            if mode:
-		                ENTRY_TYPES = {'1':page.entry_Activist_Type, '2':page.entry_Reflector_Type, '3':page.entry_Theorist_Type, '4':page.entry_Pragmatist_Type }
-		                context_dict['entry'] = ENTRY_TYPES.get(profile.learningType)
+		                ENTRY_TYPES = {'1':section.entry_Activist_Type, '2':section.entry_Reflector_Type, '3':section.entry_Theorist_Type, '4':section.entry_Pragmatist_Type }
+		                context_dict['entry'] = ENTRY_TYPES.get(profile.learningStyle)
 		            else:
-		                context_dict ['entry'] = page.entry_default
+		                context_dict ['entry'] = section.entry_default
 		    else:
 		        if mode:
 		            try:
-		                exercises = PageExercise.objects.get(chapter = chapt,page = page)
+		                exercises = SectionExercise.objects.get(chapter = chapt,section = section)
 		                hasExercise = True
 		                EXERCISE_TYPES = {'1':exercises.exercise_Activist_id, '2':exercises.exercise_Reflector_id, '3':exercises.exercise_Theorist_id, '4':exercises.exercise_Pragmatist_id }
-		                e = EXERCISE_TYPES.get(profile.learningType)
+		                e = EXERCISE_TYPES.get(profile.learningStyle)
 		                context_dict ['exercise'] = e
 		                if not e.disableMode and not e.multipleMode and not e.furtherReadingMode and not e.diagramMode :
 		                        hasExercise = False
@@ -404,15 +404,15 @@ def page(request,chapter_title,page_title):
 		                        hasDiagram = True
 		                    else:
 		                        hasDiagram = False
-		            except PageExercise.DoesNotExist:
+		            except SectionExercise.DoesNotExist:
 		                hasExercise = False
 		            except Exercise.DoesNotExist:
 		                hasExercise = False
-		            ENTRY_TYPES = {'1':page.entry_Activist_Type, '2':page.entry_Reflector_Type, '3':page.entry_Theorist_Type, '4':page.entry_Pragmatist_Type }
-		            context_dict['entry'] = ENTRY_TYPES.get(profile.learningType)
+		            ENTRY_TYPES = {'1':section.entry_Activist_Type, '2':section.entry_Reflector_Type, '3':section.entry_Theorist_Type, '4':section.entry_Pragmatist_Type }
+		            context_dict['entry'] = ENTRY_TYPES.get(profile.learningStyle)
 		        else:
 		            try:
-		                exercises = PageExercise.objects.get(chapter = chapt,page = page)
+		                exercises = SectionExercise.objects.get(chapter = chapt,section = section)
 		                hasExercise = True
 		                e = exercises.exercise_Default_id
 		                context_dict ['exercise'] = e
@@ -432,76 +432,76 @@ def page(request,chapter_title,page_title):
 		                        context_dict ['diagram'] = e.diagram
 		                    else:
 		                        hasDiagram = False
-		            except PageExercise.DoesNotExist:
+		            except SectionExercise.DoesNotExist:
 		                hasExercise = False
 		            except Exercise.DoesNotExist:
 		                hasExercise = False
-		            context_dict ['entry'] = page.entry_default
+		            context_dict ['entry'] = section.entry_default
 		    context_dict ['chapter_url'] = chapter_title
 		    context_dict ['chapter'] = chapter_tl
 		    context_dict ['chapter_number'] = chapNum
 		    context_dict ['title'] = title
-		    context_dict ['page'] = page
-		    pages = Page.objects.filter(chapter = chapt)
-		    numberofPages = Page.objects.filter(chapter = chapt).count()
-		    context_dict ['count'] = numberofPages
-		    current = page.number
-		    if numberofPages > 1:
-		        if current == numberofPages:
+		    context_dict ['section'] = section
+		    sections = Section.objects.filter(chapter = chapt)
+		    numberofSections = Section.objects.filter(chapter = chapt).count()
+		    context_dict ['count'] = numberofSections
+		    current = section.number
+		    if numberofSections > 1:
+		        if current == numberofSections:
 		            hasPrevious=True
-		            n = numberofPages - 1
+		            n = numberofSections - 1
 		            try:
-		                previous = Page.objects.get(chapter = chapt,number=n)
+		                previous = Section.objects.get(chapter = chapt,number=n)
 		                pt = previous.title
 		                context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
-		            except Page.DoesNotExist:
+		            except Section.DoesNotExist:
 		                hasPrevious = False
-		        elif current == numberofPages-1:
+		        elif current == numberofSections-1:
 		            hasNext=True
-		            next = Page.objects.get(chapter = chapt,number=numberofPages)
+		            next = Section.objects.get(chapter = chapt,number=numberofSections)
 		            nt=next.title
 		            context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
 		            if current>1:
 		                hasPrevious=True
 		                n = current - 1
 		                try:
-		                    previous = Page.objects.get(chapter = chapt,number=n)
+		                    previous = Section.objects.get(chapter = chapt,number=n)
 		                    pt = previous.title
 		                    context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
-		                except Page.DoesNotExist:
+		                except Section.DoesNotExist:
 		                    hasPrevious = False
 		        elif current==1:
 		            hasNext=True
 		            n = current + 1
 		            try:
-		                next = Page.objects.get(chapter = chapt,number=n)
+		                next = Section.objects.get(chapter = chapt,number=n)
 		                nt = next.title
 		                context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
-		            except Page.DoesNotExist:
+		            except Section.DoesNotExist:
 		                hasNext = False
 		        else:
 		            hasNext=True
 		            n = current + 1
 		            try:
-		                next = Page.objects.get(chapter = chapt,number=n)
+		                next = Section.objects.get(chapter = chapt,number=n)
 		                nt = next.title
 		                context_dict['next'] = nt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
-		            except Page.DoesNotExist:
+		            except Section.DoesNotExist:
 		                hasNext = False
 		            hasPrevious=True
 		            p = current - 1
 		            try:
-		                previous = Page.objects.get(chapter = chapt,number=p)
+		                previous = Section.objects.get(chapter = chapt,number=p)
 		                pt = previous.title
 		                context_dict['previous'] = pt.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
-		            except Page.DoesNotExist:
+		            except Section.DoesNotExist:
 		                hasPrevious = False
-		    context_dict ['pages'] = pages
-		    for page in pages:
-		        page.url = page.title.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
-		except Page.DoesNotExist:
+		    context_dict ['sections'] = sections
+		    for section in sections:
+		        section.url = section.title.replace(':','_111_').replace('=','_121_').replace('&','_131_').replace(' ', '_').replace('(', '_141_').replace(')', '_142_').replace('[','_151_').replace(']', '_152_').replace('\'','_001_')
+		except Section.DoesNotExist:
 		    exists= False
-		    print 'Page not Found'
+		    print 'Section not Found'
 		except Chapter.DoesNotExist:
 		    exists= False
 		    print 'Chapter not Found'
@@ -517,7 +517,7 @@ def page(request,chapter_title,page_title):
 		context_dict['hasNext'] = hasNext
 		context_dict['hasPrevious'] = hasPrevious
 		context_dict['furtherReading']	= isFurtherReading
-    return render(request, 'trainingPortal/page.html', context_dict)
+    return render(request, 'trainingPortal/section.html', context_dict)
 
 def profile(request,username):
 	context_dict = {"username" : username}
@@ -529,7 +529,7 @@ def profile(request,username):
 
 	context_dict['testing'] = testing
 	if request.user.is_authenticated():
-		context_dict['set_learningType'] = completedLearningStyle(request.user)
+		context_dict['set_learningStyle'] = completedLearningStyle(request.user)
 		if request.user.username == username:
 		    personal = True
 		    try:
@@ -625,7 +625,7 @@ def profile(request,username):
 			try:
 				profile = Profile.objects.get(user = usr)
 				context_dict['age'] = profile.age
-				context_dict['learningType'] = LEARNING_TYPES.get(profile.learningType)
+				context_dict['learningStyle'] = LEARNING_STYLES.get(profile.learningStyle)
 				#learning style
 				try:
 				    progress = Progress.objects.get(user=usr)
@@ -683,7 +683,7 @@ def profile(request,username):
 	context_dict['personal'] = personal
 	return render(request, 'trainingPortal/profile.html', context_dict)
 def completedLearningStyle(user):
-	if (user.profile.learningType == '0'):
+	if (user.profile.learningStyle == '0'):
 		return False
 	else :
 		return True

@@ -23,7 +23,7 @@
             <tr class="forum-row">
                 <td class="forum-name {% if forum.unread %} forum-unread{% endif %}">
                     <div class="state-indicator"></div>
-                    <a class="btn btn-default" type="button" href="{{ forum.get_absolute_url }}">&nbsp;&nbsp;&nbsp;<b>{{ forum.name }}&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></b></a> {% if forum.hidden %}[{% trans "Hidden" %}]{% endif %}
+                    <a class="btn btn-default" type="button" href="{{ forum.get_absolute_url }}">&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;<b>{{ forum.name }}&nbsp;</b></a> {% if forum.hidden %}[{% trans "Hidden" %}]{% endif %}
                     <div class="forum-description">
                         {{ forum.description|safe }}
                     </div>

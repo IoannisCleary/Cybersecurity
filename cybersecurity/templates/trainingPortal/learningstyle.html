@@ -6,7 +6,7 @@
 {% block page_title %}<span class="label label-danger">Learning Style</span>{% endblock %}
 	{% block content %}
 	     {% if user.is_authenticated %}
-		 		{% if set_learningType == False %}
+		 		{% if set_learningStyle == False %}
 	<div class="well">
 	</br>
 Complete <b>one</b> of the following questionnaires based on Honey & Mumford's learning style:
@@ -28,7 +28,7 @@ Complete <b>one</b> of the following questionnaires based on Honey & Mumford's l
 
 				</br>
 	</br>
-	<form id="learningTypeForm" method="post" action="/trainingPortal/learningType/">
+	<form id="learningStyleForm" method="post" action="/trainingPortal/learningStyleCompletion/">
 	And then select the <b>learning style</b> you have the <b>highest score</b> in:</br></br>
 	    {% csrf_token %}
             {% for field in form.visible_fields %}
