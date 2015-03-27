@@ -85,6 +85,8 @@ INSTALLED_APPS = (
 	#django-allauth
 	'allauth',
 	'allauth.account',
+	'allauth.socialaccount',
+	'allauth.socialaccount.providers.facebook',
 	'djangocms_file',
 	'djangocms_flash',
 	'djangocms_picture',

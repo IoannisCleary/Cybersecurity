@@ -39,3 +39,8 @@
 -- Email: (any email address)
 -- Password: (any password)
 - python manage.py collectstatic
+-http://localhost:8000/admin/socialaccount/socialapp/add/
+-- Provider: Facebook
+-- name: fb_login
+client id : 1587008694862538
+secret key: c38db5ed683868ddb376027412cd375d
