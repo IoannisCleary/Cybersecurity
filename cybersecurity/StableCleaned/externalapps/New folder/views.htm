@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>views.py : /home/CybersecurityProject/.virtualenvs/cyber/lib/python2.7/site-packages/pybb/views.py : Editor : CybersecurityProject : PythonAnywhere</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="views.py : /home/CybersecurityProject/.virtualenvs/cyber/lib/python2.7/site-packages/pybb/views.py : Editor : CybersecurityProject : PythonAnywhere">
+        <meta name="author" content="PythonAnywhere LLP">
+        <meta name="google-site-verification" content="O4UxDrfcHjC44jybs2vajc1GgRkTKCTRgVzeV6I9V14" />
+
+
+        <!-- Le styles -->
+        <link rel="stylesheet" href="/static/CACHE/css/406eabe8ff2b.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="/static/CACHE/css/f2e4190bb326.css" type="text/css" media="screen" />
+
+        <!-- Le javascript -->
+        <script type="text/javascript">
+            var urls = {};
+            var Anywhere = {};
+            Anywhere.urls = {};
+            Anywhere.csrfToken = "e3ad4de1be445d869a2e1861c5d0c951";
+        </script>
+        <script type="text/javascript" src="/static/CACHE/js/a1cfb7dec2b5.js"></script>
+        
+
+        <script type="text/javascript" src="/static/CACHE/js/a614bec3b8ec.js"></script>
+        
+    <script type="text/javascript">
+        $(function() {
+            $.extend(urls, {
+                save: '/user/CybersecurityProject/files/home/CybersecurityProject/.virtualenvs/cyber/lib/python2.7/site-packages/pybb/views.py',
+                check_hash: '/user/CybersecurityProject/files/home/CybersecurityProject/.virtualenvs/cyber/lib/python2.7/site-packages/pybb/views.py',
+                run: '/user/CybersecurityProject/files/home/CybersecurityProject/.virtualenvs/cyber/lib/python2.7/site-packages/pybb/views.py' + '?run',
+                update_editor_mode_preference: '/user/CybersecurityProject/account/update_editor_mode_preference',
+
+            });
+            $.extend(Anywhere.urls, urls);
+            var filename = "/home/CybersecurityProject/.virtualenvs/cyber/lib/python2.7/site-packages/pybb/views.py";
+            var hash = "46edbeaa5353bce98aa34a8f905148f5";
+            Anywhere.Editor.InitialiseAce(ace, urls, filename, hash);
+            Anywhere.Editor.resetEditorState({pyflakes_warnings: [] });
+            $("#id_keybinding_mode_select").val("normal");
+            $("#id_keybinding_mode_select").trigger("change");
+
+            Anywhere.WebAppControl.initialize();
+        });
+    </script>
+
+        
+
+        <!-- Le fav and touch icons -->
+        <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+
+
+    </head>
+
+     <body>
+        
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div id="id_internal_nav_bar_container" class="container">
+                <div class="row">
+                    <div class="span4">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="/"><img id="id_logo" src="/static/anywhere/images/logo-234x35.png" height="35" title="PythonAnywhere logo" alt="PythonAnywhere logo" /></a>
+                    </div>
+                    <div class="nav-collapse span8 right_hand_links">
+                        <div class="row">
+                            <ul id="id_header_links" class="nav ">
+                                <li><a id="id_feedback_link" class='feedback_link' href="">Send feedback</a></li>
+                                <li><a id="id_forums_link" href="/forums/">Forums</a></li>
+                                <li><a href="/wiki/" id="id_help_link">Help</a></li>
+                                <li><a href="http://blog.pythonanywhere.com/" id="id_blog_link">Blog</a></li>
+                                
+                                
+                                    <li><a href="/user/CybersecurityProject/" id="id_dashboard_link">Dashboard</a></li>
+                                    <li><a href="/user/CybersecurityProject/account/" id="id_account_link">Account</a></li>
+                                    <li><a href="/logout" id="id_logout_link">Log out</a></li>
+                                
+                            </ul>
+                        </div>
+
+                        
+                            
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+
+        
+    
+
+
+        
+
+<div>
+
+    <div id="id_editor_toolbar">
+
+      <span id="id_breadcrumbs_div">
+            
+                <a class="breadcrumbs_link" href="/user/CybersecurityProject/files/">/</a> &gt;
+            
+                <a class="breadcrumbs_link" href="/user/CybersecurityProject/files/home">home</a> &gt;
+            
+                <a class="breadcrumbs_link" href="/user/CybersecurityProject/files/home/CybersecurityProject">CybersecurityProject</a> &gt;
+            
+                <a class="breadcrumbs_link" href="/user/CybersecurityProject/files/home/CybersecurityProject/.virtualenvs">.virtualenvs</a> &gt;
+            
+                <a class="breadcrumbs_link" href="/user/CybersecurityProject/files/home/CybersecurityProject/.virtualenvs/cyber">cyber</a> &gt;
+            
+                <a class="breadcrumbs_link" href="/user/CybersecurityProject/files/home/CybersecurityProject/.virtualenvs/cyber/lib">lib</a> &gt;
+            
+                <a class="breadcrumbs_link" href="/user/CybersecurityProject/files/home/CybersecurityProject/.virtualenvs/cyber/lib/python2.7">python2.7</a> &gt;
+            
+                <a class="breadcrumbs_link" href="/user/CybersecurityProject/files/home/CybersecurityProject/.virtualenvs/cyber/lib/python2.7/site-packages">site-packages</a> &gt;
+            
+                <a class="breadcrumbs_link" href="/user/CybersecurityProject/files/home/CybersecurityProject/.virtualenvs/cyber/lib/python2.7/site-packages/pybb">pybb</a> &gt;
+            
+        <span id="id_file_name">views.py</span>
+        <span id="id_unsaved_changes_spacer">
+          <span id="id_unsaved_changes" class="pa_hidden">*</span>
+        </span>
+      </span>
+      <img src="/static/anywhere/images/spinner-small.gif" class="pa_hidden" id="id_save_spinner" />
+      <div id="id_editor_buttons_right" class="form-inline">
+
+          <span id="id_keyboard_shortcuts"><a href="#">Keyboard shortcuts</a></span>
+          <select id="id_keybinding_mode_select" class="input-small">
+              <option value="normal">Normal</option>
+              <option value="vim">Vim</option>
+          </select>
+          <button class="btn" id="id_save">Save</button>
+          <span id="id_save_error" class="error_message pa_hidden">There was an error saving</span>
+          
+              <button class="btn" id="id_run_button">Save &amp; Run</button>
+          
+
+          
+          
+          
+
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div id="id_editor"># -*- coding: utf-8 -*-
+
+from __future__ import unicode_literals
+import math
+
+from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
+from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
+from django.contrib import messages
+from django.db.models import F, Q
+from django.http import HttpResponseRedirect, HttpResponse, Http404, HttpResponseBadRequest,\
+    HttpResponseForbidden
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.translation import ugettext as _
+from django.utils.decorators import method_decorator
+from django.views.decorators.http import require_POST
+from django.views.generic.edit import ModelFormMixin
+from django.views.decorators.csrf import csrf_protect
+from django.views import generic
+from pybb import compat, defaults, util
+from pybb.forms import PostForm, AdminPostForm, AttachmentFormSet, PollAnswerFormSet, PollForm
+from pybb.models import Category, Forum, Topic, Post, TopicReadTracker, ForumReadTracker, PollAnswerUser
+from pybb.permissions import perms
+from pybb.templatetags.pybb_tags import pybb_topic_poll_not_voted
+
+
+User = compat.get_user_model()
+username_field = compat.get_username_field()
+Paginator, pure_pagination = compat.get_paginator_class()
+
+
+class PaginatorMixin(object):
+    def get_paginator(self, queryset, per_page, orphans=0, allow_empty_first_page=True, **kwargs):
+        kwargs = {}
+        if pure_pagination:
+            kwargs[&#39;request&#39;] = self.request
+        return Paginator(queryset, per_page, orphans=0, allow_empty_first_page=True, **kwargs)
+
+
+class RedirectToLoginMixin(object):
+    &quot;&quot;&quot; mixin which redirects to settings.LOGIN_URL if the view encounters an PermissionDenied exception
+        and the user is not authenticated. Views inheriting from this need to implement
+        get_login_redirect_url(), which returns the URL to redirect to after login (parameter &quot;next&quot;)
+    &quot;&quot;&quot;
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            return super(RedirectToLoginMixin, self).dispatch(request, *args, **kwargs)
+        except PermissionDenied:
+            if not request.user.is_authenticated():
+                from django.contrib.auth.views import redirect_to_login
+                return redirect_to_login(self.get_login_redirect_url())
+            else:
+                return HttpResponseForbidden()
+
+    def get_login_redirect_url(self):
+        &quot;&quot;&quot; get the url to which we redirect after the user logs in. subclasses should override this &quot;&quot;&quot;
+        return &#39;/&#39;
+
+
+class IndexView(generic.ListView):
+
+    template_name = &#39;pybb/index.html&#39;
+    context_object_name = &#39;categories&#39;
+
+    def get_context_data(self, **kwargs):
+        ctx = super(IndexView, self).get_context_data(**kwargs)
+        categories = ctx[&#39;categories&#39;]
+        for category in categories:
+            category.forums_accessed = perms.filter_forums(self.request.user, category.forums.filter(parent=None))
+        ctx[&#39;categories&#39;] = categories
+        return ctx
+
+    def get_queryset(self):
+        return perms.filter_categories(self.request.user, Category.objects.all())
+
+
+class CategoryView(RedirectToLoginMixin, generic.DetailView):
+
+    template_name = &#39;pybb/index.html&#39;
+    context_object_name = &#39;category&#39;
+
+    def get_login_redirect_url(self):
+        return reverse(&#39;pybb:category&#39;, args=(self.kwargs[&#39;pk&#39;],))
+
+    def get_queryset(self):
+        return Category.objects.all()
+
+    def get_object(self, queryset=None):
+        obj = super(CategoryView, self).get_object(queryset)
+        if not perms.may_view_category(self.request.user, obj):
+            raise PermissionDenied
+        return obj
+
+    def get_context_data(self, **kwargs):
+        ctx = super(CategoryView, self).get_context_data(**kwargs)
+        ctx[&#39;category&#39;].forums_accessed = perms.filter_forums(self.request.user, ctx[&#39;category&#39;].forums.filter(parent=None))
+        ctx[&#39;categories&#39;] = [ctx[&#39;category&#39;]]
+        return ctx
+
+
+class ForumView(RedirectToLoginMixin, PaginatorMixin, generic.ListView):
+
+    paginate_by = defaults.PYBB_FORUM_PAGE_SIZE
+    context_object_name = &#39;topic_list&#39;
+    template_name = &#39;pybb/forum.html&#39;
+
+    def get_login_redirect_url(self):
+        return reverse(&#39;pybb:forum&#39;, args=(self.kwargs[&#39;pk&#39;],))
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ForumView, self).get_context_data(**kwargs)
+        ctx[&#39;forum&#39;] = self.forum
+        ctx[&#39;forum&#39;].forums_accessed = perms.filter_forums(self.request.user, self.forum.child_forums.all())
+        return ctx
+
+    def get_queryset(self):
+        self.forum = get_object_or_404(Forum.objects.all(), pk=self.kwargs[&#39;pk&#39;])
+        if not perms.may_view_forum(self.request.user, self.forum):
+            raise PermissionDenied
+
+        qs = self.forum.topics.order_by(&#39;-sticky&#39;, &#39;-updated&#39;, &#39;-id&#39;).select_related()
+        qs = perms.filter_topics(self.request.user, qs)
+        return qs
+
+
+class LatestTopicsView(PaginatorMixin, generic.ListView):
+
+    paginate_by = defaults.PYBB_FORUM_PAGE_SIZE
+    context_object_name = &#39;topic_list&#39;
+    template_name = &#39;pybb/latest_topics.html&#39;
+
+    def get_queryset(self):
+        qs = Topic.objects.all().select_related()
+        qs = perms.filter_topics(self.request.user, qs)
+        return qs.order_by(&#39;-updated&#39;, &#39;-id&#39;)
+
+
+class TopicView(RedirectToLoginMixin, PaginatorMixin, generic.ListView):
+    paginate_by = defaults.PYBB_TOPIC_PAGE_SIZE
+    template_object_name = &#39;post_list&#39;
+    template_name = &#39;pybb/topic.html&#39;
+
+    post_form_class = PostForm
+    admin_post_form_class = AdminPostForm
+    poll_form_class = PollForm
+    attachment_formset_class = AttachmentFormSet
+
+    def get_login_redirect_url(self):
+        return reverse(&#39;pybb:topic&#39;, args=(self.kwargs[&#39;pk&#39;],))
+
+    def get_post_form_class(self):
+        return self.post_form_class
+
+    def get_admin_post_form_class(self):
+        return self.admin_post_form_class
+
+    def get_poll_form_class(self):
+        return self.poll_form_class
+
+    def get_attachment_formset_class(self):
+        return self.attachment_formset_class
+
+    @method_decorator(csrf_protect)
+    def dispatch(self, request, *args, **kwargs):
+        self.topic = get_object_or_404(Topic.objects.select_related(&#39;forum&#39;), pk=kwargs[&#39;pk&#39;])
+
+        if request.GET.get(&#39;first-unread&#39;):
+            if request.user.is_authenticated():
+                read_dates = []
+                try:
+                    read_dates.append(TopicReadTracker.objects.get(user=request.user, topic=self.topic).time_stamp)
+                except TopicReadTracker.DoesNotExist:
+                    pass
+                try:
+                    read_dates.append(ForumReadTracker.objects.get(user=request.user, forum=self.topic.forum).time_stamp)
+                except ForumReadTracker.DoesNotExist:
+                    pass
+
+                read_date = read_dates and max(read_dates)
+                if read_date:
+                    try:
+                        first_unread_topic = self.topic.posts.filter(created__gt=read_date).order_by(&#39;created&#39;, &#39;id&#39;)[0]
+                    except IndexError:
+                        first_unread_topic = self.topic.last_post
+                else:
+                    first_unread_topic = self.topic.head
+                return HttpResponseRedirect(reverse(&#39;pybb:post&#39;, kwargs={&#39;pk&#39;: first_unread_topic.id}))
+
+        return super(TopicView, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        if not perms.may_view_topic(self.request.user, self.topic):
+            raise PermissionDenied
+        if self.request.user.is_authenticated() or not defaults.PYBB_ANONYMOUS_VIEWS_CACHE_BUFFER:
+            Topic.objects.filter(id=self.topic.id).update(views=F(&#39;views&#39;) + 1)
+        else:
+            cache_key = util.build_cache_key(&#39;anonymous_topic_views&#39;, topic_id=self.topic.id)
+            cache.add(cache_key, 0)
+            if cache.incr(cache_key) % defaults.PYBB_ANONYMOUS_VIEWS_CACHE_BUFFER == 0:
+                Topic.objects.filter(id=self.topic.id).update(views=F(&#39;views&#39;) +
+                                                                    defaults.PYBB_ANONYMOUS_VIEWS_CACHE_BUFFER)
+                cache.set(cache_key, 0)
+        qs = self.topic.posts.all().select_related(&#39;user&#39;)
+        if defaults.PYBB_PROFILE_RELATED_NAME:
+            qs = qs.select_related(&#39;user__%s&#39; % defaults.PYBB_PROFILE_RELATED_NAME)
+        if not perms.may_moderate_topic(self.request.user, self.topic):
+            qs = perms.filter_posts(self.request.user, qs)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        ctx = super(TopicView, self).get_context_data(**kwargs)
+
+        if self.request.user.is_authenticated():
+            self.request.user.is_moderator = perms.may_moderate_topic(self.request.user, self.topic)
+            self.request.user.is_subscribed = self.request.user in self.topic.subscribers.all()
+            if perms.may_post_as_admin(self.request.user):
+                ctx[&#39;form&#39;] = self.get_admin_post_form_class()(
+                    initial={&#39;login&#39;: getattr(self.request.user, username_field)},
+                    topic=self.topic)
+            else:
+                ctx[&#39;form&#39;] = self.get_post_form_class()(topic=self.topic)
+            self.mark_read(self.request.user, self.topic)
+        elif defaults.PYBB_ENABLE_ANONYMOUS_POST:
+            ctx[&#39;form&#39;] = self.get_post_form_class()(topic=self.topic)
+        else:
+            ctx[&#39;form&#39;] = None
+            ctx[&#39;next&#39;] = self.get_login_redirect_url()
+        if perms.may_attach_files(self.request.user):
+            aformset = self.get_attachment_formset_class()()
+            ctx[&#39;aformset&#39;] = aformset
+        if defaults.PYBB_FREEZE_FIRST_POST:
+            ctx[&#39;first_post&#39;] = self.topic.head
+        else:
+            ctx[&#39;first_post&#39;] = None
+        ctx[&#39;topic&#39;] = self.topic
+
+        if perms.may_vote_in_topic(self.request.user, self.topic) and \
+                pybb_topic_poll_not_voted(self.topic, self.request.user):
+            ctx[&#39;poll_form&#39;] = self.get_poll_form_class()(self.topic)
+
+        return ctx
+
+    def mark_read(self, user, topic):
+        try:
+            forum_mark = ForumReadTracker.objects.get(forum=topic.forum, user=user)
+        except ForumReadTracker.DoesNotExist:
+            forum_mark = None
+        if (forum_mark is None) or (forum_mark.time_stamp &lt; topic.updated):
+            # Mark topic as readed
+            topic_mark, new = TopicReadTracker.objects.get_or_create_tracker(topic=topic, user=user)
+            if not new:
+                topic_mark.save()
+
+            # Check, if there are any unread topics in forum
+            readed = topic.forum.topics.filter((Q(topicreadtracker__user=user,
+                                                  topicreadtracker__time_stamp__gte=F(&#39;updated&#39;))) |
+                                                Q(forum__forumreadtracker__user=user,
+                                                  forum__forumreadtracker__time_stamp__gte=F(&#39;updated&#39;)))\
+                                       .only(&#39;id&#39;).order_by()
+
+            not_readed = topic.forum.topics.exclude(id__in=readed)
+            if not not_readed.exists():
+                # Clear all topic marks for this forum, mark forum as readed
+                TopicReadTracker.objects.filter(user=user, topic__forum=topic.forum).delete()
+                forum_mark, new = ForumReadTracker.objects.get_or_create_tracker(forum=topic.forum, user=user)
+                forum_mark.save()
+
+
+class PostEditMixin(object):
+
+    poll_answer_formset_class = PollAnswerFormSet
+
+    def get_poll_answer_formset_class(self):
+        return self.poll_answer_formset_class
+
+    def get_form_class(self):
+        if perms.may_post_as_admin(self.request.user):
+            return AdminPostForm
+        else:
+            return PostForm
+
+    def get_context_data(self, **kwargs):
+        ctx = super(PostEditMixin, self).get_context_data(**kwargs)
+        if perms.may_attach_files(self.request.user) and (not &#39;aformset&#39; in kwargs):
+            ctx[&#39;aformset&#39;] = AttachmentFormSet(instance=self.object if getattr(self, &#39;object&#39;) else None)
+        if perms.may_create_poll(self.request.user) and (&#39;pollformset&#39; not in kwargs):
+            ctx[&#39;pollformset&#39;] = self.get_poll_answer_formset_class()(
+                instance=self.object.topic if getattr(self, &#39;object&#39;) else None
+            )
+        return ctx
+
+    def form_valid(self, form):
+        success = True
+        save_attachments = False
+        save_poll_answers = False
+        self.object = form.save(commit=False)
+
+        if perms.may_attach_files(self.request.user):
+            aformset = AttachmentFormSet(self.request.POST, self.request.FILES, instance=self.object)
+            if aformset.is_valid():
+                save_attachments = True
+            else:
+                success = False
+        else:
+            aformset = None
+
+        if perms.may_create_poll(self.request.user):
+            pollformset = self.get_poll_answer_formset_class()()
+            if getattr(self, &#39;forum&#39;, None) or self.object.topic.head == self.object:
+                if self.object.topic.poll_type != Topic.POLL_TYPE_NONE:
+                    pollformset = self.get_poll_answer_formset_class()(self.request.POST,
+                                                                       instance=self.object.topic)
+                    if pollformset.is_valid():
+                        save_poll_answers = True
+                    else:
+                        success = False
+                else:
+                    self.object.topic.poll_question = None
+                    self.object.topic.poll_answers.all().delete()
+        else:
+            pollformset = None
+
+        if success:
+            self.object.topic.save()
+            self.object.topic = self.object.topic
+            self.object.save()
+            if save_attachments:
+                aformset.save()
+            if save_poll_answers:
+                pollformset.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return self.render_to_response(self.get_context_data(form=form, aformset=aformset, pollformset=pollformset))
+
+
+class AddPostView(PostEditMixin, generic.CreateView):
+
+    template_name = &#39;pybb/add_post.html&#39;
+
+    @method_decorator(csrf_protect)
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            self.user = request.user
+        else:
+            if defaults.PYBB_ENABLE_ANONYMOUS_POST:
+                self.user, new = User.objects.get_or_create(**{username_field: defaults.PYBB_ANONYMOUS_USERNAME})
+            else:
+                from django.contrib.auth.views import redirect_to_login
+                return redirect_to_login(request.get_full_path())
+
+        self.forum = None
+        self.topic = None
+        if &#39;forum_id&#39; in kwargs:
+            self.forum = get_object_or_404(perms.filter_forums(request.user, Forum.objects.all()), pk=kwargs[&#39;forum_id&#39;])
+            if not perms.may_create_topic(self.user, self.forum):
+                raise PermissionDenied
+        elif &#39;topic_id&#39; in kwargs:
+            self.topic = get_object_or_404(perms.filter_topics(request.user, Topic.objects.all()), pk=kwargs[&#39;topic_id&#39;])
+            if not perms.may_create_post(self.user, self.topic):
+                raise PermissionDenied
+
+            self.quote = &#39;&#39;
+            if &#39;quote_id&#39; in request.GET:
+                try:
+                    quote_id = int(request.GET.get(&#39;quote_id&#39;))
+                except TypeError:
+                    raise Http404
+                else:
+                    post = get_object_or_404(Post, pk=quote_id)
+                    profile = util.get_pybb_profile(post.user)
+                    self.quote = util._get_markup_quoter(defaults.PYBB_MARKUP)(post.body, profile.get_display_name())
+
+                if self.quote and request.is_ajax():
+                    return HttpResponse(self.quote)
+        return super(AddPostView, self).dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        ip = self.request.META.get(&#39;REMOTE_ADDR&#39;, &#39;&#39;)
+        form_kwargs = super(AddPostView, self).get_form_kwargs()
+        form_kwargs.update(dict(topic=self.topic, forum=self.forum, user=self.user,
+                           ip=ip, initial={}))
+        if getattr(self, &#39;quote&#39;, None):
+            form_kwargs[&#39;initial&#39;][&#39;body&#39;] = self.quote
+        if perms.may_post_as_admin(self.user):
+            form_kwargs[&#39;initial&#39;][&#39;login&#39;] = getattr(self.user, username_field)
+        form_kwargs[&#39;may_create_poll&#39;] = perms.may_create_poll(self.user)
+        return form_kwargs
+
+    def get_context_data(self, **kwargs):
+        ctx = super(AddPostView, self).get_context_data(**kwargs)
+        ctx[&#39;forum&#39;] = self.forum
+        ctx[&#39;topic&#39;] = self.topic
+        return ctx
+
+    def get_success_url(self):
+        if (not self.request.user.is_authenticated()) and defaults.PYBB_PREMODERATION:
+            return reverse(&#39;pybb:index&#39;)
+        return super(AddPostView, self).get_success_url()
+
+
+class EditPostView(PostEditMixin, generic.UpdateView):
+
+    model = Post
+
+    context_object_name = &#39;post&#39;
+    template_name = &#39;pybb/edit_post.html&#39;
+
+    @method_decorator(login_required)
+    @method_decorator(csrf_protect)
+    def dispatch(self, request, *args, **kwargs):
+        return super(EditPostView, self).dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        form_kwargs = super(EditPostView, self).get_form_kwargs()
+        form_kwargs[&#39;may_create_poll&#39;] = perms.may_create_poll(self.request.user)
+        return form_kwargs
+
+    def get_object(self, queryset=None):
+        post = super(EditPostView, self).get_object(queryset)
+        if not perms.may_edit_post(self.request.user, post):
+            raise PermissionDenied
+        return post
+
+
+class UserView(generic.DetailView):
+    model = User
+    template_name = &#39;pybb/user.html&#39;
+    context_object_name = &#39;target_user&#39;
+
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+        return get_object_or_404(queryset, **{username_field: self.kwargs[&#39;username&#39;]})
+
+    def get_context_data(self, **kwargs):
+        ctx = super(UserView, self).get_context_data(**kwargs)
+        ctx[&#39;topic_count&#39;] = Topic.objects.filter(user=ctx[&#39;target_user&#39;]).count()
+        return ctx
+
+
+class UserPosts(PaginatorMixin, generic.ListView):
+    model = Post
+    paginate_by = defaults.PYBB_TOPIC_PAGE_SIZE
+    template_name = &#39;pybb/user_posts.html&#39;
+
+    def dispatch(self, request, *args, **kwargs):
+        username = kwargs.pop(&#39;username&#39;)
+        self.user = get_object_or_404(**{&#39;klass&#39;: User, username_field: username})
+        return super(UserPosts, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        qs = super(UserPosts, self).get_queryset()
+        qs = qs.filter(user=self.user)
+        qs = perms.filter_posts(self.request.user, qs).select_related(&#39;topic&#39;)
+        qs = qs.order_by(&#39;-created&#39;, &#39;-updated&#39;, &#39;-id&#39;)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super(UserPosts, self).get_context_data(**kwargs)
+        context[&#39;target_user&#39;] = self.user
+        return context
+
+
+class UserTopics(PaginatorMixin, generic.ListView):
+    model = Topic
+    paginate_by = defaults.PYBB_FORUM_PAGE_SIZE
+    template_name = &#39;pybb/user_topics.html&#39;
+
+    def dispatch(self, request, *args, **kwargs):
+        username = kwargs.pop(&#39;username&#39;)
+        self.user = get_object_or_404(User, username=username)
+        return super(UserTopics, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        qs = super(UserTopics, self).get_queryset()
+        qs = qs.filter(user=self.user)
+        qs = perms.filter_topics(self.user, qs)
+        qs = qs.order_by(&#39;-updated&#39;, &#39;-created&#39;, &#39;-id&#39;)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super(UserTopics, self).get_context_data(**kwargs)
+        context[&#39;target_user&#39;] = self.user
+        return context
+
+
+class PostView(RedirectToLoginMixin, generic.RedirectView):
+
+    def get_login_redirect_url(self):
+        return reverse(&#39;pybb:post&#39;, args=(self.kwargs[&#39;pk&#39;],))
+
+    def get_redirect_url(self, **kwargs):
+        post = get_object_or_404(Post.objects.all(), pk=self.kwargs[&#39;pk&#39;])
+        if not perms.may_view_post(self.request.user, post):
+            raise PermissionDenied
+        count = post.topic.posts.filter(created__lt=post.created).count() + 1
+        page = math.ceil(count / float(defaults.PYBB_TOPIC_PAGE_SIZE))
+        return &#39;%s?page=%d#post-%d&#39; % (reverse(&#39;pybb:topic&#39;, args=[post.topic.id]), page, post.id)
+
+
+class ModeratePost(generic.RedirectView):
+    def get_redirect_url(self, **kwargs):
+        post = get_object_or_404(Post, pk=self.kwargs[&#39;pk&#39;])
+        if not perms.may_moderate_topic(self.request.user, post.topic):
+            raise PermissionDenied
+        post.on_moderation = False
+        post.save()
+        return post.get_absolute_url()
+
+
+class ProfileEditView(generic.UpdateView):
+
+    template_name = &#39;pybb/edit_profile.html&#39;
+
+    def get_object(self, queryset=None):
+        return util.get_pybb_profile(self.request.user)
+
+    def get_form_class(self):
+        if not self.form_class:
+            from pybb.forms import EditProfileForm
+            return EditProfileForm
+        else:
+            return super(ProfileEditView, self).get_form_class()
+
+    @method_decorator(login_required)
+    @method_decorator(csrf_protect)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ProfileEditView, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse(&#39;pybb:edit_profile&#39;)
+
+
+class DeletePostView(generic.DeleteView):
+
+    template_name = &#39;pybb/delete_post.html&#39;
+    context_object_name = &#39;post&#39;
+
+    def get_object(self, queryset=None):
+        post = get_object_or_404(Post.objects.select_related(&#39;topic&#39;, &#39;topic__forum&#39;), pk=self.kwargs[&#39;pk&#39;])
+        if not perms.may_delete_post(self.request.user, post):
+            raise PermissionDenied
+        self.topic = post.topic
+        self.forum = post.topic.forum
+        if not perms.may_moderate_topic(self.request.user, self.topic):
+            raise PermissionDenied
+        return post
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        redirect_url = self.get_success_url()
+        if not request.is_ajax():
+            return HttpResponseRedirect(redirect_url)
+        else:
+            return HttpResponse(redirect_url)
+
+    def get_success_url(self):
+        try:
+            Topic.objects.get(pk=self.topic.id)
+        except Topic.DoesNotExist:
+            return self.forum.get_absolute_url()
+        else:
+            if not self.request.is_ajax():
+                return self.topic.get_absolute_url()
+            else:
+                return &quot;&quot;
+
+
+class TopicActionBaseView(generic.View):
+
+    def get_topic(self):
+        return get_object_or_404(Topic, pk=self.kwargs[&#39;pk&#39;])
+
+    @method_decorator(login_required)
+    def get(self, *args, **kwargs):
+        self.topic = self.get_topic()
+        self.action(self.topic)
+        return HttpResponseRedirect(self.topic.get_absolute_url())
+
+
+class StickTopicView(TopicActionBaseView):
+
+    def action(self, topic):
+        if not perms.may_stick_topic(self.request.user, topic):
+            raise PermissionDenied
+        topic.sticky = True
+        topic.save()
+
+
+class UnstickTopicView(TopicActionBaseView):
+
+    def action(self, topic):
+        if not perms.may_unstick_topic(self.request.user, topic):
+            raise PermissionDenied
+        topic.sticky = False
+        topic.save()
+
+
+class CloseTopicView(TopicActionBaseView):
+
+    def action(self, topic):
+        if not perms.may_close_topic(self.request.user, topic):
+            raise PermissionDenied
+        topic.closed = True
+        topic.save()
+
+
+class OpenTopicView(TopicActionBaseView):
+    def action(self, topic):
+        if not perms.may_open_topic(self.request.user, topic):
+            raise PermissionDenied
+        topic.closed = False
+        topic.save()
+
+
+class TopicPollVoteView(generic.UpdateView):
+    model = Topic
+    http_method_names = [&#39;post&#39;, ]
+    form_class = PollForm
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(TopicPollVoteView, self).dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super(ModelFormMixin, self).get_form_kwargs()
+        kwargs[&#39;topic&#39;] = self.object
+        return kwargs
+
+    def form_valid(self, form):
+        # already voted
+        if not perms.may_vote_in_topic(self.request.user, self.object) or \
+           not pybb_topic_poll_not_voted(self.object, self.request.user):
+            return HttpResponseForbidden()
+
+        answers = form.cleaned_data[&#39;answers&#39;]
+        for answer in answers:
+            # poll answer from another topic
+            if answer.topic != self.object:
+                return HttpResponseBadRequest()
+
+            PollAnswerUser.objects.create(poll_answer=answer, user=self.request.user)
+        return super(ModelFormMixin, self).form_valid(form)
+
+    def form_invalid(self, form):
+        return redirect(self.object)
+
+    def get_success_url(self):
+        return self.object.get_absolute_url()
+
+
+@login_required
+def topic_cancel_poll_vote(request, pk):
+    topic = get_object_or_404(Topic, pk=pk)
+    PollAnswerUser.objects.filter(user=request.user, poll_answer__topic_id=topic.id).delete()
+    return HttpResponseRedirect(topic.get_absolute_url())
+
+
+@login_required
+def delete_subscription(request, topic_id):
+    topic = get_object_or_404(perms.filter_topics(request.user, Topic.objects.all()), pk=topic_id)
+    topic.subscribers.remove(request.user)
+    return HttpResponseRedirect(topic.get_absolute_url())
+
+
+@login_required
+def add_subscription(request, topic_id):
+    topic = get_object_or_404(perms.filter_topics(request.user, Topic.objects.all()), pk=topic_id)
+    topic.subscribers.add(request.user)
+    return HttpResponseRedirect(topic.get_absolute_url())
+
+
+@login_required
+def post_ajax_preview(request):
+    content = request.POST.get(&#39;data&#39;)
+    html = util._get_markup_formatter()(content)
+    return render(request, &#39;pybb/_markitup_preview.html&#39;, {&#39;html&#39;: html})
+
+
+@login_required
+def mark_all_as_read(request):
+    for forum in perms.filter_forums(request.user, Forum.objects.all()):
+        forum_mark, new = ForumReadTracker.objects.get_or_create_tracker(forum=forum, user=request.user)
+        forum_mark.save()
+    TopicReadTracker.objects.filter(user=request.user).delete()
+    msg = _(&#39;All forums marked as read&#39;)
+    messages.success(request, msg, fail_silently=True)
+    return redirect(reverse(&#39;pybb:index&#39;))
+
+
+@login_required
+@require_POST
+def block_user(request, username):
+    user = get_object_or_404(User, **{username_field: username})
+    if not perms.may_block_user(request.user, user):
+        raise PermissionDenied
+    user.is_active = False
+    user.save()
+    if &#39;block_and_delete_messages&#39; in request.POST:
+        # individually delete each post and empty topic to fire method
+        # with forum/topic counters recalculation
+        posts = Post.objects.filter(user=user)
+        topics = posts.values(&#39;topic_id&#39;).distinct()
+        forums = posts.values(&#39;topic__forum_id&#39;).distinct()
+        posts.delete()
+        Topic.objects.filter(user=user).delete()
+        for t in topics:
+            try:
+                Topic.objects.get(id=t[&#39;topic_id&#39;]).update_counters()
+            except Topic.DoesNotExist:
+                pass
+        for f in forums:
+            try:
+                Forum.objects.get(id=f[&#39;topic__forum_id&#39;]).update_counters()
+            except Forum.DoesNotExist:
+                pass
+
+
+    msg = _(&#39;User successfuly blocked&#39;)
+    messages.success(request, msg, fail_silently=True)
+    return redirect(&#39;pybb:index&#39;)
+
+
+@login_required
+@require_POST
+def unblock_user(request, username):
+    user = get_object_or_404(User, **{username_field: username})
+    if not perms.may_block_user(request.user, user):
+        raise PermissionDenied
+    user.is_active = True
+    user.save()
+    msg = _(&#39;User successfuly unblocked&#39;)
+    messages.success(request, msg, fail_silently=True)
+    return redirect(&#39;pybb:index&#39;)
+</div>
+
+    <div id="id_go_to_line_dialog" class="pa_hidden">
+        <p class="form-inline">Line number: <input id="id_go_to_line_dialog_input" /></p>
+        <div class="dialog_buttons">
+            <button class="btn" id="id_go_to_line_dialog_ok_button">Go</button>
+            <button class="btn" id="id_go_to_line_dialog_close_button">Close</button>
+        </div>
+    </div>
+
+    <div id="id_file_changed_on_disk" class="pa_hidden">
+        <p>Are you sure you want to save it?  Alternatively, you could re-open it in a new tab to check differences</p>
+        <div class="dialog_buttons">
+            <button id="id_cancel_save" class="btn">Cancel</button>
+            <button id="id_force_save" class="btn btn-danger">Force Save</button>
+        </div>
+    </div>
+
+
+
+        
+    <div id="id_footer" class="container">
+
+        <footer id="id_copyright_div">
+            <p>
+                Copyright &copy; 2015 <a href="/about/company_details/">PythonAnywhere LLP</a>
+                &mdash;
+                <a href="/terms/">Terms</a>
+                &mdash;
+                <a href="/privacy/">Privacy</a><br/>
+                "Python" is a registered trademark of the Python Software Foundation.
+            </p>
+        </footer>
+
+    </div>
+
+
+        
+
+
+        <div id="id_feedback_dialog" title="Help us improve" style="display:none">
+    <div id="id_feedback_dialog_blurb_big" class="dialog_blurb_big">
+        It's always a pleasure to hear from you!
+    </div>
+    <div id="id_feedback_dialog_blurb_small">
+        Ask us a question, or tell us what you love or hate about PythonAnywhere.<br/>
+        We'll get back to you over email ASAP.
+    </div>
+    <textarea id="id_feedback_dialog_text" rows="6"></textarea>
+    <input id="id_feedback_dialog_email_address" type="text" placeholder="Email address (optional - only necessary if you would like us to contact you)"/>
+    
+    <div id="id_feedback_dialog_error" class="pa_hidden">
+        Sorry, there was an error connecting to the server. <br/>Please try again in a few moments...
+    </div>
+    <div class="dialog_buttons">
+        <img id="id_feedback_dialog_spinner" src="/static/anywhere/images/spinner-small.gif" />
+        <button class="btn btn-primary" id="id_feedback_dialog_ok_button">OK</button>
+        <button class="btn" id="id_feedback_dialog_cancel_button">Cancel</button>
+    </div>
+</div>
+
+
+        
+            <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-18014859-6', 'auto');
+                ga('send', 'pageview');
+            </script>
+        
+
+        
+
+
+    </body>
+</html>

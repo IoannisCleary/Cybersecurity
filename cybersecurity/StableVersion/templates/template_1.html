@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags %}
+{% block page_title %} ff{% page_attribute "page_title" %}{% endblock %}
+{% block body %}
+
+{% placeholder "content" or %}There is no content.{% endplaceholder %}
+{% show_breadcrumb %}
+
+
+
+{% endblock %}

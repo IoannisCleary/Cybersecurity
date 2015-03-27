@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "All Quizzes" %}{% endblock %}
+{% block page_title %}<span class="label label-primary" style="background-color:#006699;border-color:#80B2CC;color:white;"><b>{% trans "Available Quizzes" %}</b></span>{% endblock %}
+{% block content %}
+ {% if user.is_authenticated %}
+ 			<div class="alert alert-warning" role="alert"> <p class="label label-warning">Attention!</p> Quizzes with essay type of questions are reviewed by staff. Result at the end may change if your answer is marked as correct by a staff member.</span></a>
+	</div>
+
+<div class="panel panel-primary"style="border-color:#80B2CC!important">
+  <div class="panel-heading" style="background-color:#006699;border-color:#80B2CC;color:white;">
+    <h3 class="panel-title">List of quizzes</h3>
+	 </div>
+	 {% if user.profile.learningStyle != '0' %}
+    {% if quiz_list %}
+		<table class="table table-bordered table-striped table-responsive">
+
+		  <thead>
+			<tr>
+			  <th>{% trans "Title" %}</th>
+			  <th>{% trans "Category" %}</th>
+			  <th>{% trans "Exam" %}</th>
+			  <th>{% trans "Single attempt" %}</th>
+			  <th></th>
+			</tr>
+		  </thead>
+
+		  <tbody>
+
+        {% for quiz in quiz_list %}
+
+  			<tr>
+			  <td>{{ quiz.title }}</td>
+			  <td>{{ quiz.category }}</td>
+			  <td>{{ quiz.exam_paper }}</td>
+			  <td>{{ quiz.single_attempt }}</td>
+			  <td>
+				<a href="{% url 'quiz_start_page' slug=quiz.url %}">
+				  {% trans "Go to quiz" %}
+				</a>
+			</tr>
+
+        {% endfor %}
+		  </tbody>
+
+		</table>
+
+	{% else %}
+        <p>{% trans "There are no available quizzes" %}.</p>
+    {% endif %}
+ </div>
+ 	{% else %}
+
+	<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
+	 </div>
+	{% endif %}
+	{% else %}
+				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+
+		{% endif %}
+{% endblock %}

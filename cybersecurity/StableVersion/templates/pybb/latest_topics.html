@@ -1,0 +1,47 @@
+{% extends 'pybb/base.html' %}
+
+{% load url from future %}
+
+{% load pybb_tags i18n %}
+
+{% block title %}{% trans "Last updates in topics" %}{% endblock title %}
+{% block page_title %}
+
+
+<div class="container-fluid">
+    <div class="btn-group" role="group" style="margin-bottom:15px" aria-label="...">
+    &nbsp; <a type="button"class="btn btn-primary" href="/forum/"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Back   </b>&nbsp;</a>
+</div></div>
+<div class="container-fluid">
+
+<span class="label label-info" style="background-color:#9BE81E;border-color:#7AC402;color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% trans "Last updates in topics" %} </span></div>{% endblock page_title %}
+
+{% block breadcrumb %}
+    {% with extra_crumb=_("Last updates in topics") %}
+        {% include "pybb/breadcrumb.html" %}
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+    <div class="forum">
+        {% if forum.headline %}
+            <div class="forum-headline alert alert-block">
+                {{ forum.headline|safe }}
+            </div>
+        {% endif %}
+
+        {% include "pybb/pagination.html" %}
+
+        {% include "pybb/topic_list.html" %}
+
+        {% include "pybb/pagination.html" %}
+
+        {% if user.is_authenticated %}
+            <div id='mark-all-as-read'>
+                <a class="btn btn-default"type="button"href='{% url 'pybb:mark_all_as_read' %}'>
+                    {% trans "Mark all topics as read" %}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}

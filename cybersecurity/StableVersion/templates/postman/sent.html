@@ -1,0 +1,9 @@
+{% extends "postman/base_folder.html" %}
+{% load i18n %}
+{% block panel_custom %}<div class="panel panel-primary" style="border-color:#9728f2!important">
+  <div class="panel-heading" style="background-color:#9728f2!important; border-color:#9728f2!important">{% endblock %}
+{% block pm_folder_title %}{% trans "Sent Messages" %}{% endblock %}
+{% block pm_undelete_button %}{% endblock %}
+{% block pm_sender_header %}{% endblock %}
+{% block pm_date %}{% trans "Sent" %}{% endblock %}
+{% block pm_sender_cell %}{% endblock %}

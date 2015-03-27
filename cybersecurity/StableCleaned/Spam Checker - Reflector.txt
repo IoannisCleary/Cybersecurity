@@ -1,0 +1,148 @@
+======================TEXT============ Text Field ========================
+<p>The purpose of this exercise is to classify Spam/Phishing e-mails and talk about the reasons behind the classification.</p>
+
+<p>Let&#39;s assume these are actual companies:</p>
+
+<ul>
+	<li><strong>Pear:</strong>&nbsp;Is a company that sells yMobile smartphones. Official website : pear.co.uk</li>
+	<li><strong>PayFriend:</strong>&nbsp;Is a company that helps with online payments. Official website: payfriend.com. Email address: payfriends@payfriend.com</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>1. E-mail example&nbsp;</p>
+
+<hr />
+<p>&nbsp;</p>
+
+<p><strong>From:<strong>marketing@pear-ymobil3.co.uk</strong></strong>&nbsp; &nbsp; &nbsp;<strong>&nbsp;1.<span style="color:#D3D3D3"> </span><span style="color:#FFFFFF"><span style="background-color:#FF0000">Supsicious address/ Does not look like pear&#39;s e-mail address</span></span></strong><span style="color:#D3D3D3"> &nbsp;</span></p>
+
+<p><strong>Subject: ONCE IN A LIFETIME OFFER !&nbsp; &nbsp; &nbsp;</strong>&nbsp;<strong>&nbsp;2. <span style="color:#FFFFFF"><span style="background-color:#FF0000">Excessive use of caps - Limited offer/Immediate action</span></span></strong></p>
+
+<p>Get the new 32GB yMobile&nbsp; for &pound; 200 ONLY !</p>
+
+<p>BUY NOW</p>
+
+<p>CLICK&nbsp;HERE&nbsp;! &nbsp; &nbsp; &nbsp;<strong>3.<span style="color:#FFFFFF"><span style="background-color:#FF0000">Suspicious website link / Not apple&#39;s website</span></span></strong></p>
+
+<hr />
+<h3>&nbsp;</h3>
+
+<h3>Spam</h3>
+
+<div style="background-color: #ffc6bf;">
+<div class="container-fluid" style="backgrond-color: #FFC6BF;">
+<p>&nbsp;</p>
+
+<p>This message has been classified as spam/phishing e-mail because:</p>
+
+<ul>
+	<li><u>Suspicious sender</u> impersonating Apple</li>
+	<li><u>All caps</u> in subject and use of caps throughout the e-mail should be considered as suspicious when the use is&nbsp;excessive</li>
+	<li>The<u> link</u> that the e-mail uses is not an official apple website and it is most likely a phishing website where details are recorded and/or any transaction done is not associated with the purchase of any product.</li>
+</ul>
+</div>
+
+<p>This might a simple example but spam/phishing e-mails/websites can be difficult to identify at a first glance:</p>
+
+<ul>
+	<li>Legitimate website and an illegitimate pop up window</li>
+	<li>Illegitimate website can be identical to the legitimate one</li>
+</ul>
+
+<p>&nbsp;</p>
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>2. E-mail example 2</p>
+
+<hr />
+<p><strong>From: <strong>payfriend@pay-friend.co.uk</strong></strong>&nbsp; <span style="color:#FFFFFF"><span style="background-color:#FF0000">&nbsp;</span><strong><span style="background-color:#FF0000">E-mail address looks legitimate however the real paypal address is &lt;payfriends@payfriend.com&gt;</span></strong></span></p>
+
+<p><strong>Subject: View your recent transactions now.</strong></p>
+
+<p><img alt="" src="/media/images/logopay.png" style="height:34px; width:140px" /></p>
+
+<div style="background-color: lightgrey;"><strong>Email address:</strong> (your email address) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>&nbsp;Date</strong>
+
+<p><em>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;15th Mar 2015</em></p>
+</div>
+
+<p>Hello valued customer,<strong> <span style="color:#FFFFFF"><span style="background-color:#FF0000">Generic greeting</span></span></strong><br />
+<br />
+Hello valued customer,<br />
+<br />
+It&#39;s nearly St Patrick&#39;s&nbsp;Day and it&#39;s time to get into the festive mood and you can securely do this with Pay Friend&#39;s support.<br />
+<br />
+Remember, to view your&nbsp;activity, just log in to your account.</p>
+
+<p>Log in&nbsp; &nbsp; &nbsp;<span style="color:#FFFFFF"><strong><span style="background-color:#FF0000">Suspicious link. The address does not look like PayPal&#39;s website address</span></strong></span></p>
+
+<hr />
+<h3>&nbsp;</h3>
+
+<h3>Spam</h3>
+
+<div style="background-color: #ffc6bf;">
+<div class="container-fluid" style="backgrond-color: #FFC6BF;">
+<p>&nbsp;</p>
+
+<p>This message has been classified as spam/phishing e-mail because:</p>
+
+<ul>
+	<li>Suspicious sender impersonating PayFriend</li>
+	<li>Generic greeting. Use of &quot;valued customer&quot;</li>
+	<li>The link that the e-mail uses is not an official PayFriend website and it is most likely a phishing website where details are recorded and/or any transaction done is not associated with the purchase of any product.</li>
+</ul>
+</div>
+
+<p>&nbsp;</p>
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;3. Website example</p>
+
+<hr />
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="/media/images/fakewebsite.png" style="width:70%" /></p>
+
+<p>&nbsp;</p>
+
+<hr />
+<p>&nbsp;&nbsp;</p>
+
+<h3>Phishing website</h3>
+
+<div style="background-color: #ffc6bf;">
+<div class="container-fluid" style="backgrond-color: #FFC6BF;">
+<p>&nbsp;</p>
+
+<p>This website has been classified as a phishing website because:</p>
+
+<ul>
+	<li>Website address close to legitimate website but it&#39;s different</li>
+	<li>Images are of lower quality</li>
+	<li>Theme / Website&#39;s appearance is a bit off</li>
+	<li>Log in might accept any information -&gt; no validation just recording details</li>
+</ul>
+
+<p>Possibly used to gather account information and gain access to accounts of that website.</p>
+
+<p><strong>Note:</strong> Phishing websites can look identical to a legitimate site and the signs are not that obvious. Some hints for identifying phishing sites are to look for HTTPS (secure access) in the address (for banking services). However beware phishing websites can also use HTTPS.</p>
+
+<p>&nbsp;</p>
+</div>
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>

@@ -1,0 +1,67 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block extra_head %}
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+ <script>
+ <!-- Source of the original function : http://jqueryui.com/dialog/#animated-->
+  $(function() {
+  {% if chapters %}  <!-- extended -->
+  	{% for chapter in chapters %} <!-- extended -->
+    $( "#{{ chapter.url }}" ).dialog({  <!-- extended -->
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+    $( "#open_{{ chapter.url }}" ).click(function() {  <!-- extended -->
+      $( "#{{ chapter.url }}" ).dialog( "open" );  <!-- extended -->
+    });
+	{% endfor %} <!-- extended -->
+	{% endif %} <!-- extended -->
+  });
+  </script>    {% endblock %}
+{% block title %}Index{% endblock %}
+{% block page_title %}<span class="label label-warning">&nbsp;<b>Chapters <span class="badge" style="background-color:white;color:orange;">{{number}}</span>&nbsp;</b> {% endblock %}
+
+	{% block content %}
+<div class="well">
+     {% if user.is_authenticated %}
+	 {% if set_learningStyle %}
+			{% if chapters %}
+			<ul class="list-group">
+			<div class="btn-group btn-block btn-group-horizontal  ">
+					{% for chapter in chapters %}
+					<li class="list-group-item">	<div class="btn-group"><button class="btn disabled btn-success">{{chapter.number}}</button><div class="btn-group "role="group">
+						<div id="{{ chapter.url }}" title="Overview of {{ chapter.title }} chapter">
+							<p>	{% autoescape off %}{{ chapter.overview }}{% endautoescape %}</p>
+						</div>
+
+					<a href="/trainingPortal/chapter/{{ chapter.url }}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-list-alt"></span> {{ chapter.title }} <span class="badge">Open</span></a>
+					<button  type="button" class="btn btn-default" id="open_{{ chapter.url }}">Overview</button>
+					</div></div></li>
+					{% endfor %}
+			</div>
+			</ul>
+			{% else %}
+            <strong>There are no chapters!</strong>
+			{% endif %}
+			{% else%}
+				<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+	{% endif %}
+		{% else %}
+        		<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login/?next=/trainingPortal/chapters/" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+		{% endif %}
+   </div>
+
+       {% endblock %}

@@ -1,0 +1,7 @@
+{% load url from future %}
+{% load i18n pybb_tags %}
+
+<div class='category'>
+ <h3>   <span class="label label-info" style="background-color:#AECF6C;border-color:#7AC402;color:white;">{{ category.name }}</span> {% if category.hidden %}[{% trans "Hidden" %}]{% endif %}</h3>
+    {% include 'pybb/forum_list.html' with forum_list=category.forums_accessed category=category parent_forum='' %}
+</div>

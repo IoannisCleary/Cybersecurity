@@ -1,0 +1,147 @@
+
+{% extends 'base.html' %}
+{% load static %}
+	{% load thumbnail %}
+{% block title %}Index{% endblock %}
+{% block page_title %}
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});</script>
+<!-- Source of function : http://bootsnipp.com/snippets/featured/progress-bar-meter-->
+ {% if user.is_authenticated %}
+	{% if exists %}
+	{% if personal %}
+	  <div class="container-fluid"> <h2><span class="label label-info" style="background-color:#003333!important; border-color:#000B0B!important">Your Profile</span></h2></div>
+	 {% else%}
+	 	  <div class="container-fluid"> <h2><span class="label label-info" style="background-color:#003333!important; border-color:#000B0B!important">{{username}}'s Profile</span></h2></div>
+ {% endif %}
+	{% else%}
+	  <div class="container-fluid"> <h2><span class="label label-info" style="background-color:#003333!important; border-color:#000B0B!important">Unknown Profile</span></h2></div>
+   	{% endif %}
+
+	{% else%}
+	  <div class="container-fluid"> <h2><span class="label label-info" style="background-color:#003333!important; border-color:#000B0B!important">Unknown Profile</span></h2></div>
+   	{% endif %}
+{% endblock %}
+	{% block content %}
+	 {% if user.is_authenticated %}
+
+
+	{% if exists %}
+		{% if personal %}
+	{% if user.profile.learningStyle == '0' %}
+		<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+	{% endif %}
+	 {% endif %}
+	<div class="well">
+	  <div class="container-fluid">
+	  	 <div class="panel panel-primary"style="border-color:#000202!important">
+  <div class="panel-heading"style="background-color:#003333!important; border-color:#000B0B!important">
+  <h2 class="panel-title"><b>Details</b></h2>
+  </div>
+    <div class="panel-body">
+			<div class="row text-center">
+	  {% if testing %}
+		 {% if type %}
+			&nbsp;&nbsp;<img class="img-rounded" style="height:150px; width:150px;" src="/media/images/A.png"/>
+		{% else%}
+			&nbsp;&nbsp;<img class="img-rounded" style="height:150px; width:150px;" src="/media/images/B.png"/>
+		{% endif %}
+	{% else%}
+&nbsp;&nbsp;<img class="img-rounded" style="height:150px; width:150px;" src="/media/images/profile.png"/>
+	{% endif %}
+	</div>
+	</br>
+
+	<table class="table table-condensed table-hover table-responsive">
+   <tbody>
+                      <tr>
+                        <td><b>Username:</b></b></td>
+                        <td>{{username}}</td>
+                      </tr>
+                       <tr>
+                        <td><b>Ranking:</b></td>
+                        <td><span class="label label-default" style="background:{{rankingColor}}">{{ranking}}</span></td>
+                      </tr>
+					  <tr>
+                        <td><b>Age:</b></td>
+                        <td>{{age}}</td>
+                      </tr>
+
+	{% if personal %}
+	 <tr>
+                        <td><b>Quizzes taken:</b></td>
+                        <td>{{quizCount}}</td>
+                      </tr>
+	{% if set_learningStyle %}
+ <td><b>Learning Style:</b></td>
+                        <td>{{learningStyle}}</td>
+                      </tr>
+	 	</table>
+</div>
+	</div>
+
+	 <div class="panel panel-primary"style="border-color:#000202!important">
+  <div class="panel-heading"style="background-color:#003333!important; border-color:#000B0B!important">
+  <h2 class="panel-title"><b>Progress Report</b></h2>
+  </div>
+  <div class="panel-body">
+    	{% if hasprogress %}
+  <div class="panel-heading" style="background-color:#E68A00!important; border-color:#FFB84D!important;color:white;">
+    <h5 class="panel-title"><b>Quizzes</b> (out of 100)</h5>
+	 </div>
+  <div class="panel-body">
+
+		{% for x in scores %}
+		{% for a in x %}
+			<div class="progress" style="background:red;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" data-toggle="tooltip" data-placement="top" title="{{a.chapter}} :  {{a.percentage}} % "  role="progressbar" aria-valuenow="{{a.correct}}" aria-valuemin="0" aria-valuemax="{{a.all}}" style="width: {{a.percentage}}%;">
+<b>{{a.chapter}}</b> :  {{a.percentage}} %
+		</div>
+		</div>
+		{% endfor %}
+		{% endfor %}
+		</div>
+		<div class="panel-heading" style="background-color:#006666!important; border-004040:#4D9494!important;color:white;">
+    <h5 class="panel-title"><b>Average</b> (out of 100)</h5>
+	 </div>
+
+	   <div class="panel-body">
+		<div class="progress" style="background:grey;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" data-toggle="tooltip" data-placement="top" title="Average : {{average}}"  role="progressbar" aria-valuenow="{{average}}" aria-valuemin="0" aria-valuemax="100" style="width: {{average}}%;background-color:#93B84A!important;">
+ <b>{{average}} % </b>
+		</div>
+		</div>
+
+	  </div>
+	    <div class="container-fluid">
+			<a href="/test/progress/" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-list-alt"></span> Grade Breakdown</a></div>
+	  </div>
+</div>
+ {% else %}
+	You do not have a progress report yet.</br> You need to complete quizzes other than the example quiz.
+	</br></br>
+		<a href="/test/" class="btn btn-danger" role="button"> &nbsp; &nbsp; &nbsp;<span class="glyphicon glyphicon-list-alt"></span> &nbsp;Take a quiz &nbsp; &nbsp; &nbsp;</a>
+		</br>
+	{% endif %}
+	 {% else %}
+	 </div>
+	 		</table>
+
+			</div>
+	{% endif %}
+  </div>
+  {% endif %}
+		{% else%}
+		Profile does not exist or User does not exist. Please <b>contact</b> the <b>admin</b> of the portal <b>or check for</b> a <b>typo</b> in the Username part of the web address / URL ( .../user/profile/<b>[this part]</b>).
+   	{% endif %}
+       {% else %}
+				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+
+		{% endif %}
+	 </div>	     </br>     </br>     </br>     </br>
+	   {% endblock %}
+

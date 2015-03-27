@@ -1,0 +1,57 @@
+<p><span style="font-size:14px"><span style="font-family:times new roman,times,serif">The general definition of Spam is &ldquo;unsolicited messages&rdquo; which are sent to users usually in a digital format and are also known as &lsquo;junk mail&rsquo;. This type of messages often contain advertisements for &lsquo;special&rsquo; offers on a variety of products and services, other times they contain information about certain events on a news topic or a made up story that aims to urge the user to check it out also known as click-bait.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Some of the popular types of frauds spread by spam e-mails:</span></span></p>
+
+<ul>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">The Nigerian prince / 419 Fraud: Help transfer money from a foreign bank account by paying transaction fees where a reward is promised in return.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Work at home jobs that offered high paying salary that requires minimal labour and usually no experience.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Revolutionary weight loss pills or other remedies.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Foreign lottery : Claiming that you have won the lottery and then requesting personal details in order to claim the prize</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Travelling: Winning trips to foreign locations. In order to retrieve tickets the message would request personal details.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Issue with a personal account that requires immediate action. most likely bank account.</span></span></li>
+</ul>
+
+<p><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Spam is spread by:&nbsp;</span></span></p>
+
+<ol>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif"><strong>E-mails</strong></span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif"><strong>Instant messaging applications&nbsp;</strong>[<strong>SPIM</strong>]</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif"><strong>Voice over IP</strong>&nbsp;services (calls that take place over the internet) [<strong>SPIT</strong>]</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif"><strong>SMS</strong>&nbsp;(Short Message Service)&nbsp;<strong>messages</strong>.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Other forms of messaging or communication&nbsp;(including&nbsp;<strong>Social media and websites</strong>)</span></span></li>
+</ol>
+
+<p><span style="font-size:14px"><span style="font-family:times new roman,times,serif">&nbsp;A website called SecureList, run in part by members of Kaspersky Lab, reported information from their (security) products where on average spam took up approximately 70% of the e-mail traffic in the 3rd quarter of 2014. The amount of spam&nbsp;in previous years has reached similar if not greater percentage of the e-mail traffic.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Spam can contain malicious software that corrupt or steal data and even damage the computer system. These types of software are known as malware. [<a href="http://techterms.com/definition/malware">http://techterms.com/definition/malware</a>&nbsp;]</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Spammers aim to collect as many active e-mail addresses as possible in every way and any way they can. Some of the ways that they collect and maintain addresses are:</span></span></p>
+
+<ul>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">By purchasing information from databases or accessing information from leaked databases (Illegal)</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Search the internet for e-mail address that are publicly available</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Generating e-mail address by using words from a dictionary and checking whether a service considers them as valid. This is called a brute force attack (trial and error attack) and is usually used to decrypt cipher text (encrypted messages).</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">People that open spam e-mails or click on links in those e-mails.</span></span></li>
+</ul>
+
+<p><span style="font-size:14px"><span style="font-family:times new roman,times,serif">On Android devices spam can appear in the form of notifications in a user&#39;s notification bar (push notification ads) or in the form of many pop up advertisements and in the form of application shortcuts on a user&#39;s screen (icon ads)[<a href="http://google.about.com/od/androidtipscategory/qt/Avoiding-Android-Spam.htm">http://google.about.com/od/androidtipscategory/qt/Avoiding-Android-Spam.htm</a>]. Android developers have attempted many times to get users to click on advertisements as they can profit by advertisement traffic. One of the ways is changing the location of the close/dismiss button on advertisement and another is to create spam notifications even when the applications is running in the background and they might have nothing to do with the application itself.</span></span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:14px"><span style="font-family:times new roman,times,serif">References</span></span></p>
+
+<ul>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Simon Hill. (2015). Digital Trends, How to shut off Android notifications (Updated for Android 5.0). Available at: <a href="http://www.digitaltrends.com/mobile/how-to-deal-with-android-notification-spam/">http://www.digitaltrends.com/mobile/how-to-deal-with-android-notification-spam/</a> [Last Accessed on March 14<sup>th</sup> 2015]</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif"><a href="http://www.gottabemobile.com/author/ktbradford/">K. T. Bradford</a>.&nbsp; (2011). GottaBeMobile, Getting Spam Or Mysterious Alerts In Your Android Notification Bar? Here&rsquo;s How <strong>to Get Rid of</strong> Them<strong>. Available at: </strong><a href="http://www.gottabemobile.com/2011/12/20/spam-in-your-notification-bar/">http://www.gottabemobile.com/2011/12/20/spam-in-your-notification-bar/</a> [Last Accessed on March 14<sup>th</sup> 2015]</span></span></li>
+</ul>
+
+<h1><span style="font-size:14px"><span style="font-family:times new roman,times,serif">&middot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://google.about.com/bio/Marziah-Karch-20906.htm">&nbsp;Marziah Karch</a>. About.com, Avoiding Android Spam.&nbsp; Available at: <a href="http://google.about.com/od/androidtipscategory/qt/Avoiding-Android-Spam.htm">http://google.about.com/od/androidtipscategory/qt/Avoiding-Android-Spam.htm</a>[Last Accessed on March 14<sup>th</sup> 2015]</span></span></h1>
+
+<ul>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Click-bait definition. (2015). Oxford University Press, Oxford Dictionaries. Available at: <a href="http://www.oxforddictionaries.com/definition/english/clickbait">http://www.oxforddictionaries.com/definition/english/clickbait</a> <strong>[Last Accessed on March 14<sup>th</sup> 2015]</strong></span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Federal Bureau of Investigation, Internet Fraud. &nbsp;Available at: <a href="http://www.fbi.gov/scams-safety/fraud/internet_fraud">http://www.fbi.gov/scams-safety/fraud/internet_fraud</a><strong>[Last Accessed on March 14<sup>th</sup> 2015]</strong></span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Andy Walker. (2008). Que Publishing, Spam: Unwanted Email from Hell. Available at: <a href="http://www.quepublishing.com/articles/article.aspx?p=1234199&amp;seqNum=6">http://www.quepublishing.com/articles/article.aspx?p=1234199&amp;seqNum=6</a> <strong>[Last Accessed on March 14<sup>th</sup> 2015]</strong></span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif">Panda Security, Types of Malware, Spam: Unsolicited email messages . Available at: <a href="http://www.pandasecurity.com/homeusers/security-info/types-malware/spam/">http://www.pandasecurity.com/homeusers/security-info/types-malware/spam/</a> <strong>[Last Accessed on March 14<sup>th</sup> 2015]</strong></span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif"><strong><a href="http://www.howtogeek.com/author/chrishoffman/"><strong>Chris Hoffman</strong></a>. </strong>(2014). How-To Geek<strong>, <a href="http://www.howtogeek.com/180477/htg-explains-how-do-spammers-get-your-email-address/" title="HTG Explains: How Do Spammers Get Your Email Address?">HTG Explains: How Do Spammers Get Your Email Address?</a> </strong>Available at:<strong> <u><a href="http://www.howtogeek.com/180477/htg-explains-how-do-spammers-get-your-email-address/">http://www.howtogeek.com/180477/htg-explains-how-do-spammers-get-your-email-address/</a>&nbsp; </u>[Last Accessed on March 14<sup>th</sup> 2015]</strong></span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:times new roman,times,serif"><strong><strong><a href="http://securelist.com/author/tatyanashcherbakova/" title="Posts by Tatyana Shcherbakova">Tatyana Shcherbakova</a>,&nbsp;<a href="http://securelist.com/author/mariavergelis/" title="Posts by Maria Vergelis">Maria Vergelis</a>,&nbsp;<a href="http://securelist.com/author/nadezhdademidova/" title="Posts by Nadezhda Demidova">Nadezhda Demidova</a></strong></strong>. (2014).&nbsp; SecureList, Spam and phishing in the Q3 of 2014. Available at:<strong> <a href="http://securelist.com/analysis/quarterly-spam-reports/67851/spam-and-phishing-in-the-q3-of-2014/">http://securelist.com/analysis/quarterly-spam-reports/67851/spam-and-phishing-in-the-q3-of-2014/</a></strong></span></span></li>
+</ul>

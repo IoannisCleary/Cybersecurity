@@ -1,0 +1,49 @@
+<p>There various online tools that check the deliverability of a message by assigning a quality score. This score determines how likely it is to be marked as spam based on the subject, content and the sender of the message.</p>
+
+<p>ISnotSpam and Mail-Tester helps determine if a message will be classified as spam by forwarding the email to a given address and viewing the report</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="http://isnotspam.com/logo3.gif" style="width:136px" /></p>
+
+<p><a href="http://isnotspam.com/" target="_blank">http://isnotspam.com/</a></p>
+
+<p>&nbsp;</p>
+
+<p><img alt="Mail-Tester logo" src="https://www.mail-tester.com/images/logo-small.png" style="height:22px; width:136px" /></p>
+
+<p><a href="https://www.mail-tester.com/" target="_blank">https://www.mail-tester.com/</a></p>
+
+<p>&nbsp;</p>
+
+<p><strong>Example</strong></p>
+
+<p>An e-mail sent to both ISnotSPAM and mail-tester in order to check the quality score.</p>
+
+<p>These were the results:</p>
+
+<p>1. Mail-Tester</p>
+
+<p><a href="/media/images/mail-tester_example.png" target="_blank"><img alt="Result from Mail-Tester.com" src="/media/images/mail-tester_example.png" style="vertical-align:middle; width:50%" /></a></p>
+
+<p>Example from the mail-tester websites (<a href="https://www.mail-tester.com/" style="line-height: 20.7999992370605px;" target="_blank">https://www.mail-tester.com/</a>)</p>
+
+<p>2. ISnotSPAM</p>
+
+<p><a href="/media/images/isnotspam_example.png" target="_blank"><img alt="" src="/media/images/isnotspam_example.png" style="vertical-align:middle; width:50%" /></a></p>
+
+<p>Example from the mail-tester websites (<a href="http://isnotspam.com/" style="line-height: 20.7999992370605px;" target="_blank">http://isnotspam.com/</a>)</p>
+
+<p><strong>Spam detection</strong></p>
+
+<p>In order to activate spam detection you can use a generic test string called GTUBE that is used to test/trigger spam filters.</p>
+
+<p>XJS*C4JDBQADN1.NSBN3*2IDNEN*GTUBE-STANDARD-ANTI-UBE-TEST-EMAIL*C.34X</p>
+
+<p>&nbsp;&nbsp;</p>
+
+<p>References:</p>
+
+<p><a href="http://en.wikipedia.org/wiki/GTUBE">http://en.wikipedia.org/wiki/GTUBE</a></p>
+
+<p>&nbsp;</p>

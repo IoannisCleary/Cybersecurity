@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Quizzes related to" %} {{ category.category }}{% endblock %}
+
+{% block content %}
+ {% if user.is_authenticated %}
+{% if user.profile.learningStyle != '0' %}
+<h1>{% trans "Quizzes in the" %} <strong>{{ category.category }} </strong>{% trans "category" %}</h1>
+
+  {% with object_list as quizzes %}
+    {% if quizzes %}
+        <ul>
+        {% for quiz in quizzes %}
+            <li>
+			  <a href="{% url 'quiz_question' quiz_name=quiz.url %}">
+				{{ quiz.title }}
+			  </a>
+			</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>{% trans "There are no quizzes" %}</p>
+    {% endif %}
+  {% endwith %}
+ 	{% else %}
+<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+	{% endif %}
+{% else %}
+				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+
+		{% endif %}
+{% endblock %}

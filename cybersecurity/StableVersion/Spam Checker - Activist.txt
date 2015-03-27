@@ -1,0 +1,179 @@
+======================TEXT============ Text Field ========================
+
+<p>You will be shown a series of message and you should classify them as SPAM or not.Note that personal fields will have this generic format (your field) or for senders (field) and official logo images are to be considered as actual/official values. In order to avoid any copyright violation names and images were altered.</p>
+
+<p>Let&#39;s assume these are actual companies:</p>
+
+<ul>
+	<li><strong>Pear:</strong> Is a company that sells yMobile smartphones. Official website : pear.co.uk</li>
+	<li><strong>PayFriend:</strong> Is a company that helps with online payments. Official website: payfriend.com. Email address: payfriends@payfriend.com</li>
+	<li><strong>Recruitron:</strong> Is a recruiter company. Official website: recruitron-business.com. Email address: contact@recruitron-business.com</li>
+	<li><strong>PhotoZ:&nbsp;</strong>Is an art sharing website. Official website: photo-z.art &nbsp;.&nbsp;Email address: photoZ-contact@photo-z.art</li>
+	<li><strong>ReZap</strong>:&nbsp;Neworkin website like&nbsp;LinkedIn. Official website: rezap-future.com. Email address: contact@rezap-future.com</li>
+	<li><strong>StarBank</strong>: Is a bank&#39;s website. Official website: starbanking.co.uk Email address: info@starbanking-contact.co.uk</li>
+</ul>
+
+<p>1.</p>
+
+<hr />
+<p><strong>From: marketing@pear-ymobil3.co.uk</strong></p>
+
+<p><strong>Subject: ONCE IN A LIFETIME OFFER !</strong></p>
+
+<p>Get the new 32GB yMobile&nbsp; for &pound; 200 ONLY !</p>
+
+<p>BUY NOW</p>
+
+<p>CLICK <a href="http://iphoneemail-offer-apple.com">HERE </a>!</p>
+
+<hr />
+<p>&nbsp;</p>
+
+<p>2.</p>
+
+<hr />
+<p><strong>From: payfriend@pay-friend.co.uk</strong></p>
+
+<p><strong>Subject: View your recent transactions now !</strong></p>
+
+<p><img alt="" src="/media/images/logopay.png" style="height:38px; width:151px" /></p>
+
+<div style="background-color: lightgrey;"><strong>Email address:</strong> (your email address) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>&nbsp;Date</strong>
+
+<p><em>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;15th&nbsp;March 2015</em></p>
+</div>
+
+<p>Hello valued customer,<br />
+<br />
+It&#39;s nearly St Patrick&#39;s&nbsp;Day and it&#39;s time to get into the festive mood and you can securely do this with Pay Friend&#39;s support.<br />
+<br />
+Remember, to view your&nbsp;activity, just log in to your account.</p>
+
+<p><a class="btn btn-primary" href="http://e-web-paypall.co.uk">Log in</a></p>
+
+<hr />
+<p>&nbsp;</p>
+
+<p>3.</p>
+
+<hr />
+<p><strong>From: Alaska@</strong>&nbsp;contact@recruitron-business.com</p>
+
+<p><strong>Subject: &nbsp;Recruitron Your Profile</strong></p>
+
+<p>Hi (Your name)</p>
+
+<p>I represent a company here in Glasgow that is looking for a (your career) graduate position&nbsp;and your profile stood out to me.</p>
+
+<p>If you are interested please let me know.</p>
+
+<p>Kind Regards</p>
+
+<hr />
+<p>&nbsp;</p>
+
+<p>4.</p>
+
+<hr />
+<p><strong>From: PhotoZ&nbsp;&lt;sponsor@e-offer.biz&gt;</strong></p>
+
+<p><strong>Subject:&nbsp;</strong></p>
+
+<p>Hi,</p>
+
+<p>You have message from Linda on PhotoZ:</p>
+
+<p>I saw your photo &amp; thought it&#39;d be great for the Nature challenge.&nbsp;<br />
+Enter it now OR take a new photo by Sunday.</p>
+
+<p>- Linda</p>
+
+<p>Go to your <a href="http://e-photo-gallery_offer.biz/login">inbox</a></p>
+
+<hr />
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>5.&nbsp;</p>
+
+<hr />
+<p><strong>From: ReZap&lt;rezap@r3-zap.co.uk&gt;</strong></p>
+
+<p><strong>Subject: People are viewing your profile</strong></p>
+
+<p><strong>Attachments: (offer.exe)</strong></p>
+
+<p><span style="color:#FFFFFF"><strong>Hi (username),</strong></span></p>
+
+<p><span style="color:#FFFFFF"><strong>Your profile has been viewed by these users:</strong></span></p>
+
+<p><span style="color:#FFFFFF"><strong>- Marie K.&nbsp;Bonnet&nbsp;</strong></span></p>
+
+<p><span style="color:#FFFFFF"><strong>- Bianca Delano</strong></span></p>
+
+<p><span style="color:#FFFFFF"><strong>- Magnolia Fisher</strong></span></p>
+
+<p><span style="color:#FFFFFF"><strong>- Gia G.</strong></span></p>
+
+<p><span style="color:#FFFFFF"><strong>&nbsp;Gia G. has endorsed you : + Java + C&nbsp;</strong></span></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>G E T TH3 NEW 1PH0N3 H</p>
+
+<p>&nbsp;</p>
+
+<p>ERE 4&nbsp;17o P ou n ds</p>
+
+<p>Remove the captial R an spaces:</p>
+
+<p>ofRR ferRR-RRiRRp ho neRR6RR.cR Rom&nbsp;</p>
+
+<hr />
+<p>&nbsp;</p>
+
+<p>&nbsp;6.</p>
+
+<hr />
+<p><strong>From: StarBanking&lt;info</strong>@starbanking-contact.co.uk<strong>&gt;</strong></p>
+
+<p><strong>Subject: Account plans are being changed</strong></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;Is this e-mail displayed correctly? View it in your browser. Your partial postcode is : (your post code)</p>
+
+<div style="background-color: #1c2f67;">
+<p><img alt="" src="/media/images/banklogo.jpg" style="height:120px; width:161px" /></p>
+</div>
+
+<p>&nbsp;Dear (Your Full Name),</p>
+
+<p>We are glad to inform you that your account has been upgrade to an (...) account due to improvements in our services.</p>
+
+<p><a href="/admin/trainingPortal/exercise/6/www.rbsdigital.com">Log in</a> to your account to view more details about your new plan.</p>
+
+<p>&nbsp;</p>
+
+<p>Kind Regars,</p>
+
+<p>StarBank&nbsp;(...) Team</p>
+
+<p>&nbsp;</p>
+
+<hr />
+<p>&nbsp;</p>
+
+
+======================ANSWERS============CorrectAnswer Field===========================
+<ol>
+	<li>Yes &ndash;&nbsp;Talking about once in a lifetime opportunity (urging user), using all capitals, fake or suspicious sender addres and suspicious link.</li>
+	<li>Yes &ndash;&nbsp;This is a replica of an e-mail sent by PayFriend&nbsp;if you look at the sender address it looks like their address but the real one is&nbsp;payfriends@payfriend.com . The log in link does not redirect to their official website. Also refers to you as dear valued customer</li>
+	<li>No &ndash;&nbsp;It&rsquo;s not a spam e-mail. The e-mail does not urge the reader to take immediate action. The company&rsquo;s site seems to be legit. It uses your real name and looks like a job offer of your expertise.</li>
+	<li>Yes- Sender impersonating PhotoZ website. Link redirects to their website&rsquo;s log in page. Empy subject&nbsp;</li>
+	<li>Yes &ndash;&nbsp;Supsicious attachment. Suspicious spaces,line breaks and characters. Hidden text</li>
+	<li>No - Uses your full name, links send you to their official website and do not request any information from you</li>
+</ol>

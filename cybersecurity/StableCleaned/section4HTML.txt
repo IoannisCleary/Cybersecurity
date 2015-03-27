@@ -1,0 +1,64 @@
+<p><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Spam filter is software that&nbsp;filters incoming messages in order to block incoming spam. Messages are&nbsp;classified&nbsp;by the filter based on certain rules and&nbsp;algorithms. If a message is marked as&nbsp;spam, it usually ends up in the junk/spam&nbsp;folder. If&nbsp;a message does not show any signs of being spam or it is from a trusted sender then it is&nbsp;added to the&nbsp;user&rsquo;s inbox folder.</span></span></p>
+
+<p style="text-align:center"><span style="font-family:times new roman,times,serif"><span style="font-size:14px"><img alt="" src="/media/images/spamfilter_extra.png" style="height:150px; width:320px" /></span></span></p>
+
+<p><span style="font-family:times new roman,times,serif"><span style="font-size:14px">According multiple online sources on spam, there are many tricks used in order to fool spam filters into thinking that the message is a legit message and therefore avoid detection. Here are some of the techniques used by spammers:</span></span></p>
+
+<ul>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Line breaks at unexpected parts of a message</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Adding spaces between characters in words</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Replace spaces with a specific character</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Use of characters from foreign languages that look like English characters</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Switching around some letters in words</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Use of HTML code in various was such as encoding characters or adding tiny letters between letters in words, which cannot be noticed by a user.</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Use of JavaScript to hide messages</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Using multiple &lsquo;zombie&rsquo; computers to send spam since IP addresses can be added to block lists</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">In order to fool spam filter algorithms more sentences are added&nbsp; in order to pass the algorithms&rsquo; threshold. These additional sentences can be the same colour with the background of a message so that a user does not notice them.</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Use IP addresses with neutral or positive reputation</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Using tiny URLs instead of full length URLs</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Using encoded URLs</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Use HTML to fool recipient by adding a malicious link on a legitimate service&rsquo;s URL</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Splitting URLs in different parts and showing how the user can attach the parts to get the original URL</span></span></li>
+</ul>
+
+<p><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Spammers study how spam filters work so that they can try to exploit their algorithms in order to bypass detection. Spam filters need to be regularly updated with alternative detecting techniques and improved algorithms. As the detection algorithms advance, some problems that can appear are false positive classifications where legitimate messages are marked as spam. Email services such as GMAIL by Google try to improve their algorithms in order to reduce the number of false positive detections by either using familiarity such as adding an e-mail address to an approved senders list (contacts) or allowing users to create their own filters.</span></span></p>
+
+<p><span style="font-family:times new roman,times,serif"><span style="font-size:14px">There are numerous of patterns that filters tend to look at and there are many websites that help legitimate users avoid spam classification by following some rules in order to improve their message&rsquo;s quality score. Some of the rules that are mentioned online are:</span></span></p>
+
+<ul>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Do not use of words such as &lsquo;free&rsquo;, &rsquo;urgent&rsquo;, &lsquo;click here&rsquo;, &rsquo;once in a lifetime&rsquo; or characters such as $$, XXX</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Do not focus mainly on transactions.</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Avoid excessive use of caps lock</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Avoid excessive amount of images or links with not enough text</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Do not use of bright colours and irregular font size (too small)</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Avoid attachment of files of these formats:&nbsp; exe, bat, com etc.</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Claiming that is a legitimate e-mail might trigger a filter into thinking that it is spam</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Use well known mailers such as GMAIL, Hotmail, Yahoo etc.</span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Timing : frequent e-mails from an address can be marked as spam</span></span></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-family:times new roman,times,serif"><span style="font-size:14px">References</span></span></p>
+
+<h1><span style="font-family:times new roman,times,serif"><span style="font-size:14px">&middot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vivian. (2015). Google support, Anti-virus scanning attachments. Available at:&nbsp;<a href="https://support.google.com/mail/answer/25760?hl=en">https://support.google.com/mail/answer/25760?hl=en</a>&nbsp;[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</span></span></h1>
+
+<ul>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Margaret Rouse. (2014). WhatIs.com, Spam Filter definition. Available at:&nbsp;<a href="http://searchmidmarketsecurity.techtarget.com/definition/spam-filter">http://searchmidmarketsecurity.techtarget.com/definition/spam-filter</a><strong>[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</strong></span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">John Graham-Cumming. (2004). &ldquo;Hakin9&rdquo; Magazine, Wydawnictwo Software, Tricks of the Spammer&#39;s Trade. Available at:&nbsp;<a href="http://www.windowsecurity.com/uplarticle/anti-spam/Spammer_tricks.pdf">http://www.windowsecurity.com/uplarticle/anti-spam/Spammer_tricks.pdf</a><strong>[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</strong></span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px"><a name="1049758"><strong>Google Postini Services, How do I prevent good messages from getting filtered out as&nbsp;</strong></a><strong>spam? (false positives)</strong>. Available at:&nbsp;<a href="http://www.google.com/support/enterprise/static/postini/docs/admin/en/troubleshooting_spe/faq_spam_falsepositives.html">http://www.google.com/support/enterprise/static/postini/docs/admin/en/troubleshooting_spe/faq_spam_falsepositives.html</a><strong>[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</strong></span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Vivian. Google Support, Legitimate mail is marked as spam. Available at:&nbsp;<a href="https://support.google.com/mail/answer/9008?hl=en">https://support.google.com/mail/answer/9008?hl=en</a><strong>[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</strong></span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Process Software, Common Spammer Tricks - White Paper. Available at:&nbsp;<a href="http://www.process.com/psc/fileadmin/user_upload/whitepapers/pmas/common_spammer_tricks.pdf">http://www.process.com/psc/fileadmin/user_upload/whitepapers/pmas/common_spammer_tricks.pdf</a><strong>[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</strong></span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px"><strong>(2009). IT News Africa, 10 tricks used by spammers to get into your inbox</strong>. Available at:&nbsp;<a href="http://www.itnewsafrica.com/2009/11/10-tricks-used-by-spammers-to-get-into-your-inbox/">http://www.itnewsafrica.com/2009/11/10-tricks-used-by-spammers-to-get-into-your-inbox/</a><strong>[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</strong></span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">CETS Answers,&nbsp;<strong>How can I avoid having my mail blocked by spam filters?&nbsp;</strong>Available at:&nbsp;<a href="http://www.seas.upenn.edu/cets/answers/spamblock-false.html">http://www.seas.upenn.edu/cets/answers/spamblock-false.html</a><strong>[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</strong></span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">CETS Answers,&nbsp;<strong>Sending &quot;Prohibited&quot; Attachments.&nbsp;</strong>Available at:&nbsp;<a href="http://www.seas.upenn.edu/cets/answers/send-prohibited-attachments.html">http://www.seas.upenn.edu/cets/answers/send-prohibited-attachments.html</a><strong>[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</strong></span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px"><strong>Mail Chimp , How to Avoid Spam Filters</strong>. Available at:&nbsp;<a href="http://mailchimp.com/resources/guides/how-to-avoid-spam-filters/html/">http://mailchimp.com/resources/guides/how-to-avoid-spam-filters/html/</a><strong>[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</strong></span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Sofia Woods. (2012). THE DAILY EGG, 8 Little Known Ways to Avoid The Email Spam Filter. Available at:&nbsp;<a href="http://blog.crazyegg.com/2012/06/26/avoid-email-spam-filter/">http://blog.crazyegg.com/2012/06/26/avoid-email-spam-filter/</a><strong>[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</strong></span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px"><strong>Jeff. (2012). the Email Admin, 5 Tricks Spammers Use to Get Past Your Filter</strong>. Available at:&nbsp;<a href="http://www.theemailadmin.com/2012/03/5-tricks-spammers-use-to-get-past-your-filter/">http://www.theemailadmin.com/2012/03/5-tricks-spammers-use-to-get-past-your-filter/</a>&nbsp;<strong>[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</strong></span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">Panda Security, Types of Malware, Spam: Unsolicited email messages . Available at:&nbsp;<a href="http://www.pandasecurity.com/homeusers/security-info/types-malware/spam/">http://www.pandasecurity.com/homeusers/security-info/types-malware/spam/</a>&nbsp;<strong>[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</strong></span></span></li>
+	<li><span style="font-family:times new roman,times,serif"><span style="font-size:14px">&nbsp;David Greiner<strong>. (2006). Campaign Monitor, What are some good methods for avoiding spam filters?</strong>&nbsp;Available at:&nbsp;<a href="https://www.campaignmonitor.com/blog/post/1971/what-are-some-good-methods-for">https://www.campaignmonitor.com/blog/post/1971/what-are-some-good-methods-for</a>&nbsp;<strong>[Last Accessed on March 15<sup>th</sup>&nbsp;2015]</strong></span></span></li>
+</ul>

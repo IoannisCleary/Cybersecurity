@@ -1,0 +1,41 @@
+--------Install--------
+- virtualenv new
+- source new/bin/activate
+
+- easy_install django==1.7.5
+- pip install django-allauth
+- pip install django-cms
+- cd externalapps/djangoquiz
+- python setup.py install
+- cd ../../
+- hg clone http://bitbucket.org/psam/django-postman/
+- cd django-postman
+- python setup.py install
+- cd ../
+- pip install pybbm
+- pip install bbcode
+- pip install markdown
+- pip install django-wysiwyg
+- pip install django-pagination
+- pip install django-mailer
+- pip install django-notification
+- pip install django-ajax-selects
+- pip install django-filer
+- pip install djangocms-text-ckeditor
+- pip install djangocms-file
+- pip install djangocms-flash
+- pip install djangocms-picture
+- pip install djangocms-video
+- pip install djangocms-link
+- pip install django-transmeta
+- pip install django-tinymce
+- pip install django-ckeditor
+- python manage.py migrate
+- python manage.py makemigrations
+- python manage.py syncdb
+15. python manage.py syncdb
+- Create superuser: yes
+-- Username:admin
+-- Email: (any email address)
+-- Password: (any password)
+- python manage.py collectstatic

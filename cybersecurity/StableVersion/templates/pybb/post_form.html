@@ -1,0 +1,66 @@
+{% load url from future %}
+{% load i18n pybb_tags %}
+<div class="container-fluid">
+<form class="post-form" action="
+    {% if forum %}
+        {% url 'pybb:add_topic' forum.pk %}
+    {% else %}
+        {% if topic %}
+            {% url 'pybb:add_post' topic.pk %}
+        {% else %}
+            {% url 'pybb:edit_post' pk=object.pk %}
+        {% endif %}
+    {% endif %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <fieldset>
+
+    {% if form.name %}
+     <div class="{% if form.name.is_required %}required{% endif %} {% if form.name.errors %}error{% endif %}">
+    <div class="input-group" style="height: 1em">
+      <span class="input-group-addon input-group-lg" style="background-color:#0066FF;border-color:#0047B2;color:white;"><b>Name</b></span>
+      <input id="id_name"  class="form-control" name="name" placeholder="Name" type="text" style="border-color:#7AC402;"/>{{ form.name.errors }}<br>
+    </div>
+    </div>
+    {% endif %}
+    {% if form.login %}
+    </br>
+     <div class="{% if form.login.is_required %}required{% endif %} {% if form.login.errors %}error{% endif %}">
+    <div class="input-group" style="height: 1em">
+          <span class="input-group-addon input-group-lg" style="background-color:#9BE81E;border-color:#7AC402;color:white;"><b>Username</b></span>
+    <input id="id_login"  class="form-control" name="login" placeholder="Login" value="{{user.username}}"type="text" style="border-color:#7AC402;"/>{{ form.login.errors }}<br>
+    </div>
+     </div>
+    {% endif %}
+    {% if form.body %}
+</br>
+         <div class="{% if form.body.is_required %}required{% endif %} {% if form.body.errors %}error{% endif %}">
+                 <div class="form-group form-group-lg">
+              <div class="input-group">
+    <span class="input-group-addon input-group-lg" style="background-color:#E6B800;border-color:#FFCC00;color:white;"><b>Message</b></span>
+    <textarea class="form-control" name="body"rows="5" id="id_body" style="border-color:#FFCC00;"></textarea>{{ form.body.errors }}<br>
+</div>
+</div>
+ </div>
+{% endif %}
+     </div>
+    <div class="well" style="margin-left:20px;margin-right:20px">
+
+    <div id='emoticons'>
+            <b>   Available emoticons: </b>
+      {% for smile, url in form.available_smiles.items %}
+        <a title='{{ smile|safe }}'><img src='{{ STATIC_URL }}{{ form.smiles_prefix }}{{ url }}'></a>
+      {% endfor %}
+    </div></div>
+    {% if request.user|pybb_may_create_poll and form.poll_type %}
+      {% include "pybb/poll_edit_form.html" %}
+    {% endif %}
+    {% include "pybb/attachments_formset.html" %}
+     </br>
+    <p class="submit">{% include "pybb/_button_submit.html" %}</p>
+  </fieldset>
+</form>
+  </br>
+    </br>
+      </br>
+        </br>
+</div>

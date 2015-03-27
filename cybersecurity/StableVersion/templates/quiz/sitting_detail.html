@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load quiz_tags %}
+{% block title %}
+{% trans "Result of" %} {{ sitting.quiz.title }} {% trans "for" %} {{ sitting.user }}
+{% endblock %}
+{% block page_title %}<span class="label label-primary" >
+{% trans "Result of" %} {{ sitting.quiz.title }} {% trans "for" %} {{ sitting.user }} </span>
+{% endblock %}
+{% block content %}
+ {% if user.is_authenticated %}
+    {% if request.user.is_superuser %}
+<div class="container-fluid">
+<h2><span class="label label-warning" style="background-color:#006699!important;border-color:#006699!important;">{% trans "Quiz title" %}: {{ sitting.quiz.title }}</span></h2>
+<h3><span class="label label-warning" style="background-color:#003595!important;border-color:#003595!important;">{% trans "Category" %}: {{ sitting.quiz.category }}</span></h3>
+<h4><span class="label label-default">{{ sitting.quiz.description }}</span></h4>
+<hr>
+<div class="container-fluid" style="margin-left:15px;margin-right:15px;background-color:lightgrey"></br>
+<p><b>{% trans "User" %}:</b> {{ sitting.user }}</p>
+<p><b>{% trans "Completed" %}:</b> {{ sitting.end|date }}</p>
+<p><b>{% trans "Score" %}:</b> {{ sitting.get_percent_correct }}%</p>
+</br></div></br>
+<table class="table table-bordered table-striped table-responsive">
+
+  <thead>
+	<tr>
+	  <th>{% trans "Question" %}</th>
+	  <th>{% trans "User answer" %}</th>
+	  <th></th>
+	  <th></th>
+	</tr>
+  </thead>
+
+  <tbody>
+{% for question in questions %}
+
+	<tr>
+      <td>
+        {{ question.content }}
+        {% if question.figure %}
+        <div style="max-width: 100px;"><img src="{{ question.figure.url }}" alt="{{ question.figure }}"/></div>
+        {% endif %}
+      </td>
+	  <td>{{ question|answer_choice_to_string:question.user_answer }}</td>
+	  <td>
+		{% if question.id in sitting.get_incorrect_questions %}
+		  <p>{% trans "Incorrect" %}</p>
+		{% else %}
+		  <p>{% trans "Correct" %}</p>
+		{% endif %}
+	  </td>
+	  <td>
+		<form action="" method="POST">{% csrf_token %}
+		  <input type=hidden name="qid" value="{{ question.id }}">
+		  <button type="submit" class="btn btn-primary">{% trans "Toggle whether <b>Correct</b> or <b>Incorrect</b>" %}</button>
+		</form>
+	  </td>
+	</tr>
+
+{% endfor %}
+
+  </tbody>
+
+</table>
+	{% else %}
+<div class="alert alert-danger" role="alert"> <p class="label label-danger">You don't have permission to access this page</p>
+	</div>
+	{% endif %}
+	{% else %}
+				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login/?next=/trainingPortal/test/marking/" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+
+		{% endif %}
+		</div>
+		</br>
+		</br>
+		</br>
+		</br>
+{% endblock %}

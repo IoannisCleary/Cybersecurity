@@ -1,0 +1,110 @@
+<p>&nbsp;</p>
+
+<p>Spam filters use text categorization to sort messages. One of the algorithms used is the Naive Bayes algorithm in order to categorize messages into spam and non-spam categories. The algorithm calculates&nbsp;probabilities based on a series of messages that have been manually annotated. When a message is processed, all the words are taken and analyzed against the probabilities of them appearing in spam message versus them appearing in non spam messages.&nbsp;If a message has an overall spam probability higher than the non-spam probability, then the message is classified as spam and then dealt with accordingly by the software.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Naive Bays formula <sup>[Source: http://www.saedsayad.com/naive_bayesian.htm]</sup></strong></p>
+
+<p><img alt="Naive Bays algorithm formula" src="http://www.saedsayad.com/images/Bayes_rule.png" style="width:45%" /></p>
+
+<p>&nbsp;</p>
+
+<table border="0" style="width:800px">
+	<tbody>
+		<tr>
+			<td>
+			<ul>
+				<li><em>P</em>(<em>c|x</em>)&nbsp;is the posterior probability of&nbsp;<em>class</em>&nbsp;(<em>target</em>) given&nbsp;<em>predictor</em>&nbsp;(<em>attribute</em>).&nbsp;</li>
+				<li><em>P</em>(<em>c</em>)&nbsp;is the prior probability of&nbsp;<em>class</em>.&nbsp;</li>
+				<li><em>P</em>(<em>x|c</em>)&nbsp;is the likelihood which is the probability of&nbsp;<em>predictor</em>&nbsp;given&nbsp;<em>class</em>.&nbsp;</li>
+				<li><em>P</em>(<em>x</em>)&nbsp;is the prior probability of&nbsp;<em>predictor</em>.</li>
+			</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<h2><strong>Example</strong></h2>
+
+<p>&nbsp;Given 20 normal e-mails and 20 spam e-mails, here is a table of how many times &#39;Free&#39;,&#39;Cat&#39; occured</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<table style="width:100%">
+	<tbody>
+		<tr>
+			<td><strong>Word</strong></td>
+			<td>-</td>
+		</tr>
+		<tr>
+			<td>-</td>
+			<td><strong>Type</strong></td>
+			<td>Spam</td>
+			<td>Not Spam</td>
+		</tr>
+		<tr>
+			<td>Free</td>
+			<td>-</td>
+			<td>15</td>
+			<td>5</td>
+		</tr>
+		<tr>
+			<td>Cat</td>
+			<td>-</td>
+			<td>1</td>
+			<td>10</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><em>Taking the word &#39;Free&#39;.</em></p>
+
+<p>&nbsp;</p>
+
+<p><em>P</em>(Spam)=0.5</p>
+
+<p>P(Not Spam)=0.5</p>
+
+<p>&nbsp;</p>
+
+<p><em><em>P</em>(Free<em>|Not Spam</em>) =5/40 =&nbsp;0.125</em></p>
+
+<p><em><em>P</em>(Free<em>|Spam</em>) =15/40 =&nbsp;0.375</em></p>
+
+<p>&nbsp;</p>
+
+<p><strong><em><em>P</em>(Not Spam<em>|Free</em>) = P(Not Spam)*P(Free/Not Spam) = 0.5 * 0.125 =0.06</em></strong></p>
+
+<p><strong><em>P</em>(Spam<em>|Free</em>) = P(Spam)*P(Free/Spam)= 0.5 * 0.375 =0.19</strong></p>
+
+<p>&nbsp;</p>
+
+<p><strong>This word Free will be classified as a spam related word because there is a higher probability that it belongs to spam.</strong></p>
+
+<p><strong>Calculate probabilities for the the word Cat.</strong></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;Bibliography</p>
+
+<ol>
+	<li>
+	<table border="0" cellpadding="0" cellspacing="0" class="cp-citation-subtitle" style="background:inherit; border:0px; color:black; font-family:georgia,times new roman,times,serif; font-size:11px; line-height:13.1999998092651px; margin:0px; outline:0px; padding:0px; vertical-align:baseline; width:792px">
+		<tbody>
+			<tr>
+				<td>Text categorization.Yiming Yang and Thorsten Joachims (2008), Scholarpedia. Available at:&nbsp;<span style="color:rgb(51, 51, 51); font-family:sans-serif,arial,verdana,trebuchet ms; font-size:13px; line-height:1.6">http://www.scholarpedia.org/article/Text_categorization</span></td>
+			</tr>
+		</tbody>
+	</table>
+	</li>
+	<li>Choochart Haruechaiyasak.(2008). A Tutorial on Naive Bayes Classification&nbsp;. Available at:&nbsp;http://suanpalm3.kmutnb.ac.th/teacher/FileDL/choochart82255418560.pdf</li>
+	<li>Naive Bayesian,&nbsp;saedsayad. Available at:&nbsp;http://www.saedsayad.com/naive_bayesian.htm&nbsp;</li>
+	<li>Karen Rubin.(2012). The Ultimate List of Email Spam Trigger Words.&nbsp;Available at: http://blog.hubspot.com/blog/tabid/6307/bid/30684/The-Ultimate-List-of-Email-SPAM-Trigger-Words.aspx</li>
+	<li>Dell Zhang. (2006).&nbsp;An Example of Text Classification with Na&iuml;ve Bayes.&nbsp;Available at: http://www.dcs.bbk.ac.uk/~dell/teaching/ir/examples/nb_example.pdf</li>
+	<li>Dell Software,&nbsp;Naive Bayes Classifier. Available at:&nbsp;http://www.statsoft.com/textbook/naive-bayes-classifier</li>
+</ol>

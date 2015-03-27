@@ -1,0 +1,102 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}Chapter{% endblock %}
+
+{% block page_title %}{% if user.is_authenticated %}
+
+<div class="container-fluid">
+    <div class="btn-group" role="group" style="padding-left:4px;margin-bottom:10px" aria-label="...">
+    &nbsp; <a type="button"class="btn btn-primary" href="/trainingPortal/chapters/"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Back   </b>&nbsp;</a>
+</div></div>
+
+<div class="well"style="margin-top:25px;">
+    <div class="container-fluid"style="margin-top:10px;margin-left:10px;margin-right:10px;margin-bottom:10px;">
+<span class="label label-success">&nbsp;<b>Chapter</b></span><span class="label label-success" style="background-color:#558952!important"><b>&nbsp;{{c.number}}&nbsp;</b></span>
+<span class="label label-default"></span><b style="color:black; font-size: 78%">&nbsp; {{title}}</b>&nbsp;</span></div>
+</div>
+{% endif %}
+
+
+{% endblock %}
+
+	{% block content%}
+
+	{% if user.is_authenticated %}
+	     {% if exists %}
+
+    </br>
+<div class="well container-fluid">
+<div class="container-fluid"style="background-color:#E6E6E6;margin-top:5px;padding-left:25px;padding-right:25px;margin-bottom:5px;">
+	    </br>	{% autoescape off %}{{c.overview}} {% endautoescape %}</br></div> </br>
+	 {% if set_learningStyle %}
+	{% if sections %}
+	    <h3><b class="label label-info">Sections</b></h3></br>
+			<ul class="list-group">
+			<div class="btn-group btn-block btn-group-horizontal  ">
+					{% for section in sections %}
+					<li class="list-group-item"><div class="btn-group"><button class="btn disabled btn-info">{{c.number}}.{{section.number}}</button><div class="btn-group "role="group">
+					<a href="/trainingPortal/chapter/{{ chapter }}/{{ section.url }}" class="btn btn-info" role="button"><span class="glyphicon glyphicon-file"></span> {{ section.title }} <span class="badge">Read</span></a>	</div></div></li>
+					{% endfor %}
+			</div
+			</ul>
+			{% else %}
+            <strong>There are no sections!</strong>
+			{% endif %}</br></br></br><h3><b class="label label-primary" style="background-color:#FF00AF;border-color:#FF6ED2;color:white;">Quizzes</b></h3></br>
+				{% if quizzes %}
+
+			<ul class="list-group">
+			<div class="btn-group btn-block btn-group-horizontal  ">
+					{% for quiz in quizzes %}
+					<li class="list-group-item"><div class="btn-group"><button class="btn disabled btn-primary" style="background-color:#E45EBA;border-color:#FF6ED2;color:white;"><span class="glyphicon glyphicon-list-alt"></span></button><div class="btn-group "role="group">
+					<a href="/test/{{quiz.url}}" class="btn btn-primary" role="button"  style="background-color:#FF00AF;border-color:#FF6ED2;color:white;">{{ quiz.title }} <span class="badge" style="color:#FF00AF;">Take</span></a></div></li>
+					{% endfor %}
+			</div>
+			</ul>
+				{% else %}
+            <strong>There are no quizzes for this chapter.</strong>
+			{% endif %}
+	 	 {% else%}
+					<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+	{% endif %}
+	   {% else%}
+    				<div class="alert alert-danger" role="alert"> <p class="label label-danger">WARNING</p> </br><b>Chapter</b> does not exist ! Please check the url and try again.</a>
+     </div>
+      {% endif %}
+		{% else %}
+				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login/?next=/trainingPortal/chapters/" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+
+		{% endif %}
+
+		   </div>
+ </br>
+		     </div>
+		     		   </br> </br> </br> {% if user.is_authenticated %}
+			 <button class="btn btn-success disabled" type="button"><b>Chapter </b></button>
+<div class="btn-group  dropup">
+
+  {% if exists %}
+<button class="btn btn-group-lg btn-default disabled" type="button"><b>{{ chapter }}</b></button>
+	{% else %}
+	<button class="btn btn-group-lg btn-default disabled" type="button"><b>Chapter</b></button>
+{% endif %}
+
+
+<button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
+	  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+  {% if chapters %}
+  <li role="presentation" class="dropdown-header">Chapters</li>
+					{% for chapter in chapters %}
+						<li><a role="menuitem" tabindex="-1" href="/trainingPortal/chapter/{{ chapter.url }}">{{ chapter.title }}</a></li>
+					{% endfor %}
+	{% endif %}
+  </ul>
+
+  </div>{% endif %}
+  		   </br>
+  </br>  </br> </br> </br> </br> </br>
+       {% endblock %}

@@ -1,0 +1,53 @@
+{% extends "postman/base.html" %}
+{% load i18n %}
+{% block extrahead %}{{ block.super }}
+{% if autocompleter_app.is_active %}
+{# dj v1.4 #}{% load static %}
+<script type="text/javascript"src="
+{# using the available admin jQuery is enough: #}
+ {# dj v1.4 #}{% static 'admin/js/jquery.min.js' %}
+ {# dj v1.2/3 #}{# {% load adminmedia %}{% admin_media_prefix %}js/jquery.min.js #}
+{# unless you really want your own: #}
+ {# dj v1.2 #}{# {{ MEDIA_URL }}js/jquery.min.js #}
+"></script>
+{% if autocompleter_app.name == "ajax_select" %}{% if autocompleter_app.version == "1.1.4" or autocompleter_app.version == "1.1.5" %}<script type="text/javascript" src="
+{# dj v1.4 #}{% static 'js/jquery.autocomplete.min.js' %}
+{# dj v1.3 #}{# {{ STATIC_URL }}js/jquery.autocomplete.min.js #}
+{# dj v1.2 #}{# {{ MEDIA_URL }}js/jquery.autocomplete.min.js #}
+"></script>
+<link type="text/css" media="all" rel="stylesheet" href="
+{# dj v1.4 #}{% static 'css/jquery.autocomplete.css' %}
+{# dj v1.3 #}{# {{ STATIC_URL }}css/jquery.autocomplete.css #}
+{# dj v1.2 #}{# {{ MEDIA_URL }}css/jquery.autocomplete.css #}
+" />{# else: for version 1.2.x use AJAX_SELECT_BOOTSTRAP + AJAX_SELECT_INLINES or arrange to include jqueryUI/js/css #}{% endif %}{% endif %}
+{% endif %}
+{% endblock %}
+{% block page_title %}
+<div class="btn-group" role="group" aria-label="...">
+<a type="button"class="btn btn-info" href="/trainingPortal/user/messages/inbox/"><b> Inbox   <span class="glyphicon glyphicon-inbox"></span></b></a>
+<a href="/trainingPortal/user/messages/write/" type="button "class="btn btn-warning"><b> Write   <span class="glyphicon glyphicon-pencil"></span></b></a>
+<a type="button"class="btn btn-primary" style="background-color:#9b30f4!important; border-color:#9b30f4!important" href="/trainingPortal/user/messages/sent/"><b> Sent   <span class="glyphicon glyphicon-send"></span></b></a>
+<a href="/trainingPortal/user/messages/trash/" type="button "class="btn btn-danger"><b> Trash   <span class="glyphicon glyphicon-trash"></span></b></a>
+<a href="/trainingPortal/user/messages/archives/" type="button "class="btn btn-success"><b> Archives   <span class="glyphicon glyphicon-folder-open"></span></b></a></div>{% endblock %}
+
+{% block content %}
+<div class="panel panel-primary"style="border-color:#f3a433!important">
+  <div class="panel-heading" style="background-color:#f3a433!important; border-color:#f3a433!important">
+    <h3 class="panel-title"><b>{% block pm_write_title %}{% endblock %}</b></h3>
+	 </div>
+  <div class="panel-body">
+<div id="postman">
+<form action="{% if next_url %}?next={{ next_url|urlencode }}{% endif %}" method="post">{% csrf_token %}
+<div class="table-responsive">
+<table class="table">
+{% block pm_write_recipient %}{% endblock %}
+{{ form.as_table }}
+</table>
+</div>
+<div class="btn-group btn-group-lg" role="group"><button class="btn btn-warning"type="submit"><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;{% trans "Send" %}</button></div>
+</br>
+</form>
+</div>
+ </div>
+  </div>
+{% endblock %}

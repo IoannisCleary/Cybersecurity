@@ -1,0 +1,449 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Index{% endblock %}
+{% block extra_head %}
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+  <!-- Increase/Decrease font feature's source: http://www.programming-free.com/2013/12/increase-decrease-font-size-jquery.html -->
+  <script type="text/javascript">
+	 $(document).ready(function() {
+		$('#incfont').click(function(){
+        curSize= parseInt($('#content').css('font-size')) + 2;
+		if(curSize<=20)
+        $('#content').css('font-size', curSize);
+        });
+		$('#decfont').click(function(){
+        curSize= parseInt($('#content').css('font-size')) - 2;
+		if(curSize>=12)
+        $('#content').css('font-size', curSize);
+        });
+	});
+</script>
+ <script>
+ <!-- Source of the original function : http://jqueryui.com/dialog/#animated-->
+  $(function() {
+
+    $( "#Example" ).dialog({  <!-- extended -->
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+    $( "#open_Example" ).click(function() {  <!-- extended -->
+      $( "#Example" ).dialog( "open" );  <!-- extended -->
+    });
+  });
+  </script>    {% endblock %}
+{% block page_title %}<span id="top" class="label label-info" style="background-color:#fb4186;border-color:#fb4186"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Help Centre&nbsp;</span>
+{% endblock %}
+	{% block content %}
+
+	{% if testing %}
+	<span class="label label-danger">Testing Mode</span>
+	{% endif %}
+	{% if user.is_authenticated %}
+		{% if set_learningStyle == False %}
+			<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+
+	</br>
+	  	{% endif %}
+	{% endif %}
+<div id="content" class="well" style"overflow: auto;">
+      <div id="fontlinks">
+        <div class="btn-group btn-group-sm">
+		<a href="#top" id="incfont" class="button buttonfont btn btn-primary"><span class="glyphicon glyphicon-font"></span>+</a>
+		<a href="#top" id="decfont" class="button buttonfont btn btn-primary"><span class="glyphicon glyphicon-font"></span>-</a>
+	</div>	</div>
+	    	</br>
+			
+  <!--  	<div class="row text-center">
+    	<img class="img" src="/media/images/helper.png"/></div>-->
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Log in/out</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    Click on the &nbsp;" <span class="glyphicon glyphicon-circle-arrow-right"></span> &nbsp;<b>Log In</b>"&nbsp; button on the navigation bar above.
+	    	</br>At the log in page enter your Username and Password in the appropriate fields and then click the log in button at the bottom of the page.	</br> You will then be redirected to the home page	</br>
+	</br>To log out click on the arrow that points down at the right of the navigation bar, a drop down list will be displayed </br>
+	then click on the 	&nbsp;" <span class="glyphicon glyphicon-circle-arrow-left"></span> &nbsp;<b>Log out</b>"&nbsp; button.
+	</br>
+		</br>
+	</div>
+		</br>
+	</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Sign up</b></span></h4></br>
+			<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    Click on the &nbsp;" <span class="glyphicon glyphicon-circle-arrow-up"></span> &nbsp;<b>Sign up</b>"&nbsp; button on the navigation bar above.
+	    	</br>At the Sign Up page enter a Username, a Password and your Age in the appropriate fields and then click the sign up button at the bottom of the page.</br> You will then be redirected to the home page	</br>
+	</br>
+	</div>
+    	{% if user.is_authenticated %}
+
+	</br>
+<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Announcements</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+	    	</br>
+            Announcements are shown on the home page from staff members in order to inform all users of modifications in quizzes or chapters and updates on certain events.
+            </br>
+	    			<h4><span class="label label-danger" style="color:white!imporant"> &nbsp; &nbsp; &nbsp;Announcements&nbsp;
+	    			<div class="btn-group btn-group-xs" role="group" aria-label="..."><b><a class="btn btn-danger"style="font-size:14px;">Show</a> </b></div>
+</span></h4>
+	    	</br>
+	</div>
+
+	</br>
+<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Chapters</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    To go to the Chapters page click on the  &nbsp" <span class="glyphicon glyphicon-th-large"></span> &nbsp;<b>Chapters</b> " &nbsp button on the navigation bar above.</br>
+	    On the Chapters page you should be able to see a list of available chapters in this format:</br>
+			</br>	<ul class="list-group">
+			<div class="btn-group btn-block btn-group-horizontal  ">
+	    <button class="btn disabled btn-success">- Chapter's number -</button><div class="btn-group "role="group">
+						<div id="Example" title="Overview of Example chapter">
+							<p>Example of how chapters are listed</p>
+						</div>
+						<a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;- Chapter's Title - &nbsp;<span class="badge">Open</span></a>
+					<button  type="button" class="btn btn-default" id="open_Example">Overview</button>
+    	 	</div>
+			</ul>
+    	 	</br>
+    	 	To go to a selected chapter, click on the green button with the title of that chapter. You can view an overview of the chapter (if it is available) by clicking on the overview button next to the button of with the chapter's title. A window should pop up with the chapter's overview.
+	</br>
+	</div>
+	</br>
+		<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Chapter</b></span></h4></br>
+			<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    A chapter's page should contain a section with the chapter's title where a back button is available above such as this : <a type="button"class="btn btn-primary" href="#"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Back   </b>&nbsp;</a> that takes you back to the chapters page.</br>
+	    Under the title section there is another section where the chapter's overview is displayed and a list of the chapter's pages in a list of this format:</br>
+	</br>
+	    </br>
+	<ul class="list-group">
+			<div class="btn-group btn-block btn-group-horizontal  ">
+			    	<li class="list-group-item"><button class="btn disabled btn-info">- Section's number - </button><div class="btn-group "role="group">
+					<a href="#" class="btn btn-info" role="button"><span class="glyphicon glyphicon-file"></span> - Section's title - <span class="badge">Open</span></a>
+					</div>
+					</ul>
+
+    	 	To got a selected section just click on the blue button with the section's title.
+    	 		</br>
+    	 		Under that section you will see a dropup menu where you can select any chapter and it will redirect you to it. It looks like this: </br>
+    	 			</br>	 <button class="btn btn-success disabled" type="button"><b>Chapter </b></button>
+<div class="btn-group  dropup">
+<button class="btn btn-group-lg btn-default disabled" type="button"><b>- Chapter's title -</b></button>
+<button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
+	  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+
+  <li role="presentation" class="dropdown-header">Chapters</li>
+			<li><a role="menuitem" tabindex="-1" href="#">Example</a></li>
+
+</ul>
+
+
+	</div>
+		</br>	</br>
+	</div>
+	</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Section</b></span></h4></br>
+			<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	     A chapter's page should contain a section with the chapter's title where a back button is available above such as this : <a type="button"class="btn btn-primary" href="#"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Back   </b>&nbsp;</a> that takes you back to the chapters page.</br>
+	    Under the title section there are two buttons that allow you to easily switch from one chapter section to another. They look like this: </br>
+	    <div class="btn-group btn-group-sm" role="group" style="padding-left:4px;padding-top:5px;margin-bottom:15px" aria-label="...">
+  <a type="button"class="btn btn-primary" href="#"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<b> Previous   </b>&nbsp;</a>
+ <a type="button"class="btn btn-primary" href="#">&nbsp;&nbsp;&nbsp;<b> Next   </b>&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
+    	</div>
+	    </br> If there is no previous or next section the button is disabled. Under those button there is another section where the page's content is displayed.
+    	 	</br>
+    	 	  	 		Under that section you will see a dropup menu where you can select any chapter and it will redirect you to it. It looks like this: </br>
+    	 			</br>	 <button class="btn btn-success disabled" type="button"><b>Chapter </b></button>
+<div class="btn-group  dropup">
+<button class="btn btn-group-lg btn-default disabled" type="button"><b>- Chapter's title -</b></button>
+<button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
+	  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+
+  <li role="presentation" class="dropdown-header">Chapters</li>
+			<li><a role="menuitem" tabindex="-1" href="#">Example</a></li>
+
+</ul>
+
+
+	</div>
+	<button class="btn btn-group-lg btn-info disabled" type="button"><b>Section </b></button>
+ <div class="btn-group  dropup">
+<button class="btn btn-group-lg btn-default disabled" type="button"><b>- Section's title -</b></button>
+	  <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
+	  </button>
+
+
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+  <li role="presentation" class="dropdown-header">Sections</li>
+
+						<li><a role="menuitem" tabindex="-1" href="#">Example</a></li>
+  </ul>
+</div>
+	</br></br>
+	</div>
+	</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Assessment</b></span></h4></br>
+			<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    	( This part of of the portal was a result of django-quiz app integration )	</br>
+	    	In order to test your knowledge there are quizzes that you can complete at the quizzes section.</br> You can access it by clicking on the &nbsp;" <span class="glyphicon glyphicon-check"></span> &nbsp;<b>Course</b>"&nbsp; dropdown menu and then selection &nbsp; " <span class="glyphicon glyphicon-list-alt"></span> &nbsp;<b>Take a quiz</b>"&nbsp;
+    	 	</br>
+    	 	Next you will see a table/list of quizzes, to take a quiz click on the "View details". It will redirect you to the quiz's page where you can start the quiz by clicking the start quiz button.
+    	 	</br>
+    	 		</br>
+    	 		It is recommended that you try out the example quiz before attempting any other quizzes. All quizzes except the example quiz count towards your progress report that is displaye on your profile.
+    	 			</br>
+    	 			You can see your quiz results by clicking on the &nbsp; " <span class="glyphicon glyphicon-font"></span> &nbsp;<b>View Grade Breakdown</b>"&nbsp; on the Course dropdown list on the navigation bar or </br>
+    	 			by clicking the Grade Breakedown button on your profile's progress report.
+    	 			</br>
+    	 				</br>
+	</div>
+
+	   </br>
+	    <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Forum</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+	     </br>
+  The forum is split into three categories: <b>General, Course, Help</b>.</br>
+  Each category has it's own set of forums and they are shown in tables like this: </br></br>
+       <a class="btn btn-default" type="button" >&nbsp;&nbsp;&nbsp;<b>Forum name&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></b></a></br>
+</br>
+<b>Topics</b> are shown in forums in tables like this:</br></br>
+  <a class="btn btn-default" type="button">&nbsp;&nbsp;<span class="glyphicon glyphicon-apple"></span>&nbsp;<b>Topic name&nbsp;&nbsp;</b></a>
+                <a  class="first-unread-post-link btn btn-success" title="Go to first unread post">&nbsp;&nbsp;⇨&nbsp;&nbsp;</a>
+</br>
+</br>
+  - In order to create a topic you click on the create topic button in a forum. </br>
+
+  </br>
+  <a class="new-topic btn btn-block btn-warning">&nbsp;<span class="glyphicon glyphicon-plus"></span>&nbsp;New topic</a>
+ 	     </br>
+ 	     - Enter the topic's title  </br>
+ 	     - Enter message  </br>
+ 	     - Select poll type (default = none)  </br>
+ 	     - Enter poll question if you have chosen to use a poll  </br>
+ 	     - Some emoticons are available. In order to use them hover over one to see the character combination that you need to enter </br>
+ 	      </br>
+ 	       </br>
+	    </div>
+
+
+	</br>
+
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Messages</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    		( This part of of the portal was a result of django-postman app integration )	</br>
+	    To go to your messages you will have to click on the &nbsp;" <span class="glyphicon glyphicon-envelope"></span> &nbsp;<b>Messages</b>"&nbsp; button on the navigation bar.
+	    It will automatically redirect you to your inbox.
+	    </br>
+	    At all of the pages of the messaging part of the portal you will see buttons of all your folders. They look like this : </br>
+	</br>
+	<div class="btn-group" role="group" aria-label="...">
+<a type="button"class="btn btn-info" href="#"><b> Inbox   <span class="glyphicon glyphicon-inbox"></span></b></a>
+<a href="#" type="button "class="btn btn-warning"><b> Write   <span class="glyphicon glyphicon-pencil"></span></b></a>
+<a type="button"class="btn btn-primary" style="background-color:#9b30f4!important; border-color:#9b30f4!important" href="#"><b> Sent   <span class="glyphicon glyphicon-send"></span></b></a>
+<a href="#" type="button "class="btn btn-danger"><b> Trash   <span class="glyphicon glyphicon-trash"></span></b></a>
+<a href="#" type="button "class="btn btn-success"><b> Archives   <span class="glyphicon glyphicon-folder-open"></span></b></a></div>
+	</br>
+    	 	</br>	</br>
+    	 	- Inbox : All messages you will receive	</br>
+    	 	- Write : Write a message to any user of the portal	</br>
+    	 	- Sent: All the messages that you've sent 	</br>
+    	 	- Trash: All the messages you have deleted 	</br>
+    	 	- Archives: All the messages that you have saved 	</br>
+    	 	</br>
+			<div class="container-fluid" style="background-color:white;">
+	    	</br>
+			
+			  {% if users%}
+			  Staff member usernames: <ul>
+			  {% for user in users %}
+			  <li><b>{{user.username}}</b></li>
+			  {% endfor %}
+			  </ul>
+			    {% endif %}
+			</br>
+			</div>
+	</div>
+		</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Profile</b></span></h4></br>
+		<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    Your profile will have a default profile picture along with your details ( Username, Age and Learnign Style ) and your progress report. </br>
+	    You can access your profile by clicking on the button on the navigation bar with your username : </br>
+	  </br>  <a href="#" class="btn btn-default"> <b>{{user.username}}</b> &nbsp;<img class="img-rounded" style="width:20px;height:20px"src="/media/images/navprof.png"/></a>
+    	 	</br>	</br>
+	</div>
+	</br>
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Learning Style</b></span></h4></br>
+			<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	      After you have signed up for the website you will be asked to complete your learning style based on <b>Honey and Mumford's learning style</b>.</br>
+	      There are 3 questionnaires that were found on the internet that you can complete and then select your result on the page and submit it.
+	      </br> It is important that you complete a questionnaire as your individual learning style will be associated with different content in the chapters, </br>
+	      tailored for you. In order to benefit from this feature you have to enter an honest result.
+    	 	</br>
+    	 	</br>
+	</div>
+	</br>
+
+	<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Statistics</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+	    	</br>
+	    This page displays information about the portal's usage. To go to this page click on the arrow that points down at the right of the navigation bar, a drop down list will be displayed </br>
+	    click on the  &nbsp;" <span class="glyphicon glyphicon-tasks"></span> &nbsp; <b>Statistics</b>" &nbsp; button .</br>Information such as :</br>
+	    - How many users exist </br>
+	    - How many users attempted quizzes</br>
+	    - How many users belong to each learning style </br>
+	    And </br>
+	    - The average performance of all users.</br>
+    	 	</br>
+	</div>
+		{% endif %}
+
+
+   {% if user.is_superuser %}
+
+   	    <h3>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>django-CMS</b></span></h3></br>
+   	    If you are an admin user you will see a CMS toolbar at the top of the page. In order to use it you will have to click on the Trainin Portal button.
+   	    </br>
+	<div class="container-fluid" style="background-color:white;">
+	        </br>
+<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>File upload</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+- Click on Files button on the cms toolbar and then click View/Upload Files</br>
+- Click on the blue Upload button and select the file you want to upload</br>
+- Go to the file (should appear in the unfiled folder or some other folder)</br>
+- click on the file</br>
+- Go to the Advanced section</br>
+- Copy the url "/filer_public/- something -/.../ -something -/filename.(file extension)"</br>
+-- When you want to link to the file just create a link, select protocol "< other >" and add /media in the beginning of the url: "/media/filer_public/-something-/.../-something-/filename.(file extension)" and then click okay
+</br>
+	    </div>
+	    </br>
+	    </br>
+
+
+<h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Creating a quiz</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+    In order for you to create a quiz you have to follow these steps: </br>
+    -  Create a quiz category and sub-category [click on the Quiz button then on the Create Category/Sub-category sidebar buttons</br>
+    - Create questions [click on the Questions button and then select Create True/False / Multi-choice /Essay. Remember each question is linked to a Quiz Category/Subcategory. If you need an existing question you have to replicate it with the new category]</br>
+    -Create the quiz [Add quiz name, user friendly url and other options. Add the questions that you want it to contain by selection the questions from the less and clicking the add button.]</br>
+    -- You can make configure the quiz with success or failure messages, single attempt, minimum score for a user to pass etc.</br>
+	    </br>
+	    </div>
+	    </br>
+	   <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Creating a chapter</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+ -   Click on the Chapter button and then the Create Chapter sidebar button </br>
+  -  Enter a unique number greater than 0 and a title.</br>
+  -  The only special characters allowed are : ':','=' and '&' </br></br>
+	    </br>
+	    </div>
+
+	    	    </br>
+	    <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Creating an announcement</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+  -  Click on the Announcements button on the toolbar and then the Create Announcement sidebar button </br>
+  -  Enter a unique number (for that chapter) greater than 0 and a title.</br>
+  -  Enter an announcement entry. (250 characters long) </br>
+  - Save </br>
+ 	    </br>
+	    </div>
+
+   	    </br>
+	    <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Creating an index element</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+  -  Click on the Index Elements button on the toolbar and then the Create Index Element sidebar button </br>
+  -  Enter a unique number (for that chapter) greater than 0.</br>
+  -  Enter an index element entry. (250 characters long) </br>
+  - Save </br>
+  - This will appear in the home page's grey container.
+ 	    </br>
+	    </div>
+
+
+   	    </br>
+	    <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Creating an exercise</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+  -  Click on the Exercise button on the toolbar and then the Create Exercise sidebar button </br>
+  - Select chapter it belongs to. </br>
+  -  Enter a unique number (for that chapter) greater than 0.</br>
+  -  Enter an a question / task in the question field </br>
+  -  There are some modes that you can select</br>
+  ---- <b>Multiple mode</b>: Use the text field and the CorrectAnswers field. Add a number to each question in the text field and add the ansers in the CorrectAnswers field in the same format.</br>
+  ---- <b>Diagram mode</b>: Upload an image. Enter AvailableAnswers for the diagram and then the CorrectAnswer </br>
+  ---- <b>Further reading mode</b>: Use only the textfield to create an exercise</br>
+  ---- <b>Disable mode</b>: Select this to disable the exercise </br>
+  - Save </br>
+  </br>
+ 	   </br>
+ 	   In order to add the exercise to a page go the Exercise button on the toolbar and then the Add to Page sidebar button</br>
+ 	    - Select the chapter and page it belongs to. </br>
+         - Select exercises in the appropriate fields. One for the default and other four below (one for each learning style) </br>
+         -Save </br>
+
+ 	   </br> </br>
+	    </div>
+
+
+
+	    </br>
+	    <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Creating a page (aka section)</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+  -  Click on the Page button and then the Create Page sidebar button </br>
+    - Enter chapter </br>
+  -  Enter a unique number (for that chapter) greater than 0 and a title.</br>
+  -  The only special characters allowed are : ':','=' and '&' </br>
+  - Four entries:</br>
+  -- Default entry is displayed if the learningStyle mode is disabled</br>
+    -- Learnin Style type entries are displayed to users of that learning style if the learningStyle mode is enabled</br>
+	    </br>
+	    </div>
+	    </br>
+	    	    <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Creating a profile</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+    - Click on the Profiles button and then the create Profile sidebar button.
+    - Select the user that the profile is associated with
+    - Enter age
+    - Enter learning style type
+    - Enter testing type
+	    </br>
+	    </div>
+	    </br>
+
+	    	    <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Testing mode</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+- Click on the Testing Mode button and then the Enable/Disable sidebar button
+-- When enabled users of type A view default page entries only and users of type B  view entries normally. This feature also chanes profile pictures depending on the testing type.
+	    </br>
+	    </div>
+	    </br>
+
+	    	    	    <h4>	<span class="label label-info" style="background-color:#fb4186;border-color:#fb4186"><b>Updating/Viewing</b></span></h4></br>
+	<div class="container-fluid" style="background-color:white;">
+- You can view or update anything in the database by clicking on the View sidebar buttons.
+</br>
+	    </div>
+	    </br>
+	    </br>
+   	{% endif %}
+   	   </div> </div>
+   </br>
+</br>
+	    {% endblock %}

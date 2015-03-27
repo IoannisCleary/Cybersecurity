@@ -1,0 +1,169 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Index{% endblock %}
+
+{% block page_title %}<span class="label label-info" style="background-color:#CC0066!important;">Statistics</span>
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});</script>
+<!-- Source of function : http://bootsnipp.com/snippets/featured/progress-bar-meter-->
+{% endblock %}
+
+	{% block content %}
+{% if user.is_authenticated %}
+	{% if testing %}
+	<span class="label label-danger">Testing Mode</span>
+	{% endif %}
+	{% if user.is_authenticated %}
+		{% if set_learningStyle == False %}
+			<div class="alert alert-info" role="alert"> <p class="label label-info">Reminder</p></br> You need to complete your profile ! <a href="/trainingPortal/learningStyleCompletion/" class="btn btn-info" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+
+	</br>
+	  	{% endif %}
+	{% endif %}
+<div class="well">
+	</br>
+	 <div class="panel panel-primary"style="border-color:#6B0024!important">
+  <div class="panel-heading"style="background-color:#CC0066!important; border-color:#DB4D94!important">
+  <h2 class="panel-title"><b>Portal Statistics</b></h2>
+  </div>
+  <div class="panel-body">
+  <div class="panel-heading" style="background-color:#52A3CC!important; border-color:#4282A3!important;color:white;">
+    <h5 class="panel-title"><b>Users</b></h5>
+	 </div>
+  <div class="panel-body">
+
+			<div class="progress" style="background:#4A93B8;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active"  data-toggle="tooltip" data-placement="top" title="Total users:  {{allusers}}"role="progressbar" aria-valuenow="{{allusers}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: 100%;background-color:#4A93B8;">
+<b>Total users</b> :  {{allusers}}
+		</div>
+		</div>
+			{% if progressavailable %}
+		<div class="progress" style="background:#D1FFFF;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" data-toggle="tooltip" data-placement="top" title="Quizzes taken by :  {{progressusers}}  user(s)" role="progressbar" aria-valuenow="{{progressusers}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{percentageall}}%;background-color:#4A93B8;">
+<b>Quizzes taken by</b> :  {{progressusers}}  user(s)
+		</div>
+		</div>
+			{% else %}
+			<div class="progress" style="background:#D1FFFF;">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progressusers}}"  data-toggle="tooltip" data-placement="top" title="Quizzes taken by :  {{progressusers}}  user(s)" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{percentageall}}%;background-color:#5E5E5E;">
+<b>Quizzes taken by</b> :  {{progressusers}}  user(s)
+		</div>
+		</div>
+	{% endif %}
+	</div>
+		<div class="panel-heading" style="background-color:#0066FF!important; border-color:#0066FF!important;color:white;">
+    <h5 class="panel-title"><b>Learning Styles</b></h5>
+	 </div>
+	   <div class="panel-body">
+	 	{% if activistsavailable %}
+	 		<div class="progress" style="background:#B2B2B2;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" data-toggle="tooltip" data-placement="top" title="Activists : {{activists}} user(s) " role="progressbar" aria-valuenow="{{activists}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{activistspercentage}}%;background-color:#009999!important;">
+ <b>Activists</b> : {{activists}} user(s)
+		</div>
+		</div>
+		{% else %}
+		<div class="progress" style="background:#B2B2B2;">
+  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="Activists : No users " role="progressbar" aria-valuenow="{{activists}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{activistspercentage}}%;background-color:#5E5E5E!important;">
+ <b>Activists</b> : No users
+		</div>
+		</div>
+	{% endif %}
+			{% if reflectorsavailable %}
+				<div class="progress" style="background:#B2B2B2;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active"data-toggle="tooltip" data-placement="top" title="Reflectors : {{reflectors}} user(s) "  role="progressbar" aria-valuenow="{{reflectors}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{reflectorspercentage}}%;background-color:#00B88A!important;">
+ <b>Reflectors</b> : {{reflectors}} user(s)
+		</div>
+		</div>
+		{% else %}
+		<div class="progress" style="background:#B2B2B2;">
+  <div class="progress-bar progress-bar-success"data-toggle="tooltip" data-placement="top" title="Reflectors : No users "  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{reflectorspercentage}}%;background-color:#5E5E5E!important;">
+ <b>Reflectors</b> : No users
+		</div>
+		</div>
+	{% endif %}
+			{% if theoristsavailable %}
+				<div class="progress" style="background:#B2B2B2;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" data-toggle="tooltip" data-placement="top" title="Theorists : {{theorists}} user(s) " role="progressbar" aria-valuenow="{{theorists}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{theoristspercentage}}%;background-color:#009999!important;">
+ <b>Theorists</b> : {{theorists}} user(s)
+		</div>
+		</div>
+		{% else %}
+		<div class="progress" style="background:#B2B2B2;">
+   <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="Theorists : No users " role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{theoristspercentage}}%;background-color:#5E5E5E!important;"> <b>Theorists</b> : No users
+		</div>
+		</div>
+	{% endif %}
+			{% if pragmatistsavailable %}
+				<div class="progress" style="background:#B2B2B2;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" data-toggle="tooltip" data-placement="top" title="Pragmatists : {{pragmatists}} user(s) " role="progressbar" aria-valuenow="{{pragmatists}}" aria-valuemin="0" aria-valuemax="{{allusers}}" style="width: {{pragmatistspercentage}}%;background-color:#00B88A!important;">
+<b>Pragmatists</b> : {{pragmatists}} user(s)
+		</div>
+		</div>
+		{% else %}
+		<div class="progress" style="background:#B2B2B2;">
+   <div class="progress-bar progress-bar-success"data-toggle="tooltip" data-placement="top" title="Pragmatists : No users "  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{pragmatistspercentage}}%;background-color:#5E5E5E!important;"><b>Pragmatists</b> : No users
+		</div>
+		</div>
+	{% endif %}
+			{% if noneavailable %}
+		<div class="progress" style="background:#B2B2B2;">
+   <div class="progress-bar progress-bar-success progress-bar-striped active"data-toggle="tooltip" data-placement="top" title="No selection : {{none}} user(s) "  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{nonepercentage}}%;background-color:#191919!important;"><b>No selection</b> : {{none}} user(s)
+		</div>
+		</div>
+		{% else %}
+		<div class="progress" style="background:#B2B2B2;">
+   <div class="progress-bar progress-bar-success"data-toggle="tooltip" data-placement="top" title="No selection : No users "  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{nonepercentage}}%;background-color:#5E5E5E!important;"><b>No selection</b> : No users
+		</div>
+		</div>
+	{% endif %}
+
+	</div>
+		<div class="panel-heading" style="background-color:#95BA25!important; border-color:#DBFF94!important;color:white;">
+    <h5 class="panel-title"><b>Average performance</b> (out of 100) from <b>{{progressusers}}</b> user(s)</h5>
+	 </div>
+	   <div class="panel-body">
+	   {% if hasall %}
+		<div class="progress" style="background:#EBFFD6;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" data-toggle="tooltip" data-placement="top" title="Average : {{percentageall}} " role="progressbar" aria-valuenow="{{all}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percentageall}}%;background-color:#6EB825!important;">
+ <b>{{percentageall}} % </b>
+		</div>
+			 </div>
+			{% else %}
+	<div class="progress" style="background:#EBFFD6;">
+  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="Average : Not available " role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{percentageall}}%;background-color:#5E5E5E!important;">
+ <b> Not available </b>
+		</div>
+			{% endif %}
+		</div>
+
+			<div class="panel-heading" style="background-color:#DF013A!important; border-color:#FF0040!important;color:white;">
+    <h5 class="panel-title"><b>Average performance of Testing mode</b> (out of 100) from <b>{{progressusersT}}</b> user(s)</h5>
+	 </div>
+	   <div class="panel-body">
+	   {% if hasTesting %}
+		<div class="progress" style="background:#EBFFD6;">
+  <div class="progress-bar progress-bar-success progress-bar-striped active" data-toggle="tooltip" data-placement="top" title="Average : {{percentageallT}} " role="progressbar" aria-valuenow="{{allT}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percentageallT}}%;background-color:#DF013A!important;">
+ <b>{{percentageallT}} % </b>
+		</div>
+			 </div>
+			{% else %}
+	<div class="progress" style="background:#EBFFD6;">
+  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="Average : Not available " role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{percentageallT}}%;background-color:#5E5E5E!important;">
+ <b> Not available </b>
+		</div>
+			{% endif %}
+		</div>
+
+</div>
+</div>
+
+   </div>
+	{% else %}
+  				<div class="alert alert-warning" role="alert"> <p class="label label-warning">WARNING</p></br> Please log in to access this page.  <a href="/accounts/login/?next=/trainingPortal/statistics/" class="btn btn-warning" role="button">Go <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+		{% endif %}
+	    {% endblock %}
